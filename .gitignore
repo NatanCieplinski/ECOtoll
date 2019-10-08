@@ -1,5 +1,5 @@
 /bin
-/.DS_Store
-/.project
-/.classpath
-/build.fxbuild
+.DS_Store
+.project
+.classpath
+build.fxbuild
