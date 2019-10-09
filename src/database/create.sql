@@ -30,8 +30,6 @@ CREATE TABLE IF NOT EXISTS `DBAutostrada`.`casello` (
   `idcasello` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `chilometro` FLOAT NOT NULL,
-  `id_autostrada` INT NOT NULL,
-  `autostrada_id` INT NOT NULL,
   `idautostrada` INT NOT NULL,
   PRIMARY KEY (`idcasello`),
   INDEX `fk_casello_autostrada1_idx` (`idautostrada` ASC) VISIBLE,
