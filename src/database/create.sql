@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `DBAutostrada`.`veicolo` (
   `altezza` INT NOT NULL,
   `n_assi` TINYINT NOT NULL,
   `carrello` TINYINT NOT NULL,
-  `n_assi_carrello` TINYINT NOT NULL,
+  `n_assi_carrello` TINYINT,
   `targa` VARCHAR(9) NOT NULL,
   `modello` VARCHAR(20) NOT NULL,
   `marca` VARCHAR(20) NOT NULL,
