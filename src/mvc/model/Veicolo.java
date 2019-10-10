@@ -35,4 +35,66 @@ public class Veicolo{
         this.anno = anno;
         this.peso = peso;
     }
+
+    public void setId(int id){
+        this.id = id;
+    }
+    public void setAltezza(int altezza){
+        this.altezza = altezza;
+    }
+    public void setNumeroAssi(int numeroAssi){
+        this.numeroAssi = numeroAssi;
+    }
+    public void setCarrello(boolean carrello){
+        this.carrello = carrello;
+    }
+    public void setNumeroAssiCarrello(int numeroAssiCarrello){
+        this.numeroAssiCarrello = numeroAssiCarrello;
+    }
+    public void setTarga(String targa){
+        this.targa = targa;
+    }
+    public void setModello(String modello){
+        this.modello = modello;
+    }
+    public void setMarca(String marca){
+        this.marca = marca;
+    }
+    public void setAnno(int anno){
+        this.anno = anno;
+    }
+    public void setPeso(int peso){
+        this.peso = peso;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+    public int getAltezza(){
+        return this.altezza;
+    }
+    public int getNumeroAssi(){
+        return this.numeroAssi;
+    }
+    public boolean getCarrello(){
+        return this.carrello;
+    }
+    public int getNumeroAssiCarrello(){
+        return this.numeroAssiCarrello;
+    }
+    public String getTarga(){
+        return this.targa;
+    }
+    public String getModello(){
+        return this.modello;
+    }
+    public String getMarca(){
+        return this.marca;
+    }
+    public int getAnno(){
+        return this.anno;
+    }
+    public int getPeso(){
+        return this.peso;
+    }
 }

@@ -27,4 +27,14 @@ public class Autostrada{
     }
     // TODO set dei caselli e delle tariffe
 
+    public int getId(){
+        return this.id;
+    }
+    public String getNome(){
+        return this.nome;
+    }
+    public int getTipo(){
+        return this.tipo;
+    }
+    // TODO get dei caselli e delle tariffe
 }
