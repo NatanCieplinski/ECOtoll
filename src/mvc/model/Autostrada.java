@@ -22,9 +22,8 @@ public class Autostrada{
     public void setNome(String nome){
         this.nome = nome;
     }
-    public void setTipo(int tipo){
-        this.tipo = tipo;
-    }
+    //assenza del set del tipo perchè non può cambiare dopo la prima istanza 
+    
     // TODO set dei caselli e delle tariffe
 
     public int getId(){
