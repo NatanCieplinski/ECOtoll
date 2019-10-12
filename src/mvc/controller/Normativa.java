@@ -13,9 +13,33 @@ public class Normativa{
 
     private static float IVA = 0.22f;
 
-    private static String classificaVeicolo(Veicolo veicolo){
-        //TODO implementazione classificazione veicolo
-        return "prova";
+    public static Veicolo creaVeicolo(String targa){
+        //TODO DB query per creare le informazioni dei veicoli
+        int id;
+        int altezza;
+        int numeroAssi;
+        boolean carrello;
+        int numeroAssiCarrello;
+        int co2;
+        int decibel;
+        String modello;
+        String marca;
+        int anno;
+        int peso;
+        
+        if (altezza < 130 && numeroAssi == 2){
+            return new VeicoloA(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
+        }
+        if (altezza > 130 && numeroAssi == 2){
+            return new VeicoloB(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
+        }
+        if (numeroAssi == 3){
+            return new Veicolo3(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
+        }
+        if (numeroAssi == 4){
+            return new Veicolo4(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
+        }
+        return new Veicolo5(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
     }
 
     //il veicolo verrà creato dalla classe normativa, ricevendo la targa dal gestore autostradale
