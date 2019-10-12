@@ -7,8 +7,8 @@ public class Autostrada{
     private int id;
     private String nome;
     private int tipo;
-    private HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();      //Lista dei caselli
-    private HashMap<Integer,String> tariffe = new HashMap<Integer,String>();        //Lista di tariffe
+    private HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();      //Lista dei caselli <id,nome>
+    private HashMap<Integer,String> tariffe = new HashMap<Integer,String>();        //Lista di tariffe <costo,tipo_veicolo>
 
     public Autostrada(int id, String nome, int tipo){
         this.id = id;
@@ -23,7 +23,7 @@ public class Autostrada{
         this.nome = nome;
     }
     //assenza del set del tipo perchè non può cambiare dopo la prima istanza 
-    
+
     // TODO set dei caselli e delle tariffe
 
     public int getId(){

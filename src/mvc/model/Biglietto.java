@@ -19,4 +19,5 @@ public class Biglietto{
     public String getTarga(){
         return this.targa;
     }
+
 }
