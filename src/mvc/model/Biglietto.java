@@ -6,6 +6,8 @@ public class Biglietto{
 
     private int idCaselloIngresso;
     private String targa;
+    private boolean carrello;
+    private int numeroAssiCarrello;
 
     public Biglietto(int idCaselloIngresso, String targa){
         this.idCaselloIngresso = idCaselloIngresso;

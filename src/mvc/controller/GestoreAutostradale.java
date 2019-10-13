@@ -13,7 +13,7 @@ public class GestoreAutostradale{
 
     public void uscita(){
         Biglietto biglietto; //TODO DB: query per informazione sul biglietto
-        
+        Veicolo veicolo = Normativa.creaVeicolo(biglietto.getTarga());
         //TODO lettura da file del biglietto
         //TODO controllo dei dati tra il biglietto e i dati sul txt
         // Pedaggio pedaggio = new Pedaggio();

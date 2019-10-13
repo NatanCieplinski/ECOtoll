@@ -27,6 +27,7 @@ public class Normativa{
         int anno;
         int peso;
         
+        //TODO creare classe pedaggio che si occupa delle informazioni 
         if (altezza < 130 && numeroAssi == 2){
             return new VeicoloA(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
         }
