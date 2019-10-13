@@ -13,31 +13,30 @@ public class Normativa{
 
     private static float IVA = 0.22f;
 
-    public static Veicolo creaVeicolo(String targa){
+    public static Veicolo creaVeicolo(String targa, boolean carrello, int numeroAssiCarrello){
         //TODO DB query per creare le informazioni dei veicoli
         int id;
         int altezza;
         int numeroAssi;
-        boolean carrello;
-        int numeroAssiCarrello;
         int co2;
         int decibel;
         String modello;
         String marca;
         int anno;
         int peso;
-        
+        int assi = numeroAssi + numeroAssiCarrello;
+
         //TODO creare classe pedaggio che si occupa delle informazioni 
-        if (altezza < 130 && numeroAssi == 2){
+        if (altezza < 130 && assi == 2){
             return new VeicoloA(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
         }
-        if (altezza > 130 && numeroAssi == 2){
+        if (altezza > 130 && assi == 2){
             return new VeicoloB(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
         }
-        if (numeroAssi == 3){
+        if (assi == 3){
             return new Veicolo3(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
         }
-        if (numeroAssi == 4){
+        if (assi == 4){
             return new Veicolo4(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);
         }
         return new Veicolo5(id, altezza, numeroAssi, carrello, numeroAssiCarrello, targa, co2, decibel, modello, marca, anno, peso);

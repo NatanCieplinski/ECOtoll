@@ -7,9 +7,14 @@ import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import java.util.HashMap;
+import mvc.model.Autostrada;
 
 
 public class Main extends Application {
+
+	public HashMap<Integer, Autostrada> autostrade;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -22,6 +27,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	
 	public static void main(String[] args) {
 		launch(args);
