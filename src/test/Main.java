@@ -13,7 +13,7 @@ import mvc.model.Autostrada;
 
 public class Main extends Application {
 
-	public HashMap<Integer, Autostrada> autostrade;
+	public static HashMap<Integer, Autostrada> autostrade;
 
 	@Override
 	public void start(Stage primaryStage) {
