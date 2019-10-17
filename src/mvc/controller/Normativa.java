@@ -11,7 +11,7 @@ import java.util.HashMap;
 //la classe normativa serve per raggruppare tutto l'insieme di normative attuali e future da implementare
 public class Normativa{
 
-    private static float IVA = 0.22f;
+    private static final float IVA = 0.22f;
 
     public static Veicolo creaVeicolo(String targa, boolean carrello, int numeroAssiCarrello){
         //TODO DB query per creare le informazioni dei veicoli
