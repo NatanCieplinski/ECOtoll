@@ -90,6 +90,8 @@ CREATE TABLE IF NOT EXISTS `DBAutostrada`.`veicolo` (
   `marca` VARCHAR(20) NOT NULL,
   `anno` INT NOT NULL,
   `peso` INT NOT NULL,
+  `emissioni_Co2` INT,
+  `emissioni_decibel` INT NOT NULL,
   PRIMARY KEY (`targa`))
 ENGINE = InnoDB;
 
