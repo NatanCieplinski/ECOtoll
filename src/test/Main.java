@@ -10,8 +10,17 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
+	
+	private Stage primaryStage;
+	private BorderPane mainLayout;
+	
 	@Override
 	public void start(Stage primaryStage) {
+		
+		this.primaryStage = rimaryXStage;
+		this.primaryStage.setTitle("Employee App");
+		showMainView();
+		
 		try {
 			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root,400,400);
@@ -21,6 +30,15 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void showMainView() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("view/Home.fxml"));
+		mainLayout = loader.load();
+		Scene scene = new Scene(MainLayout);
+		primaryStage.setScene(scene);
+		primaryStage
 	}
 	
 	public static void main(String[] args) {
