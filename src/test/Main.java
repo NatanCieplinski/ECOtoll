@@ -1,5 +1,7 @@
 package test;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,31 +16,32 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private BorderPane mainLayout;
 	
-	@Override
-	public void start(Stage primaryStage) {
-		
-		this.primaryStage = rimaryXStage;
-		this.primaryStage.setTitle("Employee App");
-		showMainView();
+public void start(Stage primaryStage) {
 		
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
+			
+			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Home.fxml"));
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/mvc/view/application.css").toExternalForm());
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
+		
 		} catch(Exception e) {
+			
 			e.printStackTrace();
+
 		}
 	}
 	
-	private void showMainView() {
+	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Home.fxml"));
+		loader.setLocation(Main.class.getResource("/mvc/view/Home.fxml"));
 		mainLayout = loader.load();
-		Scene scene = new Scene(MainLayout);
+		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
-		primaryStage
+		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
