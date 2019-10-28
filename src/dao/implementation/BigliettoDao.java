@@ -17,7 +17,7 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	
 	
 	/*
-	 * CRUD: Implementare in caso di necessit�
+	 * CRUD: Implementare in caso di necessita
 	 * */
 	@Override
 	public void create(Biglietto biglietto) {}

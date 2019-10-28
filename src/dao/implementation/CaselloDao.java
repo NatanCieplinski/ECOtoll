@@ -8,7 +8,6 @@ import java.util.List;
 import com.mysql.jdbc.ResultSet;
 
 import dao.database.DBManager;
-import dao.exceptions.DBException;
 import dao.interfaces.CaselloDaoI;
 import mvc.model.Casello;
 
