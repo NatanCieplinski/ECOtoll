@@ -5,13 +5,13 @@ public class Casello{
     private int id;
     private String nome;
     private int idAutostradaDiAppartenenza;
-    private int kilometro;
+    private int chilometro;
     
-    public Casello(int id, String nome, int idAutostradaDiAppartenenza, int kilometro){
+    public Casello(int id, String nome, int idAutostradaDiAppartenenza, int chilometro){
         this.id = id;
         this.nome = nome;
         this.idAutostradaDiAppartenenza = idAutostradaDiAppartenenza;
-        this.kilometro = kilometro;
+        this.chilometro = chilometro;
     }
 
     public void setId(int id){
@@ -23,8 +23,8 @@ public class Casello{
     public void setIdAutostradaDiAppartenenza(int idAutostradaDiAppartenenza){
         this.idAutostradaDiAppartenenza = idAutostradaDiAppartenenza;
     }
-    public void setKilometro(int kilometro){
-        this.kilometro = kilometro;
+    public void setChilometro(int chilometro){
+        this.chilometro = chilometro;
     }
 
     public int getId(){
@@ -36,7 +36,7 @@ public class Casello{
     public int getIdAutostradaDiAppartenenza(){
         return this.idAutostradaDiAppartenenza;
     }
-    public int getKilometro(){
-        return this.kilometro;
+    public int getChilometro(){
+        return this.chilometro;
     }
 }
