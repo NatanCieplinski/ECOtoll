@@ -1,5 +1,9 @@
 package test;
 	
+import java.io.IOException;
+
+import com.apple.laf.AquaButtonBorder.Toolbar;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -7,28 +11,40 @@ import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import java.util.HashMap;
-import mvc.model.Autostrada;
 
 
 public class Main extends Application {
-
-	public static HashMap<Integer, Autostrada> autostrade;
-
-	@Override
-	public void start(Stage primaryStage) {
+	
+	private Stage primaryStage;
+	private BorderPane mainLayout;
+	
+public void start(Stage primaryStage) {
+		
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
+			
+			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Home.fxml"));
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/mvc/view/application.css").toExternalForm());
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
+		
 		} catch(Exception e) {
-			e.printStackTrace();
 			
+			e.printStackTrace();
+
 		}
 	}
-
+	
+	private void showMainView() throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/mvc/view/Home.fxml"));
+		mainLayout = loader.load();
+		Scene scene = new Scene(mainLayout);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
 	
 	public static void main(String[] args) {
 		launch(args);
