@@ -1,14 +1,16 @@
 package dao.implementation;
 
-import java.sql.SQLException;
+import java.util.Optional;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
-import com.mysql.jdbc.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import dao.database.DBManager;
 import dao.interfaces.VeicoloDaoI;
+import dao.exceptions.DBException;
 import mvc.model.Veicolo;
 
 public class VeicoloDao extends DBManager implements VeicoloDaoI {

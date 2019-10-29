@@ -1,14 +1,16 @@
 package dao.implementation;
 
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.mysql.jdbc.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import dao.database.DBManager;
 import dao.interfaces.CaselloDaoI;
+import dao.exceptions.DBException;
 import mvc.model.Casello;
 
 public class CaselloDao extends DBManager implements CaselloDaoI {
@@ -20,7 +22,16 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	 * CRUD: Implementare in caso di necessità
 	 * */
 	@Override
-	public void create(Casello casello) {
+	public void create(Casello casello) throws DBException, SQLException{
+		final String query = "INSERT INTO casello(autostrada, nome, chilometro) VALUES( ?,?,? );";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, casello.getIdAutostradaDiAppartenenza());
+		stmt.setString(2, casello.getNome());
+		stmt.setFloat(3, casello.getChilometro());
+		stmt.execute();
+		this.closeDB(stmt, null);
 	}
 
 	@Override
@@ -31,7 +42,7 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 
 	@Override
 	public void delete(Casello casello) {}
-	
+
 	@Override
 	public Casello makeObj(ResultSet rs) throws SQLException{
 		return new Casello(
@@ -41,7 +52,7 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 			rs.getInt("chilometro")
 		);
 	}
-	
+
 	@Override
 	public List<Casello> makeList(ResultSet rs) throws SQLException{
 		List<Casello> caselli = new LinkedList<Casello>();

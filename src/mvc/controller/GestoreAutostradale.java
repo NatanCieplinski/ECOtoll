@@ -13,7 +13,11 @@ public class GestoreAutostradale{
     }
 
     public void ingresso(int idCasello, String targa){
-        bigliettoDao.create(new Biglietto(idCasello, targa));
+    	try {
+    		bigliettoDao.create(new Biglietto(idCasello, targa));
+        }catch(Exception e) {
+        	System.out.println(e.getMessage());
+        }
         //TODO generare file txt con il biglietto
     }
 

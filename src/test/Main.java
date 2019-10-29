@@ -1,22 +1,23 @@
 package test;
 	
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mvc.controller.GestoreAutostradale;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
-public class Main extends Application {
+public class Main {//extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane mainLayout;
 	
-public void start(Stage primaryStage) {
-		
+	public void start(Stage primaryStage) {
+
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Home.fxml"));
@@ -28,9 +29,7 @@ public void start(Stage primaryStage) {
 			primaryStage.show();
 		
 		} catch(Exception e) {
-			
 			e.printStackTrace();
-
 		}
 	}
 	
@@ -44,6 +43,12 @@ public void start(Stage primaryStage) {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+
+		System.out.println("1");
+		GestoreAutostradale g = new GestoreAutostradale();
+		g.ingresso(3, "AA000AA");
+		
+		System.out.println("sdasdasd");
 	}
 }
