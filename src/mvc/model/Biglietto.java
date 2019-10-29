@@ -15,7 +15,7 @@ public class Biglietto{
     }
 
      //i metodi set non sono implementati perchè il biglietto una volta creato non viene mai modificato 
-    public int getIdCaselloIngress(){
+    public int getIdCaselloIngresso(){
         return idCaselloIngresso;
     }
     public String getTarga(){
