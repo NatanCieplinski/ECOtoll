@@ -125,4 +125,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# JavaFX
+build.fxbuild
+
 # End of https://www.gitignore.io/api/macos,windows,eclipse
