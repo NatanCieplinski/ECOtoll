@@ -35,7 +35,21 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	}
 
 	@Override
-	public Optional<Biglietto> read(long id){ return Optional.ofNullable(null); } 
+	public Optional<Biglietto> read(long id) throws DBException, SQLException{ 
+		final String query = "SELECT * FROM biglietto WHERE id=?;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setLong(1, id);
+		
+		ResultSet rs = stmt.executeQuery();
+		rs.next();
+		Biglietto biglietto = this.makeObj(rs);
+		
+		this.closeDB(stmt, null);
+		
+		return Optional.ofNullable(biglietto); 
+	} 
 
 	@Override
 	public void update(Biglietto biglietto, String[] params){}
@@ -45,7 +59,7 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	
 	public Biglietto makeObj(ResultSet rs) throws SQLException{
 		return new Biglietto(
-			rs.getInt("id"),
+			rs.getInt("ingresso"),
 			rs.getString("targa")
 		);
 	}

@@ -27,5 +27,14 @@ public class Biglietto{
     public int numeroAssiCarrello(){
         return this.numeroAssiCarrello;
     }
+    
+    @Override
+    public boolean equals(Object b) {
+        if (b instanceof Biglietto) {  
+	        return this.getIdCaselloIngresso() == ((Biglietto)b).getIdCaselloIngresso() &&
+	        	   this.getTarga().equals(((Biglietto)b).getTarga());
+        } 
 
+        return false;
+    }
 }

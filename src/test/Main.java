@@ -44,11 +44,8 @@ public class Main {//extends Application {
 	
 	public static void main(String[] args) {
 		//launch(args);
-
-		System.out.println("1");
 		GestoreAutostradale g = new GestoreAutostradale();
-		g.ingresso(3, "AA000AA");
-		
-		System.out.println("sdasdasd");
+		g.ingresso(8, "AA000AA");
+		g.uscita(5);
 	}
 }
