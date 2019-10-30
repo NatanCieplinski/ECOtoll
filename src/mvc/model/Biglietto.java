@@ -21,10 +21,10 @@ public class Biglietto{
     public String getTarga(){
         return this.targa;
     }
-    public boolean carrello(){
+    public boolean getCarrello(){
         return this.carrello;
     }
-    public int numeroAssiCarrello(){
+    public int getNumeroAssiCarrello(){
         return this.numeroAssiCarrello;
     }
     

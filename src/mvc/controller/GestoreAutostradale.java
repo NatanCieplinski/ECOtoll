@@ -16,11 +16,11 @@ import dao.implementation.*;
 public class GestoreAutostradale{
 
     private BigliettoDao bigliettoDao;
-    private VeicoloDao veicoloDao;
+	private Normativa normativa;
 
     public GestoreAutostradale(){
         this.bigliettoDao = new BigliettoDao();
-        this.veicoloDao = new VeicoloDao();
+		this.normativa = new Normativa();
     }
 
     public void ingresso(int idCasello, String targa){
@@ -55,9 +55,7 @@ public class GestoreAutostradale{
     			
         		System.out.println("Biglietto valido");
         		
-        		// Prende il veicolo dal DB
-        		Veicolo veicolo = veicoloDao.read(targa).get();
-        		System.out.println(veicolo);
+				Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
         		
     		}else {
         		System.out.println("Biglietto manomesso");
