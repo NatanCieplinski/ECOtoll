@@ -1,5 +1,15 @@
-- Auto arriva all'ingresso: viene selezionata la targa e si specifica se ha carrello o meno, e a quanti assi
-- il metodo ingresso() nella classe GestoreAutostradale genera l'oggetto biglietto e il file txt
-- Auto arriva all'uscita: viene selezionata la targa, il metodo uscita() della classe GestoreAutostradale legge il biglietto in txt e controlla se corrispondono. La classe uscita crea il veicolo e passa il veicolo, il biglietto e il casello di uscita alla classe pedaggio, che si occupa di fare i calcoli
-- La classe pedaggio chiama normativa per verificare la tariffa ed esegue i calcoli. Manda il risultato dei calcoli all'interfaccia. 
-- usando il tasto paga il biglietto viene distrutto e l'auto viene considerata uscita fuori dall'autostrada
+
+1 - L'auto arriva all'ingresso e viene selezionata:
+      - la targa
+      - se ha carrello o meno, e a quanti assi
+      
+2 - Il GestoreAutostradale con il metodo ingresso() genera l'oggetto biglietto e il file biglietto.txt
+
+3 - L'auto arriva all'uscita viene selezionata la targa, e il GestoreAutostradale con il metodo uscita() 
+		- legge il biglietto in txt e controlla se corrispondono
+		- crea il veicolo
+		- passa il veicolo, il biglietto e il casello di uscita alla classe pedaggio
+		
+4 - La classe Pedaggio utilizza Normativa per verificare la tariffa ed esegue i calcoli. Manda il risultato dei calcoli all'interfaccia. 
+
+5 - Usando il tasto paga il biglietto viene distrutto e l'auto viene considerata uscita fuori dall'autostrada

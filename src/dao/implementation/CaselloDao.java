@@ -35,7 +35,7 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	}
 
 	@Override
-	public Optional<Casello> read(long id){ return Optional.ofNullable(null); } 
+	public Optional<Casello> read(Object id){ return Optional.ofNullable(null); } 
 
 	@Override
 	public void update(Casello casello, String[] params){}

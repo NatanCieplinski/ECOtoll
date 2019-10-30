@@ -12,7 +12,7 @@ import dao.exceptions.DBException;
 public interface DaoI<T> {
 	// CRUD
     void 		create(T t) 				 throws DBException, SQLException;
-    Optional<T> read(long id)				 throws DBException, SQLException;  
+    Optional<T> read(Object id)				 throws DBException, SQLException;  
     void		update(T t, String[] params) throws DBException, SQLException;
     void 		delete(T t)					 throws DBException, SQLException;
     

@@ -35,12 +35,12 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	}
 
 	@Override
-	public Optional<Biglietto> read(long id) throws DBException, SQLException{ 
+	public Optional<Biglietto> read(Object id) throws DBException, SQLException{ 
 		final String query = "SELECT * FROM biglietto WHERE id=?;";
 		
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
-		stmt.setLong(1, id);
+		stmt.setLong(1, (long)id);
 		
 		ResultSet rs = stmt.executeQuery();
 		rs.next();

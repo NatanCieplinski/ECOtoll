@@ -11,11 +11,13 @@ import java.sql.ResultSet;
 import dao.database.DBManager;
 import dao.interfaces.VeicoloDaoI;
 import dao.exceptions.DBException;
+import mvc.model.Biglietto;
 import mvc.model.Veicolo;
 
 public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	
 	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
+
 	
 	
 	/*
@@ -25,7 +27,21 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	public void create(Veicolo veicolo) {}
 
 	@Override
-	public Optional<Veicolo> read(long id){ return Optional.ofNullable(null); } 
+	public Optional<Veicolo> read(Object targa) throws DBException, SQLException{
+		final String query = "SELECT * FROM veicolo WHERE targa=?;";
+	
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setString(1, (String)targa);
+		
+		ResultSet rs = stmt.executeQuery();
+		rs.next();
+		Veicolo veicolo = this.makeObj(rs);
+		
+		this.closeDB(stmt, null);
+		
+		return Optional.ofNullable(veicolo); 
+	} 
 
 	@Override
 	public void update(Veicolo veicolo, String[] params){}

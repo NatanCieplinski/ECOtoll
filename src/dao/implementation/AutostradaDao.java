@@ -25,7 +25,7 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 	public void create(Autostrada autostrada) {}
 
 	@Override
-	public Optional<Autostrada> read(long id){ return Optional.ofNullable(null); } 
+	public Optional<Autostrada> read(Object id){ return Optional.ofNullable(null); } 
 
 	@Override
 	public void update(Autostrada autostrada, String[] params){}
