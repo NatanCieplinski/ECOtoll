@@ -7,7 +7,7 @@
 
 3 - L'auto arriva all'uscita viene selezionata la targa, e il GestoreAutostradale con il metodo uscita() 
 		- legge il biglietto in txt e controlla se corrispondono
-		- crea il veicolo
+		- passa la targa a Normativa, che la targa sul DB di veicoli e crea il corrispondente veicolo e lo classifica (questo perchè se le normative di classificazione del veicolo cambiano, è necessario modificare solo normativa)
 		- passa il veicolo, il biglietto e il casello di uscita alla classe pedaggio
 		
 4 - La classe Pedaggio utilizza Normativa per verificare la tariffa ed esegue i calcoli. Manda il risultato dei calcoli all'interfaccia. 
