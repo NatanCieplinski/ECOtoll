@@ -35,7 +35,7 @@ public class GestoreAutostradale{
         }
     }
 
-    public void uscita(long idBiglietto){
+    public void uscita(long idBiglietto, int idCaselloUscita){
     	try {
     		
     		// Prende il biglietto dal DB
@@ -51,15 +51,15 @@ public class GestoreAutostradale{
     		System.out.println("Biglietto TXT: "+bigliettoTxt.getIdCaselloIngresso()+" : "+bigliettoTxt.getTarga());
     		
     		// Confronta i due biglietti
-    		if(bigliettoTxt.equals(biglietto)) {
-    			
-        		System.out.println("Biglietto valido");
-        		
-				Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
-        		
+    		if(bigliettoTxt.equals(biglietto)) {   			
+        		System.out.println("Biglietto valido");       		
     		}else {
         		System.out.println("Biglietto manomesso");
-    		}
+			}
+
+			//Creazione del veicolo e chiamata al metodo pedaggio
+			Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
+
         }catch(Exception e) {
         	System.out.println(e.getMessage());
         }

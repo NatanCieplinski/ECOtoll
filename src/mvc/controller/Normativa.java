@@ -15,7 +15,6 @@ import dao.implementation.VeicoloDao;
 public class Normativa{
 
     private static final float IVA = 0.22f;
-
     private VeicoloDao veicoloDao;
     
     public Veicolo creaVeicolo(String targa, boolean carrello, int numeroAssiCarrello){
