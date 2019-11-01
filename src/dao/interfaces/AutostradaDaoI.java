@@ -12,5 +12,5 @@ public interface AutostradaDaoI extends DaoI<Autostrada>{
 	// TODO: Inserire le firme delle query necessarie
 	public List<Autostrada> getAll() throws DBException, SQLException;
 	public HashMap<Integer,Casello> getCaselli(Autostrada autostrada) throws DBException, SQLException;
-	public HashMap<Integer,String> getTariffe(Autostrada autostrada) throws DBException, SQLException;
+	public HashMap<String ,Float> getTariffe(Autostrada autostrada) throws DBException, SQLException;
 }

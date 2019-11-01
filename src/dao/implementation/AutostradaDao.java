@@ -42,10 +42,10 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 		return caselli;
 	}
 	
-	public HashMap<Integer,String> getTariffe(Autostrada autostrada) throws DBException, SQLException{
+	public HashMap<String ,Float> getTariffe(Autostrada autostrada) throws DBException, SQLException{
 		final String query = "SELECT * FROM tariffa WHERE id=?;";
 		
-		HashMap<Integer,String> tariffe = new HashMap<Integer,String>();
+		HashMap<String ,Float> tariffe = new HashMap<String ,Float>();
 
 		this.openDB();
 		
@@ -54,11 +54,11 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 		
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
-		tariffe.put(rs.getInt("tariffaA"), "A");
-		tariffe.put(rs.getInt("tariffaB"), "B");
-		tariffe.put(rs.getInt("tariffa3"), "3");
-		tariffe.put(rs.getInt("tariffa4"), "4");
-		tariffe.put(rs.getInt("tariffa5"), "5");
+		tariffe.put("A", rs.getFloat("tariffaA"));
+		tariffe.put("B", rs.getFloat("tariffaB"));
+		tariffe.put("3", rs.getFloat("tariffa3"));
+		tariffe.put("4", rs.getFloat("tariffa4"));
+		tariffe.put("5", rs.getFloat("tariffa5"));
 		
 		this.closeDB(stmt, null);
 		
@@ -66,7 +66,7 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 	}
 	
 	/*
-	 * CRUD: Implementare in caso di necessità
+	 * CRUD: Implementare in caso di necessitï¿½
 	 * */
 	@Override
 	public void create(Autostrada autostrada) {}

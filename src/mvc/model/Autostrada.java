@@ -10,7 +10,7 @@ public class Autostrada{
     private String nome;
     private int tipo;
     private HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();      //Lista dei caselli <id,nome>
-    private HashMap<Integer,String> tariffe = new HashMap<Integer,String>();        //Lista di tariffe <costo,tipo_veicolo>
+    private HashMap<String, Float> tariffe = new HashMap<String, Float>();        //Lista di tariffe <costo,tipo_veicolo>
 
     private AutostradaDao modelDao;
     
@@ -40,7 +40,7 @@ public class Autostrada{
     	this.caselli = caselli;
     }
     
-    public void setTariffe(HashMap<Integer,String> tariffe) {
+    public void setTariffe(HashMap<String, Float> tariffe) {
     	this.tariffe = tariffe;
     }
 
@@ -61,7 +61,7 @@ public class Autostrada{
         return this.caselli;
     }
     
-    public HashMap<Integer,String> getTariffe(){
+    public HashMap<String,Float> getTariffe(){
         return this.tariffe;
     }
     

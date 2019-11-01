@@ -2,7 +2,6 @@ package mvc.controller;
 
 import mvc.model.Biglietto;
 import mvc.model.Veicolo;
-import test.Main;
 import mvc.model.Casello;
 
 import java.io.BufferedReader;
@@ -12,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.io.IOException;
 
 import dao.implementation.*;
 
@@ -30,48 +30,56 @@ public class GestoreAutostradale{
     public void ingresso(int idCasello, String targa){
     	try {
     		bigliettoDao.create(new Biglietto(idCasello, targa));
-    		
-        	List<String> lines = Arrays.asList(Integer.toString(idCasello), targa);
-        	Path file = Paths.get("biglietto.txt");
-        	Files.write(file, lines, StandardCharsets.UTF_8);
+    		this.writeBiglietto(idCasello, targa);
         }catch(Exception e) {
         	System.out.println(e.getMessage());
         }
     }
 
-    public void uscita(long idBiglietto, int idCaselloUscita){
+    public float calcoloPrezzo(long idBiglietto, int idCaselloUscita){
     	try {
-    		
     		// Prende il biglietto dal DB
     		Biglietto biglietto = bigliettoDao.read(idBiglietto).get();
     		System.out.println("Biglietto DB: "+biglietto.getIdCaselloIngresso()+" : "+biglietto.getTarga());
     		
-    		// Legge il e crea il biglietto TXT
-    		Path path = Paths.get("biglietto.txt");
-    		BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
-    		int idCasello = Integer.parseInt(reader.readLine());
-    		String targa = reader.readLine();
-    		Biglietto bigliettoTxt = new Biglietto(idCasello, targa);
-    		System.out.println("Biglietto TXT: "+bigliettoTxt.getIdCaselloIngresso()+" : "+bigliettoTxt.getTarga());
-    		
+			Biglietto bigliettoTxt = this.readBiglietto();
+
     		// Confronta i due biglietti
     		if(bigliettoTxt.equals(biglietto)) {   			
-        		System.out.println("Biglietto valido");       		
-    		}else {
-        		System.out.println("Biglietto manomesso");
+        		System.out.println("Biglietto valido");     
+
+				//Creazione le informazioni da passare alla classe pedaggio
+				Veicolo veicolo = normativa.creaVeicolo(biglietto.getTarga(), biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
+				Casello caselloIngresso = caselloDao.read(biglietto.getIdCaselloIngresso()).get();
+				Casello caselloUscita = caselloDao.read(idCaselloUscita).get();
+
+				return Pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita);  
+						
+    		} else {
+				throw new Exception("Biglietto manomesso");
 			}
-
-			//Creazione le informazioni da passare alla classe pedaggio
-			Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
-			Casello caselloIngresso = caselloDao.read(biglietto.getIdCaselloIngresso()).get();
-			Casello caselloUscita = caselloDao.read(idCaselloUscita).get();
-
-			Pedaggio pedaggio = new Pedaggio();
-			pedaggio.calcoloPedaggio(caselloIngresso, veicolo, caselloUscita);
-
         }catch(Exception e) {
-        	System.out.println(e.getMessage());
-        } 	
+			System.out.println(e.getMessage());
+			return -1;
+		} 	
     }
+
+	private void writeBiglietto(int idCasello, String targa) throws IOException{
+		// Scrive il biglietto TXT
+        List<String> lines = Arrays.asList(Integer.toString(idCasello), targa);
+        Path file = Paths.get("biglietto.txt");
+        Files.write(file, lines, StandardCharsets.UTF_8);
+	}
+	
+	private Biglietto readBiglietto() throws IOException{
+		// Legge il e crea il biglietto TXT
+    	Path path = Paths.get("biglietto.txt");
+    	BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8);
+
+    	int idCasello = Integer.parseInt(reader.readLine());
+    	String targa = reader.readLine();
+
+    	return new Biglietto(idCasello, targa);	
+	}
 
 }

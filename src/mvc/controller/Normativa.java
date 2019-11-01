@@ -43,26 +43,24 @@ public class Normativa{
         }            
 
         if (veicolo.getAltezza() < 130 && assi == 2){
-            return new VeicoloA(veicolo.getId(), veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
+            return new VeicoloA(veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
         }
         if (veicolo.getAltezza() > 130 && assi == 2){
-            return new VeicoloB(veicolo.getId(), veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
+            return new VeicoloB(veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
         }
         if (assi == 3){
-            return new Veicolo3(veicolo.getId(), veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
+            return new Veicolo3(veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
         }
         if (assi == 4){
-            return new Veicolo4(veicolo.getId(), veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
+            return new Veicolo4(veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
         }
-        return new Veicolo5(veicolo.getId(), veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
+        return new Veicolo5(veicolo.getAltezza(), assi, targa, veicolo.getCo2(), veicolo.getDecibel(), veicolo.getEuro(), veicolo.getModello(), veicolo.getMarca(), veicolo.getAnno(), veicolo.getPeso());
         
     }
 
 
     public static float calcoloTariffa(Veicolo veicolo, Casello caselloUscita) {
-
-    	
-    	HashMap<String, Float> tariffe = Main.listaAutostrade
+    	HashMap<String, Float> tariffe = Main.listaAutostrade.get(caselloUscita.getIdAutostradaDiAppartenenza()).getTariffe();
 
     	if (veicolo instanceof VeicoloA) return tariffe.get("A");
     	if (veicolo instanceof VeicoloB) return tariffe.get("B");
@@ -73,7 +71,6 @@ public class Normativa{
 
     public static float maggiorazioni(){
         //Spazio per l'implementazione delle normative future
-        //TODO implementare una somma di tutti i decibel e i co2 in un autostrada
         return 1;
     }
 
@@ -86,7 +83,4 @@ public class Normativa{
         return this.IVA;
     }
     
-    //L'aggiunta delle tariffe, di IVA e di maggiorazioni avviene all'interno di normativa
-    //TODO metodo che modifica le tariffe dell'autostrada
-    //TODO metodo che aggiunge le tariffe dell'autostrada
 }

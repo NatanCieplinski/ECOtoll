@@ -53,8 +53,8 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 			rs.getInt("altezza"),
 			rs.getInt("n_assi"),
 			rs.getString("targa"),
-			rs.getInt("emissioni_Co2"), 		// TODO: DA MODIFICARE IN co2
-			rs.getInt("emissioni_decibel"), 		// TODO: DA MODIFICARE IN decibel
+			rs.getInt("co2"), 	
+			rs.getInt("decibel"), 
 			rs.getInt("euro"),
 			rs.getString("modello"),
 			rs.getString("marca"),
