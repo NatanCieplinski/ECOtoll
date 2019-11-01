@@ -21,7 +21,7 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	
 	
 	/*
-	 * CRUD: Implementare in caso di necessità
+	 * CRUD: Implementare in caso di necessitï¿½
 	 * */
 	@Override
 	public void create(Veicolo veicolo) {}
@@ -59,7 +59,8 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 			rs.getInt("n_assi_carrello"),
 			rs.getString("targa"),
 			rs.getInt("emissioni_Co2"), 		// TODO: DA MODIFICARE IN co2
-			rs.getInt("emissioni_decibel") 		// TODO: DA MODIFICARE IN decibel
+			rs.getInt("emissioni_decibel"), 		// TODO: DA MODIFICARE IN decibel
+			rs.getInt("euro")
 		);
 	}
 	
