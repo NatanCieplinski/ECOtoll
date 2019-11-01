@@ -10,26 +10,30 @@ public class Veicolo{
     //inquinamento acustico e atmosferico per future normative
     private int co2;
     private int decibel;
+    private int euro; // 1-6
     private String modello;
     private String marca;
     private int anno;
     private int peso;
 
-    public Veicolo(int id, int altezza, int numeroAssi, boolean carrello, int numeroAssiCarrello, String targa, int co2, int decibel){
+
+    public Veicolo(int id, int altezza, int numeroAssi, boolean carrello, int numeroAssiCarrello, String targa, int co2, int decibel, int euro){
         this.id = id;
         this.altezza = altezza;
         this.numeroAssi = numeroAssi;
         this.targa = targa;
         this.co2 = co2;
+        this.euro = euro;
     }
 
-    public Veicolo(int id, int altezza, int numeroAssi, String targa, int co2, int decibel, String modello, String marca, int anno, int peso){
+    public Veicolo(int id, int altezza, int numeroAssi, String targa, int co2, int decibel, int euro, String modello, String marca, int anno, int peso){
         this.id = id;
         this.altezza = altezza;
         this.numeroAssi = numeroAssi;
         this.targa = targa;
         this.co2 = co2;
         this.decibel = decibel;
+        this.euro = euro;
         this.modello = modello;
         this.marca = marca;
         this.anno = anno;
@@ -55,6 +59,9 @@ public class Veicolo{
     }
     public int getDecibel(){
         return this.decibel;
+    }
+    public int getEuro(){
+        return this.euro;
     }
     public String getModello(){
         return this.modello;
