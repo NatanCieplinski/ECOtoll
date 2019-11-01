@@ -18,6 +18,20 @@ import mvc.model.Casello;
 public class AutostradaDao extends DBManager implements AutostradaDaoI {
 	
 	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
+	public List<Autostrada> getAll() throws DBException, SQLException{ 
+		final String query = "SELECT * FROM autostrada;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		
+		ResultSet rs = stmt.executeQuery();
+		List<Autostrada> autostrade = this.makeList(rs);
+		
+		this.closeDB(stmt, null);
+		
+		return autostrade; 
+	} 
+	
 	public HashMap<Integer,Casello> getCaselli(Autostrada autostrada) throws DBException, SQLException{
 		HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();
 		
@@ -26,6 +40,29 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 			caselli.put(i.getId(),i);
 		
 		return caselli;
+	}
+	
+	public HashMap<Integer,String> getTariffe(Autostrada autostrada) throws DBException, SQLException{
+		final String query = "SELECT * FROM tariffa WHERE id=?;";
+		
+		HashMap<Integer,String> tariffe = new HashMap<Integer,String>();
+
+		this.openDB();
+		
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, autostrada.getId());
+		
+		ResultSet rs = stmt.executeQuery();
+		rs.next();
+		tariffe.put(rs.getInt("tariffaA"), "A");
+		tariffe.put(rs.getInt("tariffaB"), "B");
+		tariffe.put(rs.getInt("tariffa3"), "3");
+		tariffe.put(rs.getInt("tariffa4"), "4");
+		tariffe.put(rs.getInt("tariffa5"), "5");
+		
+		this.closeDB(stmt, null);
+		
+		return tariffe;
 	}
 	
 	/*

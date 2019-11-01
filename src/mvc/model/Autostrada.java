@@ -22,6 +22,7 @@ public class Autostrada{
         
         try {
             this.setCaselli(this.modelDao.getCaselli(this));
+            this.setTariffe(this.modelDao.getTariffe(this));
         }catch(Exception e){}
     }
 
