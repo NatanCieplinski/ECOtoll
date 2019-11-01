@@ -2,6 +2,8 @@ package mvc.controller;
 
 import mvc.model.Biglietto;
 import mvc.model.Veicolo;
+import test.Main;
+import mvc.model.Casello;
 
 import java.io.BufferedReader;
 import java.nio.charset.StandardCharsets;
@@ -15,12 +17,14 @@ import dao.implementation.*;
 
 public class GestoreAutostradale{
 
-    private BigliettoDao bigliettoDao;
+	private BigliettoDao bigliettoDao;
+	private CaselloDao caselloDao;
 	private Normativa normativa;
 
     public GestoreAutostradale(){
         this.bigliettoDao = new BigliettoDao();
 		this.normativa = new Normativa();
+		this.caselloDao = new CaselloDao();
     }
 
     public void ingresso(int idCasello, String targa){
@@ -59,9 +63,11 @@ public class GestoreAutostradale{
 
 			//Creazione le informazioni da passare alla classe pedaggio
 			Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
-			
+			Casello caselloIngresso = caselloDao.read(biglietto.getIdCaselloIngresso()).get();
+			Casello caselloUscita = caselloDao.read(idCaselloUscita).get();
+
 			Pedaggio pedaggio = new Pedaggio();
-			pedaggio.calcoloPedaggio(biglietto.getIdCaselloIngresso(),veicolo, idCaselloUscita);
+			pedaggio.calcoloPedaggio(caselloIngresso, veicolo, caselloUscita);
 
         }catch(Exception e) {
         	System.out.println(e.getMessage());

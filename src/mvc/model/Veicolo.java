@@ -2,7 +2,6 @@ package mvc.model;
 
 public class Veicolo{
 
-    private int id;
     private int altezza;
     private int numeroAssi;
     //per semplicità assumiamo che il carrello sia dichiarato nell'imattricolazione
@@ -17,8 +16,7 @@ public class Veicolo{
     private int peso;
 
 
-    public Veicolo(int id, int altezza, int numeroAssi, boolean carrello, int numeroAssiCarrello, String targa, int co2, int decibel, int euro){
-        this.id = id;
+    public Veicolo(int altezza, int numeroAssi, boolean carrello, int numeroAssiCarrello, String targa, int co2, int decibel, int euro){
         this.altezza = altezza;
         this.numeroAssi = numeroAssi;
         this.targa = targa;
@@ -26,8 +24,7 @@ public class Veicolo{
         this.euro = euro;
     }
 
-    public Veicolo(int id, int altezza, int numeroAssi, String targa, int co2, int decibel, int euro, String modello, String marca, int anno, int peso){
-        this.id = id;
+    public Veicolo(int altezza, int numeroAssi, String targa, int co2, int decibel, int euro, String modello, String marca, int anno, int peso){
         this.altezza = altezza;
         this.numeroAssi = numeroAssi;
         this.targa = targa;
@@ -42,9 +39,6 @@ public class Veicolo{
 
     //implementazione dei set solo per il carrello perchè sono gli unici elementi che possono cambiare del veicolo.
 
-    public int getId(){
-        return this.id;
-    }
     public int getAltezza(){
         return this.altezza;
     }

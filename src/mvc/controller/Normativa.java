@@ -1,8 +1,10 @@
 package mvc.controller;
 
+import mvc.model.Casello;
 import mvc.model.Veicolo;
 import mvc.model.VeicoloA;
 import mvc.model.VeicoloB;
+import test.Main;
 import mvc.model.Veicolo3;
 import mvc.model.Veicolo4;
 import mvc.model.Veicolo5;
@@ -57,16 +59,16 @@ public class Normativa{
     }
 
 
-    public static float calcoloTariffa(Veicolo veicolo, int idCaselloUscita) {
-    	
-    // 	HashMap<String, Float> tariffe; //DB: Da ottenere dall'autostrada che è ottenuta dal casello
+    public static float calcoloTariffa(Veicolo veicolo, Casello caselloUscita) {
 
-    // 	if (veicolo instanceof VeicoloA) return tariffe.get("A");
-    // 	if (veicolo instanceof VeicoloB) return tariffe.get("B");
-    // 	if (veicolo instanceof Veicolo3) return tariffe.get("3");
-    // 	if (veicolo instanceof Veicolo4) return tariffe.get("4");
-    // 	return tariffe.get("5");
-        return (float)0;
+    	
+    	HashMap<String, Float> tariffe = Main.listaAutostrade
+
+    	if (veicolo instanceof VeicoloA) return tariffe.get("A");
+    	if (veicolo instanceof VeicoloB) return tariffe.get("B");
+    	if (veicolo instanceof Veicolo3) return tariffe.get("3");
+    	if (veicolo instanceof Veicolo4) return tariffe.get("4");
+    	return tariffe.get("5");
     }
 
     public static float maggiorazioni(){

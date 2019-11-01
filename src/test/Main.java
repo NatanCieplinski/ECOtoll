@@ -1,12 +1,16 @@
 package test;
 	
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
+import dao.implementation.AutostradaDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvc.controller.GestoreAutostradale;
+import mvc.model.Autostrada;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -15,6 +19,8 @@ public class Main {//extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane mainLayout;
+	private static AutostradaDao autostradaDao;
+	public static HashMap<Integer, Autostrada> listaAutostrade;
 	
 	public void start(Stage primaryStage) {
 
@@ -43,6 +49,19 @@ public class Main {//extends Application {
 	}
 	
 	public static void main(String[] args) {
+
+		try{
+
+			autostradaDao = new AutostradaDao();
+			
+			List<Autostrada> lista = autostradaDao.getAll();
+			for (Autostrada i: lista){
+				listaAutostrade.put(i.getId(), i);
+			}
+					
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
 		//launch(args);
 		GestoreAutostradale g = new GestoreAutostradale();
 		g.ingresso(8, "AA000AA");
