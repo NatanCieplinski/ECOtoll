@@ -17,8 +17,6 @@ import mvc.model.Veicolo;
 public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	
 	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
-
-	
 	
 	/*
 	 * CRUD: Implementare in caso di necessit�
