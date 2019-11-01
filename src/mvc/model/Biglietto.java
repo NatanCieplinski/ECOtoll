@@ -15,17 +15,26 @@ public class Biglietto{
     }
 
      //i metodi set non sono implementati perchè il biglietto una volta creato non viene mai modificato 
-    public int getIdCaselloIngress(){
+    public int getIdCaselloIngresso(){
         return idCaselloIngresso;
     }
     public String getTarga(){
         return this.targa;
     }
-    public boolean carrello(){
+    public boolean getCarrello(){
         return this.carrello;
     }
-    public int numeroAssiCarrello(){
+    public int getNumeroAssiCarrello(){
         return this.numeroAssiCarrello;
     }
+    
+    @Override
+    public boolean equals(Object b) {
+        if (b instanceof Biglietto) {  
+	        return this.getIdCaselloIngresso() == ((Biglietto)b).getIdCaselloIngresso() &&
+	        	   this.getTarga().equals(((Biglietto)b).getTarga());
+        } 
 
+        return false;
+    }
 }

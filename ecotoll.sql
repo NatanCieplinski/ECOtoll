@@ -1,22 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Creato il: Ott 28, 2019 alle 21:56
--- Versione del server: 5.7.17
--- Versione PHP: 7.1.3
+-- Host: mysql
+-- Generation Time: Nov 01, 2019 at 04:20 PM
+-- Server version: 10.3.13-MariaDB-1:10.3.13+maria~bionic
+-- PHP Version: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `ecotoll`
@@ -25,7 +19,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `autostrada`
+-- Table structure for table `autostrada`
 --
 
 CREATE TABLE `autostrada` (
@@ -35,7 +29,7 @@ CREATE TABLE `autostrada` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `autostrada`
+-- Dumping data for table `autostrada`
 --
 
 INSERT INTO `autostrada` (`id`, `nome`, `tipo`) VALUES
@@ -48,7 +42,7 @@ INSERT INTO `autostrada` (`id`, `nome`, `tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `biglietto`
+-- Table structure for table `biglietto`
 --
 
 CREATE TABLE `biglietto` (
@@ -57,10 +51,21 @@ CREATE TABLE `biglietto` (
   `ingresso` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `biglietto`
+--
+
+INSERT INTO `biglietto` (`id`, `targa`, `ingresso`) VALUES
+(1, 'AA000AA', 3),
+(2, 'AA000AA', 5),
+(3, 'AA000AA', 6),
+(4, 'AA000AA', 7),
+(5, 'AA000AA', 8);
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `casello`
+-- Table structure for table `casello`
 --
 
 CREATE TABLE `casello` (
@@ -71,7 +76,7 @@ CREATE TABLE `casello` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `casello`
+-- Dumping data for table `casello`
 --
 
 INSERT INTO `casello` (`id`, `autostrada`, `nome`, `chilometro`) VALUES
@@ -94,7 +99,7 @@ INSERT INTO `casello` (`id`, `autostrada`, `nome`, `chilometro`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `tariffa`
+-- Table structure for table `tariffa`
 --
 
 CREATE TABLE `tariffa` (
@@ -107,7 +112,7 @@ CREATE TABLE `tariffa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Dump dei dati per la tabella `tariffa`
+-- Dumping data for table `tariffa`
 --
 
 INSERT INTO `tariffa` (`autostrada`, `tariffaA`, `tariffaB`, `tariffa3`, `tariffa4`, `tariffa5`) VALUES
@@ -120,7 +125,7 @@ INSERT INTO `tariffa` (`autostrada`, `tariffaA`, `tariffaB`, `tariffa3`, `tariff
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `veicolo`
+-- Table structure for table `veicolo`
 --
 
 CREATE TABLE `veicolo` (
@@ -130,38 +135,37 @@ CREATE TABLE `veicolo` (
   `altezza` float NOT NULL,
   `peso` int(11) NOT NULL,
   `anno` int(11) NOT NULL,
-  `n_assi` tinyint(4) NOT NULL,
-  `carrello` tinyint(4) NOT NULL,
-  `n_assi_carrello` tinyint(4) DEFAULT NULL,
-  `emissioni_Co2` int(11) DEFAULT NULL,
-  `emissioni_decibel` int(11) DEFAULT NULL
+  `n_assi` int(11) NOT NULL,
+  `euro` int(11) NOT NULL,
+  `co2` int(11) DEFAULT NULL,
+  `decibel` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `veicolo`
+-- Dumping data for table `veicolo`
 --
 
-INSERT INTO `veicolo` (`targa`, `modello`, `marca`, `altezza`, `peso`, `anno`, `n_assi`, `carrello`, `n_assi_carrello`, `emissioni_Co2`, `emissioni_decibel`) VALUES
-('AA000AA', 'kuga', 'ford', 1.6, 1600, 2014, 2, 0, NULL, NULL, NULL),
-('AA001AA', 'panda', 'fiat', 1.63, 1300, 2010, 2, 1, 1, NULL, NULL),
-('AA011AA', 'q3', 'audi', 1.68, 1700, 2017, 2, 0, NULL, NULL, NULL),
-('AA111AA', 'model s', 'tesla', 1.5, 2500, 2018, 2, 0, NULL, NULL, NULL),
-('AA112AA', 'fiesta', 'ford', 1.58, 1500, 2000, 2, 0, NULL, NULL, NULL),
-('AA122AA', 'tipo', 'fiat', 1.63, 1800, 2018, 2, 0, NULL, NULL, NULL),
-('AA222AA', 'vitara', 'suzuki', 1.9, 2200, 1999, 2, 1, 1, NULL, NULL);
+INSERT INTO `veicolo` (`targa`, `modello`, `marca`, `altezza`, `peso`, `anno`, `n_assi`, `euro`, `co2`, `decibel`) VALUES
+('AA000AA', 'kuga', 'ford', 1.6, 1600, 2014, 0, 0, NULL, NULL),
+('AA001AA', 'panda', 'fiat', 1.63, 1300, 2010, 0, 0, NULL, NULL),
+('AA011AA', 'q3', 'audi', 1.68, 1700, 2017, 0, 0, NULL, NULL),
+('AA111AA', 'model s', 'tesla', 1.5, 2500, 2018, 0, 0, NULL, NULL),
+('AA112AA', 'fiesta', 'ford', 1.58, 1500, 2000, 0, 0, NULL, NULL),
+('AA122AA', 'tipo', 'fiat', 1.63, 1800, 2018, 0, 0, NULL, NULL),
+('AA222AA', 'vitara', 'suzuki', 1.9, 2200, 1999, 0, 0, NULL, NULL);
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `autostrada`
+-- Indexes for table `autostrada`
 --
 ALTER TABLE `autostrada`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `biglietto`
+-- Indexes for table `biglietto`
 --
 ALTER TABLE `biglietto`
   ADD PRIMARY KEY (`id`),
@@ -169,7 +173,7 @@ ALTER TABLE `biglietto`
   ADD KEY `ingresso` (`ingresso`);
 
 --
--- Indici per le tabelle `casello`
+-- Indexes for table `casello`
 --
 ALTER TABLE `casello`
   ADD PRIMARY KEY (`id`),
@@ -177,52 +181,52 @@ ALTER TABLE `casello`
   ADD KEY `nome` (`nome`);
 
 --
--- Indici per le tabelle `tariffa`
+-- Indexes for table `tariffa`
 --
 ALTER TABLE `tariffa`
   ADD PRIMARY KEY (`autostrada`);
 
 --
--- Indici per le tabelle `veicolo`
+-- Indexes for table `veicolo`
 --
 ALTER TABLE `veicolo`
   ADD PRIMARY KEY (`targa`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `autostrada`
+-- AUTO_INCREMENT for table `autostrada`
 --
 ALTER TABLE `autostrada`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT per la tabella `biglietto`
+-- AUTO_INCREMENT for table `biglietto`
 --
 ALTER TABLE `biglietto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT per la tabella `casello`
+-- AUTO_INCREMENT for table `casello`
 --
 ALTER TABLE `casello`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
--- AUTO_INCREMENT per la tabella `tariffa`
+-- AUTO_INCREMENT for table `tariffa`
 --
 ALTER TABLE `tariffa`
   MODIFY `autostrada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `tariffa`
+-- Constraints for table `tariffa`
 --
 ALTER TABLE `tariffa`
   ADD CONSTRAINT `idautostrada` FOREIGN KEY (`autostrada`) REFERENCES `autostrada` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,11 +1,21 @@
 package mvc.controller;
 
 import mvc.model.Veicolo;
+import mvc.model.Casello;
 
 public class Pedaggio{
-    public static float calcoloPedaggio(int idCaselloIngresso, Veicolo veicolo, int diCaselloUscita){
+
+    private static Normativa normativa;
+
+    public Pedaggio(){
+        this.normativa = new Normativa();
+    }
+
+    public static float calcoloPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita){
         
-        //int kmCaselloIngresso = test.Main.autostrade;
-        return (float)0;
+        int km = Math.abs(caselloIngresso.getChilometro() - caselloUscita.getChilometro());
+
+        return normativa.arrotondamentoPrezzo(normativa.calcoloTariffa(veicolo, caselloUscita) * km * normativa.getIVA() * normativa.maggiorazioni());
+        
     }
 }

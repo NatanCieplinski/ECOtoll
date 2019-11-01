@@ -1,16 +1,5 @@
 # Per cos'è questa repository? #
-
-## Quick summary ##
-Descrizione qui
->Version 1.0
->[Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
+Questa repository è progetto universitario per l'esame di Object Oriented Software Design
 
 # Come settare l'ambiente di sviluppo? ###
-### Database ###
-Impostare un utente root con password ecotoll con tutti i permessi sul database ecotoll
-
-### Dipendenze ###
-Per Windows:
-	1. phpMyAdmin o MySQL Workbench
-	2. Eclipse
+Per unificare l'ambiente di sviluppo scaricare [Devilbox](https://github.com/cytopia/devilbox) e lanciarlo con docker-compose up httpd php mysql, importare il file ecotoll.sql nell'interfaccia di phpMyAdmin 
