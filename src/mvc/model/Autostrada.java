@@ -2,6 +2,8 @@ package mvc.model;
 
 import java.util.HashMap;
 
+import dao.implementation.AutostradaDao;
+
 public class Autostrada{
 
     private int id;
@@ -10,30 +12,56 @@ public class Autostrada{
     private HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();      //Lista dei caselli <id,nome>
     private HashMap<Integer,String> tariffe = new HashMap<Integer,String>();        //Lista di tariffe <costo,tipo_veicolo>
 
+    private AutostradaDao modelDao;
+    
     public Autostrada(int id, String nome, int tipo){
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
+        this.modelDao = new AutostradaDao();
+        
+        try {
+            this.setCaselli(this.modelDao.getCaselli(this));
+        }catch(Exception e){}
     }
 
+    // SETTERS
+    //assenza del set del tipo perche' non puo' cambiare dopo la prima istanza 
+    
     public void setId(int id){
         this.id = id;
     }
     public void setNome(String nome){
         this.nome = nome;
     }
-    //assenza del set del tipo perchè non può cambiare dopo la prima istanza 
+        
+    public void setCaselli(HashMap<Integer,Casello> caselli) {
+    	this.caselli = caselli;
+    }
+    
+    public void setTariffe(HashMap<Integer,String> tariffe) {
+    	this.tariffe = tariffe;
+    }
 
-    // TODO set dei caselli e delle tariffe
-
+    // GETTERS
     public int getId(){
         return this.id;
     }
+    
     public String getNome(){
         return this.nome;
     }
+    
     public int getTipo(){
         return this.tipo;
     }
-    // TODO get dei caselli e delle tariffe
+    
+    public HashMap<Integer,Casello> getCaselli(){
+        return this.caselli;
+    }
+    
+    public HashMap<Integer,String> getTariffe(){
+        return this.tariffe;
+    }
+    
 }
