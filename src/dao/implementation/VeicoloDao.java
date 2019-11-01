@@ -52,7 +52,6 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	@Override
 	public Veicolo makeObj(ResultSet rs) throws SQLException{
 		return new Veicolo(
-			rs.getInt("id"),
 			rs.getInt("altezza"),
 			rs.getInt("n_assi"),
 			rs.getString("targa"),
