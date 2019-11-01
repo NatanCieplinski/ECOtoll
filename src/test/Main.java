@@ -46,6 +46,6 @@ public class Main {//extends Application {
 		//launch(args);
 		GestoreAutostradale g = new GestoreAutostradale();
 		g.ingresso(8, "AA000AA");
-		g.uscita(5);
+		g.uscita(5, 3);
 	}
 }
