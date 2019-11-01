@@ -57,16 +57,15 @@ public class GestoreAutostradale{
         		System.out.println("Biglietto manomesso");
 			}
 
-			//Creazione del veicolo e chiamata al metodo pedaggio
+			//Creazione le informazioni da passare alla classe pedaggio
 			Veicolo veicolo = normativa.creaVeicolo(targa, biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
+			
+			Pedaggio pedaggio = new Pedaggio();
+			pedaggio.calcoloPedaggio(biglietto.getIdCaselloIngresso(),veicolo, idCaselloUscita);
 
         }catch(Exception e) {
         	System.out.println(e.getMessage());
-        }
-    	
-        //Veicolo veicolo = Normativa.creaVeicolo(biglietto.getTarga());
-        // Pedaggio pedaggio = new Pedaggio();
-        //TODO aggiungere metodo pedaggio
+        } 	
     }
 
 }
