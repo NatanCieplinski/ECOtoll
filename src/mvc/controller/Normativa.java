@@ -79,8 +79,8 @@ public class Normativa{
     	return prezzo;
     }
 
-    public float getIVA(){
-        return this.IVA;
+    public static float getIVA(){
+        return IVA;
     }
     
 }
