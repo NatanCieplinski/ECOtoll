@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-public class Main {//extends Application {
+public class Main extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane mainLayout;
@@ -49,7 +49,7 @@ public class Main {//extends Application {
 	}
 	
 	public static void main(String[] args) {
-
+		
 		try{
 
 			autostradaDao = new AutostradaDao();
@@ -62,8 +62,49 @@ public class Main {//extends Application {
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
-		//launch(args);
+		
+		// launch app view
+		launch(args);
+		
 		GestoreAutostradale g = new GestoreAutostradale();
 		g.ingresso(8, "AA000AA");
+		
 	}
 }
+
+/*
+package test;
+	
+import java.util.HashMap;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import mvc.model.Autostrada;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.fxml.FXMLLoader;
+
+
+public class Main extends Application {
+	
+	public static HashMap<Integer, Autostrada> listaAutostrade;
+	
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/mvc/view/Home.fxml"));
+			Scene scene = new Scene(root,400,400);
+			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
+*/
