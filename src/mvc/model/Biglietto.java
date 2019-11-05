@@ -4,14 +4,16 @@ package mvc.model;
 
 public class Biglietto{
 
-    private int idCaselloIngresso;
     private String targa;
+    private int idCaselloIngresso;
     private boolean carrello;
     private int numeroAssiCarrello;
 
-    public Biglietto(int idCaselloIngresso, String targa){
-        this.idCaselloIngresso = idCaselloIngresso;
+    public Biglietto(String targa, int idCaselloIngresso, boolean carrello, int numeroAssiCarrello){
         this.targa = targa;
+        this.idCaselloIngresso = idCaselloIngresso;
+        this.carrello = carrello;
+        this.numeroAssiCarrello = numeroAssiCarrello;
     }
 
      //i metodi set non sono implementati perchè il biglietto una volta creato non viene mai modificato 
@@ -32,7 +34,9 @@ public class Biglietto{
     public boolean equals(Object b) {
         if (b instanceof Biglietto) {  
 	        return this.getIdCaselloIngresso() == ((Biglietto)b).getIdCaselloIngresso() &&
-	        	   this.getTarga().equals(((Biglietto)b).getTarga());
+		           this.getTarga().equals(((Biglietto)b).getTarga()) &&
+		           this.getCarrello() == ((Biglietto)b).getCarrello() &&
+		           this.getNumeroAssiCarrello() == ((Biglietto)b).getNumeroAssiCarrello();
         } 
 
         return false;
