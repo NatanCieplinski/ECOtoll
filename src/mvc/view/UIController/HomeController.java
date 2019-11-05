@@ -29,15 +29,17 @@ import mvc.model.Autostrada;
 import mvc.model.Casello;
 import mvc.model.Veicolo;
 
+
+import javafx.scene.control.ToggleGroup;
+
+
+
+
 public class HomeController implements Initializable {
 	
 	// vsriabili di cacolo 
 	private Integer autostradaSelezionata = null;	// id dell'autostrada selezionata
 	private Integer caselloSelezionato = null;		// id del casello selezionato
-	private Integer rdS = null;
-	private Integer rdN = null;
-	private Integer rdU = null;
-	private Integer rdD = null;
 	private Integer veicoloSelezionato = null;
 	private Integer io = null;						// id ingresso-uscita
 	private Integer sn = null;
@@ -101,7 +103,7 @@ public class HomeController implements Initializable {
 	    private Button BntEmettiBiglietto;
 
 	    @FXML
-	    private TextField TExtFieldPrezzoBiglietto;
+	    private TextField TextFieldPrezzoBiglietto;
 
 	    @FXML
 	    private Separator Separetor;
@@ -189,72 +191,109 @@ public class HomeController implements Initializable {
 	    }
 		
 	}
-	
 
-	@FXML
-	void clickEmettiBiglietto(Event event) {
-		if( io == 1  || RdSi == null || RdUno == null ) {
-			System.out.println("compila tutti i campi");
-		}
-		GestoreAutostradale ga = new GestoreAutostradale();
-		ga.ingresso(caselloSelezionato,targa);
-		
-	}
     
     
     
 	@FXML
     void EmettiBIglietto(MouseEvent event) {
-		
-		if( io == 1  || RdSi == null || RdUno == null ) {
-			System.out.println("compila tutti i campi");
+		if( io == 0   ) 
+			{ System.out.println("Biglietto selezionato su uscita"); 
+		}else{
+			if( io == null ||  sn == null || ud == null ) {
+				System.out.println("compila tutti i campi");
+			}else {
+				System.out.println("Biglietto emesso");
+			}
 		}
-		
 		GestoreAutostradale ga = new GestoreAutostradale();
 		ga.ingresso(caselloSelezionato,targa);
-	
 		
-		
-	//	labelPedaggio.setText(prezzo.toString() + " €");
-	//	pannelloBase.setDisable(true);
-	//	pannelloPedaggio.setVisible(true);*/
-
-
-
     }
 	
-	public void BtmInvio() {
+	@FXML
+	void Invia(MouseEvent event) {
 		
-		targa = BtnInvio.getText();
+		targa = TectFieldTarga.getText();
+		System.out.println(targa);
 		
 	}
 	
     @FXML
     void clickIngresso(MouseEvent event) {
     	io = 1;
-    }
+    	
 
-    @FXML
-    void Invia(MouseEvent event) {
-
+    	ToggleGroup radioGroup2 = new ToggleGroup ();
+    	RdIngresso.setToggleGroup (radioGroup2);
+    	RdUscita.setToggleGroup (radioGroup2);
     }
 
     @FXML
     void Pagamento(MouseEvent event) {
 
     }
+    
 
     @FXML
-    void ckickSi(ActionEvent event) {
-
+    void clickSi(MouseEvent event) {
+    	
     	sn = 1;
     	
+		ToggleGroup radioGroup3 = new ToggleGroup ();
+		  RdSi.setToggleGroup (radioGroup3);
+		   RdNo.setToggleGroup (radioGroup3);
     }
 
+    
+    
     @FXML
     void clickDue(MouseEvent event) {
     	ud = 0 ;
+    	
+    	ToggleGroup radioGroup1 = new ToggleGroup ();
+    	RdUno.setToggleGroup (radioGroup1);
+    	RdDue.setToggleGroup (radioGroup1);
+    	
+    	
+    	/* 
+    	 * 
+    	 * radioButtonExperiments di classe pubblica estende l'applicazione {
+
+
+    	@Oltrepassare
+    	public void start (Stage primaryStage) genera l'eccezione {
+        primaryStage.setTitle ("HBox Experiment 1");
+
+        RadioButton radioButton1 = nuovo RadioButton ("Sinistra");
+        RadioButton radioButton2 = nuovo RadioButton ("Right");
+        RadioButton radioButton3 = nuovo RadioButton ("Up");
+        RadioButton radioButton4 = nuovo RadioButton ("Giù");
+
+        ToggleGroup radioGroup = new ToggleGroup ();
+
+        radioButton1.setToggleGroup (radioGroup);
+        radioButton2.setToggleGroup (radioGroup);
+        radioButton3.setToggleGroup (radioGroup);
+        radioButton4.setToggleGroup (radioGroup);
+
+        HBox hbox = nuovo HBox (radioButton1, radioButton2, radioButton3, radioButton4);
+
+        Scene scene = new Scene (hbox, 200, 100);
+        primaryStage.setScene (scena);
+        primaryStage.show();
+
     }
+
+    public static void main (String [] args) {
+        Application.launch (args);
+    }
+
+}*/
+    	
+    	
+    }
+    	
 
 
     @FXML
@@ -278,10 +317,20 @@ public class HomeController implements Initializable {
     	
     }
 
+    @FXML
+    void paga(MouseEvent event) {
+    /*	
+    	float prezzo=0;
+    	
+    	GestoreAutostradale au = new GestoreAutostradale();
+		au.calcoloPrezzo(targa);
+	
+    	
+    	TextFieldPrezzoBiglietto.setText(au);
+ */
+    }
 
-
-    
-    
+   
     
     
 
