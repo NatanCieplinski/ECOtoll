@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 01, 2019 at 04:20 PM
+-- Generation Time: Nov 05, 2019 at 09:08 PM
 -- Server version: 10.3.13-MariaDB-1:10.3.13+maria~bionic
 -- PHP Version: 7.2.19
 
@@ -46,21 +46,11 @@ INSERT INTO `autostrada` (`id`, `nome`, `tipo`) VALUES
 --
 
 CREATE TABLE `biglietto` (
-  `id` int(11) NOT NULL,
   `targa` varchar(9) NOT NULL,
-  `ingresso` int(11) NOT NULL
+  `ingresso` int(11) NOT NULL,
+  `carrello` tinyint(1) NOT NULL,
+  `n_assi_carrello` tinyint(4) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `biglietto`
---
-
-INSERT INTO `biglietto` (`id`, `targa`, `ingresso`) VALUES
-(1, 'AA000AA', 3),
-(2, 'AA000AA', 5),
-(3, 'AA000AA', 6),
-(4, 'AA000AA', 7),
-(5, 'AA000AA', 8);
 
 -- --------------------------------------------------------
 
@@ -168,9 +158,9 @@ ALTER TABLE `autostrada`
 -- Indexes for table `biglietto`
 --
 ALTER TABLE `biglietto`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `targa` (`targa`),
-  ADD KEY `ingresso` (`ingresso`);
+  ADD PRIMARY KEY (`targa`),
+  ADD KEY `ingresso` (`ingresso`),
+  ADD KEY `targa` (`targa`);
 
 --
 -- Indexes for table `casello`
@@ -200,12 +190,6 @@ ALTER TABLE `veicolo`
 -- AUTO_INCREMENT for table `autostrada`
 --
 ALTER TABLE `autostrada`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `biglietto`
---
-ALTER TABLE `biglietto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
