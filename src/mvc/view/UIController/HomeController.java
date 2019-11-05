@@ -1,165 +1,92 @@
 package mvc.view.UIController;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.LinkedList;
 
-import mvc.controller.GestoreAutostradale;
-import mvc.controller.Pedaggio;
-import mvc.model.Casello;
-import mvc.model.Veicolo;
-import sun.applet.Main;
-import dao.database.DBManager;
-import dao.exceptions.DBException;
-import javafx.application.Platform;
-import javafx.event.Event;
+import dao.implementation.AutostradaDao;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import mvc.model.Autostrada;
 
-public class HomeController{
-	
-	private Main main;
+public class HomeController {
 
-	// ATTRIBUTI
-	
-	//private DBManager dbManager = DBManager.getDBManager(DBManager.MYSQL);
-	
-	//Videocamera videocamera = new Videocamera();
-	Veicolo v;
-	String targa;
+    @FXML
+    private AnchorPane anchorPane;
 
-	int idAutostrada;
-	int idAutostradaModificaCasello;
-	int idAutostradaAggiuntaCasello;
-	int idCaselloIngresso;
-	int idCaselloUscita;
-	int idCaselloModifica;
-	int idCaselloElimina;
+    @FXML
+    private Label labelSettorepannello;
 
-	boolean ingresso;
-	
-	
-	// ATTRIBUTI FXML
-	
-	 	@FXML
-	    private BorderPane pannelloPrincipale;
+    @FXML
+    private Label labelTipoDiCasello;
 
-	    @FXML
-	    private AnchorPane pannelloAnchor;
+    @FXML
+    private Label LabelPrezzo;
 
-	    @FXML
-	    private Label labelCarrello;
+    @FXML
+    private Label labelPannelloDiControllo;
 
-	    @FXML
-	    private MenuButton selettoreAutostrada;
+    @FXML
+    private MenuButton MenuButtonSettoreAutostrada;
+    
+    // creazione automatica menu items
+    
+    AutostradaDao el = new AutostradaDao();
+    
+    private LinkedList<MenuItem> itemList = new LinkedList<MenuItem>();
+    private LinkedList<Autostrada> autostradeList = (LinkedList<Autostrada>) el.getAll();
+    for(Autostrada a: itemList) {
+    	
+    	MenuItem prov = new MenuItem();
+    	prov.setText(a.getNome());
+    	
+    	itemList.add(prov);
+    	
+    }
+    
 
-	    @FXML
-	    private Label labelTipoDiCasello;
+    @FXML
+    private MenuButton MenuButtonSettoreCasello;
 
-	    @FXML
-	    private Label labelAssi;
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
-	 	
+    @FXML
+    private RadioButton RdSi;
 
-		@FXML
-		private Label Carrello;
+    @FXML
+    private RadioButton RdNo;
 
-		@FXML
-		private Label TipoDiCasello;
+    @FXML
+    private RadioButton RdIngresso;
 
-		@FXML
-		private Label Assi;
+    @FXML
+    private RadioButton RdUscita;
 
-		@FXML
-		private Label SettorePannello;
+    @FXML
+    private RadioButton RdUno;
 
-		@FXML
-		private Label Prezzo; 	      
+    @FXML
+    private RadioButton RdDue;
 
-		@FXML
-		private MenuButton SettoreAutostrada;
+    @FXML
+    private Label LabelCarrello;
 
-		@FXML
-		private MenuButton SettoreCAsello;
+    @FXML
+    private Label LabelAssi;
 
-		@FXML
-		private RadioButton one;
+    @FXML
+    private Button BntPaga;
 
-		@FXML
-		private RadioButton two;
+    @FXML
+    private Button BntEmettiBiglietto;
 
-		@FXML
-		private RadioButton Uscita;
+    @FXML
+    private TextField TExtFieldPrezzoBiglietto;
 
-		@FXML
-		private RadioButton Ingresso;
-
-		@FXML
-		private Button EmettiBiglietto;
-
-		@FXML
-		private Button Paga;
-
-		@FXML
-		private MenuItem Casello1;
-		
-		@FXML
-		private MenuItem Casello2;
-		
-		@FXML
-		private MenuItem Casello3;
-		
-		@FXML
-		private MenuItem Casello4;
-		
-		@FXML
-		private MenuItem Casello5;
-		
-		@FXML
-		private MenuItem Autostrada1;
-
-		@FXML
-		private MenuItem Autostrada2;
-		
-		@FXML
-		private MenuItem Autostrada3;
-		
-		@FXML
-		private MenuItem Autostrada4;
-		
-		@FXML
-		private MenuItem Autostrada5;
-		
-		@FXML
-		private MenuItem Autostrada6;
-		
-		
-
+    @FXML
+    private Separator Separetor;
 
 }
