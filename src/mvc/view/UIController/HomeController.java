@@ -42,8 +42,9 @@ public class HomeController implements Initializable {
 	private Integer caselloSelezionato = null;		// id del casello selezionato
 	private Integer veicoloSelezionato = null;
 	private Integer io = null;						// id ingresso-uscita
-	private Integer sn = null;
+//	private Integer sn = null;
 	private Integer ud = null;
+	private boolean sn;
 	
 	Veicolo v;
 	String targa;
@@ -116,6 +117,10 @@ public class HomeController implements Initializable {
 
 	    @FXML
 	    private Button BtnInvio;
+	    
+
+	    @FXML
+	    private Label labelPr;
 
     
     // METODI
@@ -196,21 +201,29 @@ public class HomeController implements Initializable {
     
     
 	@FXML
-    void EmettiBIglietto(MouseEvent event) {
-		if( io == 0   ) 
-			{ System.out.println("Biglietto selezionato su uscita"); 
-		}else{
-			if( io == null ||  sn == null || ud == null ) {
-				System.out.println("compila tutti i campi");
-			}else {
-				System.out.println("Biglietto emesso");
-			}
-		}
-		GestoreAutostradale ga = new GestoreAutostradale();
-		ga.ingresso(caselloSelezionato,targa);
+    public void EmettiBIglietto(MouseEvent event) {
 		
+		targa = TectFieldTarga.getText();
+		System.out.println(targa);
+		
+		
+			if( io == 0   ){ 
+				
+				System.out.println("Biglietto selezionato su uscita"); 
+				
+			}else{
+				
+				if( io == null || ud == null || targa==null ) {    //stampa anche se non si seleziona il carrello
+					System.out.println("compila tutti i campi");
+				}else {
+					GestoreAutostradale ga = new GestoreAutostradale();
+					ga.ingresso( targa ,caselloSelezionato , sn , ud);
+				}
+				
+			}
+			
     }
-	
+	/*
 	@FXML
 	void Invia(MouseEvent event) {
 		
@@ -218,6 +231,7 @@ public class HomeController implements Initializable {
 		System.out.println(targa);
 		
 	}
+	*/
 	
     @FXML
     void clickIngresso(MouseEvent event) {
@@ -238,7 +252,7 @@ public class HomeController implements Initializable {
     @FXML
     void clickSi(MouseEvent event) {
     	
-    	sn = 1;
+    	sn = true;
     	
 		ToggleGroup radioGroup3 = new ToggleGroup ();
 		  RdSi.setToggleGroup (radioGroup3);
@@ -256,42 +270,6 @@ public class HomeController implements Initializable {
     	RdDue.setToggleGroup (radioGroup1);
     	
     	
-    	/* 
-    	 * 
-    	 * radioButtonExperiments di classe pubblica estende l'applicazione {
-
-
-    	@Oltrepassare
-    	public void start (Stage primaryStage) genera l'eccezione {
-        primaryStage.setTitle ("HBox Experiment 1");
-
-        RadioButton radioButton1 = nuovo RadioButton ("Sinistra");
-        RadioButton radioButton2 = nuovo RadioButton ("Right");
-        RadioButton radioButton3 = nuovo RadioButton ("Up");
-        RadioButton radioButton4 = nuovo RadioButton ("Giù");
-
-        ToggleGroup radioGroup = new ToggleGroup ();
-
-        radioButton1.setToggleGroup (radioGroup);
-        radioButton2.setToggleGroup (radioGroup);
-        radioButton3.setToggleGroup (radioGroup);
-        radioButton4.setToggleGroup (radioGroup);
-
-        HBox hbox = nuovo HBox (radioButton1, radioButton2, radioButton3, radioButton4);
-
-        Scene scene = new Scene (hbox, 200, 100);
-        primaryStage.setScene (scena);
-        primaryStage.show();
-
-    }
-
-    public static void main (String [] args) {
-        Application.launch (args);
-    }
-
-}*/
-    	
-    	
     }
     	
 
@@ -299,7 +277,7 @@ public class HomeController implements Initializable {
     @FXML
     void clickNo(MouseEvent event) {
 
-    	sn = 0;
+    	sn = false ;
     	
     }
 
@@ -319,18 +297,24 @@ public class HomeController implements Initializable {
 
     @FXML
     void paga(MouseEvent event) {
-    /*	
-    	float prezzo=0;
+    
+    	float prezzo = 0;
     	
     	GestoreAutostradale au = new GestoreAutostradale();
-		au.calcoloPrezzo(targa);
+		prezzo = au.calcoloPrezzo(targa , caselloSelezionato);
 	
-    	
-    	TextFieldPrezzoBiglietto.setText(au);
- */
+    
+		labelPr.setText(prezzo + " €");
+		//pannelloBase.setDisable(true);
+		//pannelloPedaggio.setVisible(true);
+
+		
+		
+    	//labelPr.setText(au);
+
     }
 
-   
+  
     
     
 

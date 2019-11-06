@@ -24,13 +24,17 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	 * */
 	@Override
 	public void create(Biglietto biglietto) throws DBException, SQLException{
-		final String query = "INSERT INTO biglietto(targa, ingresso) VALUES( ?,? );";
-		
+		final String query = "INSERT INTO biglietto(targa, ingresso, carrello, n_assi_carrello) VALUES( ?,?,?,? );";
+
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setString(1, biglietto.getTarga());
 		stmt.setInt(2, biglietto.getIdCaselloIngresso());
+		stmt.setBoolean(3, biglietto.getCarrello());
+		stmt.setInt(4, biglietto.getNumeroAssiCarrello());
+		
 		stmt.execute();
+		
 		this.closeDB(stmt, null);
 	}
 
