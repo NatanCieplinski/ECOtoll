@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import com.sun.xml.internal.bind.v2.schemagen.episode.Bindings;
+
 import dao.exceptions.DBException;
 import dao.implementation.AutostradaDao;
 import dao.implementation.CaselloDao;
@@ -216,6 +218,7 @@ public class HomeController implements Initializable {
 				if( io == null || ud == null || targa==null ) {    //stampa anche se non si seleziona il carrello
 					System.out.println("compila tutti i campi");
 				}else {
+				
 					GestoreAutostradale ga = new GestoreAutostradale();
 					ga.ingresso( targa ,caselloSelezionato , sn , ud);
 				}
@@ -236,6 +239,12 @@ public class HomeController implements Initializable {
     @FXML
     void clickIngresso(MouseEvent event) {
     	io = 1;
+    	
+    	
+    	RdDue.setDisable(false);
+    	RdUno.setDisable(false);
+    	RdSi.setDisable(false);
+    	RdNo.setDisable(false);
     	
 
     	ToggleGroup radioGroup2 = new ToggleGroup ();
@@ -263,6 +272,31 @@ public class HomeController implements Initializable {
     
     @FXML
     void clickDue(MouseEvent event) {
+   // 	Button b = new button("")
+
+	//	if (autostradaSelezionata != null) MenuButtonSettoreCasello.setDisable(false);
+	//	MenuButtonSettoreCasello.getItems().clear();
+    	
+    	
+   // 	private void isDelivery(ActionEvent event){
+    //	    txtAddress.setDisable(!rdDelivery.isArmed());
+    //	    txtEmail.setDisable(!rdDelivery.isArmed());
+    	
+  	//  rdDelivery.selectedProperty().bind(Bindings.not(txtAddress.disabledProperty()));
+    //	rdDelivery.selectedProperty().bind(Bindings.not(txtEmail.disabledProperty()));
+    	
+/*        if (io == 1) {
+        	RdDue.setDisable(true);
+        	
+        	//clickDue.selectedProperty().bind(Bindings.not(RdSi.disabledProperty()));
+        //	RdSi.setDisable(RdIngresso.isArmed());
+        
+        }else {
+        	RdDue.setDisable(false);       	
+         } 	
+        	*/
+       	
+        	
     	ud = 0 ;
     	
     	ToggleGroup radioGroup1 = new ToggleGroup ();
@@ -277,6 +311,8 @@ public class HomeController implements Initializable {
     @FXML
     void clickNo(MouseEvent event) {
 
+   // 	RdNo.selectedProperty().bind(Bindings.not(RdIngresso.disabledProperty()));
+    	
     	sn = false ;
     	
     }
@@ -290,6 +326,21 @@ public class HomeController implements Initializable {
 
     @FXML
     void clickUscita(MouseEvent event) {
+    	
+
+        	RdDue.setDisable(true);
+        	RdUno.setDisable(true);
+        	RdSi.setDisable(true);
+        	RdNo.setDisable(true);
+        	
+        	//clickDue.selectedProperty().bind(Bindings.not(RdSi.disabledProperty()));
+        //	RdSi.setDisable(RdIngresso.isArmed());
+        
+      //  }else {
+      //  	RdDue.setDisable(false);
+        	
+      //  } 	
+    	
 
     	io = 0;
     	

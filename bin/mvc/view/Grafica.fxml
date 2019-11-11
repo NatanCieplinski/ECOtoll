@@ -7,6 +7,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -35,12 +36,15 @@
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <RadioButton fx:id="RdSi" layoutX="493.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickSi" text="Si" />
-      <RadioButton fx:id="RdNo" layoutX="537.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickNo" text="No" />
+      <RadioButton fx:id="RdSi" disable="true" layoutX="493.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickSi" text="Si">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="RdNo" disable="true" layoutX="537.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#clickNo" text="No" toggleGroup="$group" />
       <RadioButton fx:id="RdIngresso" layoutX="123.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#clickIngresso" text="Ingresso" />
       <RadioButton fx:id="RdUscita" layoutX="197.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#clickUscita" text="Uscita" />
-      <RadioButton fx:id="RdUno" layoutX="495.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#clickUno" text="1" />
-      <RadioButton fx:id="RdDue" layoutX="537.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#clickDue" text="2" />
+      <RadioButton fx:id="RdUno" disable="true" layoutX="495.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#clickUno" text="1" toggleGroup="$group" />
+      <RadioButton fx:id="RdDue" disable="true" layoutX="537.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#clickDue" text="2" toggleGroup="$group" />
       <Label fx:id="LabelCarrello" layoutX="432.0" layoutY="152.0" text="Carrello :">
          <font>
             <Font size="14.0" />
