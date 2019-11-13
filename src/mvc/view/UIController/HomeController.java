@@ -47,17 +47,18 @@ import javafx.scene.control.ToggleGroup;
 
 public class HomeController implements Initializable {
 
-	// vsriabili di cacolo
+	// VARIABILI DI CALCOLO
+	
 	private Integer autostradaSelezionata = null; // id dell'autostrada selezionata
 	private Integer caselloSelezionato = null; // id del casello selezionato
 	private Integer veicoloSelezionato = null;
 	private String targaSelezionata = "";
 	private Integer io = null; // id ingresso-uscita
-//	private Integer sn = null;
 	private Integer ud = null;
 	private boolean sn;
 
 	static ObservableList<String> items = FXCollections.observableArrayList();
+	static LinkedList<String> targheIngresso = new LinkedList<String>();
 	
 	Veicolo v;
 	String targa;
@@ -132,9 +133,18 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private ListView<String> Tab;
+	
+	@FXML
+	private Button BntModifica;
 
 	@FXML
-	private TableColumn<?, ?> TabTarge;
+	private Button BntAggiungi;
+
+	@FXML
+	private Button BntRimuovi;
+	 
+	 
+	 
 
 	// METODI
 
@@ -145,14 +155,13 @@ public class HomeController implements Initializable {
 	    LinkedList<Autostrada> autostradaList = null;
 		
 	    try {
-			autostradaList = (LinkedList<Autostrada>)el.getAll();
+	    	autostradaList = (LinkedList<Autostrada>)el.getAll();
 		} catch (DBException | SQLException e) {
 			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
 			e.printStackTrace();
 		}
 	    
 	    for(Autostrada a: autostradaList) {
-	    	
 	    	MenuItem prov = new MenuItem(a.getNome());
 	    	
 	    	// evento di click sul MenuItem
@@ -165,8 +174,7 @@ public class HomeController implements Initializable {
 	    	});
 
 	    	MenuButtonSettoreAutostrada.getItems().add(prov);
-	    	
-	    	
+	    	 	
 	    }
 	    
 	    // listener 
@@ -174,19 +182,21 @@ public class HomeController implements Initializable {
 	    	@Override
 	    	public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 	    		//System.out.println(" Text Changed to " + newValue + ")\n");
-	    		ObservableList<String> prov = items;
+	    		ObservableList<String> prov = FXCollections.observableArrayList();;
 	    		String input = TFcerca.getText();
 	    		System.out.println(input);
-	    		input = "[A-Z0-9\\s]*" + input + "[A-Z0-9\\s]*";
+	    		input = "^" + input + "[\\w]*\\s*[\\d]*\\s*[\\w]*";
 	    		System.out.println(input);
 	    		Pattern pattern = Pattern.compile(input);
-	    		for (String s : prov) {
+	    		for (String s : targheIngresso) {
+	    			System.out.println("sto valutando " +  s);
 	    			Matcher m = pattern.matcher(s);
-	    			m.find();
-	    			//Tab.getColumns().add(new TableColumn(s));
 	    			Tab.getItems().clear();
-	    			Tab.setItems(prov);
+	    			while(m.find()) {
+	    				prov.add(m.group());
+	    			}
 	    		}
+	    		Tab.setItems(prov);
 	    	}
 	    });
 		
@@ -262,16 +272,21 @@ public class HomeController implements Initializable {
 //			Tab.getColumns().add(new TableColumn(s));
 //		}
 
-		items.add("AA 001 AA");
-		items.add("AA 002 AA");
-		items.add("AA 003 AA");
-		items.add("AA 004 AA");
-		items.add("AA 005 AA");
-		items.add("AB 001 AA");
-		items.add("AB 002 AA");
-		items.add("AB 003 AA");
-		items.add("AB 004 AA");
-		items.add("AB 005 AA");
+		// inizializzazione della lista che poi andrà riempita dal dao
+		targheIngresso.add("AA 001 AA");
+		targheIngresso.add("AA 002 AA");
+		targheIngresso.add("AA 003 AA");
+		targheIngresso.add("AA 004 AA");
+		targheIngresso.add("AA 005 AA");
+		targheIngresso.add("AB 001 AA");
+		targheIngresso.add("AB 002 AA");
+		targheIngresso.add("AB 003 AA");
+		targheIngresso.add("AB 004 AA");
+		targheIngresso.add("AB 005 AA");
+		
+		for (String t: targheIngresso) {
+			items.add(t);
+		}
 		
 		Tab.setItems(items);
 		
@@ -328,8 +343,6 @@ public class HomeController implements Initializable {
 	@FXML
 	void clickNo(MouseEvent event) {
 
-		// RdNo.selectedProperty().bind(Bindings.not(RdIngresso.disabledProperty()));
-
 		sn = false;
 
 	}
@@ -348,14 +361,6 @@ public class HomeController implements Initializable {
 		RdUno.setDisable(true);
 		RdSi.setDisable(true);
 		RdNo.setDisable(true);
-
-		// clickDue.selectedProperty().bind(Bindings.not(RdSi.disabledProperty()));
-		// RdSi.setDisable(RdIngresso.isArmed());
-
-		// }else {
-		// RdDue.setDisable(false);
-
-		// }
 
 		io = 0;
 
@@ -420,5 +425,30 @@ public class HomeController implements Initializable {
 		 */
 
 	}
+	
+	 	@FXML
+	    void ClickAggiungi(MouseEvent event) {
+
+	    }
+
+	    @FXML
+	    void ClickModifica(MouseEvent event) {
+
+	    	
+//	    	sceltaCaselloModifica.setText(casello6Modifica.getText());
+//			
+//			Casello casello = dbFactory.getDaoCasello().getCaselloById( idCaselloModifica );
+//			labelNomeCaselloModifica.setText( casello.getNome() );
+//			labelChilometroCaselloModifica.setText( new Float( casello.getChilometro() ).toString() );
+//			labelAutostradaIdCaselloModifica.setText( new Integer( casello.getIdAutostradaAppartenenza() ).toString() );
+//			
+	    	
+	    	
+	    }
+
+	    @FXML
+	    void ClickRimuovi(MouseEvent event) {
+
+	    }
 
 }
