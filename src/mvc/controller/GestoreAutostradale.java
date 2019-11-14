@@ -32,12 +32,13 @@ public class GestoreAutostradale{
     		Biglietto b = new Biglietto(targa, idCaselloIngresso, carrello, numeroAssiCarrello);
     		bigliettoDao.create(b);
     		this.writeBiglietto(b);
+    		System.out.println("biglietto emesso");
         }catch(Exception e) {
         	System.out.println(e.getMessage());
         }
     }
 
-    public float calcoloPrezzo(long targa, int idCaselloUscita){
+    public float calcoloPrezzo(String targa, int idCaselloUscita){
     	try {
     		// Prende il biglietto dal DB
     		Biglietto biglietto = bigliettoDao.read(targa).get();
