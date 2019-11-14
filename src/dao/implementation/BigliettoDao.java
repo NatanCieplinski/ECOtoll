@@ -16,8 +16,17 @@ import mvc.model.Casello;
 
 public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	
-	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
-	
+	// TODO: Implementare le query descritte nell'interfaccia BigliettoDaoI
+	public List<Biglietto> getAll() throws DBException, SQLException{
+		final String query = "SELECT * FROM biglietto;";
+
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		List<Biglietto> biglietti = this.makeList(stmt.executeQuery());
+		this.closeDB(stmt, null);
+		
+		return biglietti;
+	}
 	
 	/*
 	 * CRUD: Implementare in caso di necessita

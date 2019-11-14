@@ -67,10 +67,29 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	}
 
 	@Override
-	public void update(Casello casello, String[] params){}
+	public void update(Casello casello, String[] params) throws DBException, SQLException{
+		final String query = "UPDATE casello SET autostrada='?', nome='?' chilometro=? WHERE id=?;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, Integer.parseInt(params[0]));
+		stmt.setString(2, params[1]);
+		stmt.setFloat(3, Float.parseFloat(params[2]));
+		stmt.setInt(4, casello.getId());
+		stmt.execute();
+		this.closeDB(stmt, null);
+	}
 
 	@Override
-	public void delete(Casello casello) {}
+	public void delete(Casello casello) throws DBException, SQLException{
+		final String query = "DELETE FROM casello WHERE id=?;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, casello.getId());
+		stmt.execute();
+		this.closeDB(stmt, null);
+	}
 
 	@Override
 	public Casello makeObj(ResultSet rs) throws SQLException{
