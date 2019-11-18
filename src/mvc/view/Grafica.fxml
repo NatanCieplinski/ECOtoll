@@ -71,5 +71,10 @@
       <Button fx:id="BntAggiungi" layoutX="234.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" text="Aggiungi casello" />
       <Button fx:id="BntRimuovi" layoutX="450.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" text="Rimuovi casello" />
       <Separator layoutX="16.0" layoutY="433.0" prefHeight="8.0" prefWidth="556.0" />
+      <AnchorPane fx:id="pannelloModificaCasello" layoutX="194.0" layoutY="184.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" text="CIao" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
