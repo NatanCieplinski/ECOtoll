@@ -17,7 +17,7 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	
 	// TODO: Implementare le query descritte nell'interfaccia VeicoloDaoI
 	public List<Veicolo> getAll() throws DBException, SQLException{
-		final String query = "SELECT * FROM biglietto;";
+		final String query = "SELECT * FROM veicolo;";
 
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);

@@ -1,6 +1,7 @@
 package mvc.view.UIController;
 
 import java.net.URL;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.mysql.jdbc.Connection;
 import com.sun.xml.internal.bind.v2.schemagen.episode.Bindings;
 
 import dao.exceptions.DBException;
@@ -52,7 +54,7 @@ public class HomeController implements Initializable {
 	// VARIABILI DI CALCOLO
 	
 	private Integer autostradaSelezionata = null; // id dell'autostrada selezionata
-	private Integer caselloSelezionato = null; // id del casello selezionato
+	private Casello caselloSelezionato = null; // id del casello selezionato
 	private Integer veicoloSelezionato = null;
 	private String targaSelezionata = "";
 	private Integer io = null; // id ingresso-uscita
@@ -60,7 +62,7 @@ public class HomeController implements Initializable {
 	private boolean sn;
 
 	static ObservableList<String> items = FXCollections.observableArrayList();
-	static LinkedList<String> targheIngresso = new LinkedList<String>();
+	static LinkedList<String> targhe = new LinkedList<String>();
 	
 	Veicolo v;
 	String targa;
@@ -149,9 +151,20 @@ public class HomeController implements Initializable {
 
 	@FXML
 	private Button BntRimuovi;
+	
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaModifica;
+    
+    @FXML
+    private MenuButton MenuButtonSettoreCaselloModifica;
+    
+    @FXML
+    private TextField nomeCaselloModifica;
+
+    @FXML
+    private TextField chilometroCaselloModifica;
 	 
-	 
-	 
+
 
 	// METODI
 
@@ -176,7 +189,7 @@ public class HomeController implements Initializable {
 				@Override
 				public void handle(ActionEvent event) {
 					autostradaSelezionata = a.getId();
-					setMenuItemsCaselli();
+					setMenuItemsCaselli(0);
 				}
 	    	});
 
@@ -195,11 +208,13 @@ public class HomeController implements Initializable {
 	    		input = "^" + input + "[\\w]*\\s*[\\d]*\\s*[\\w]*";
 	    		System.out.println(input);
 	    		Pattern pattern = Pattern.compile(input);
-	    		for (String s : targheIngresso) {
+	    		for (String s : targhe) {
 	    			System.out.println("sto valutando " +  s);
 	    			Matcher m = pattern.matcher(s);
 	    			Tab.getItems().clear();
+	    			System.out.println("k");
 	    			while(m.find()) {
+	    				System.out.println("stringa" + m.group());
 	    				prov.add(m.group());
 	    			}
 	    		}
@@ -210,7 +225,7 @@ public class HomeController implements Initializable {
 	}
 
 	// metodo che setta i caselli da mostrare in base all'autostrada selezionata
-	public void setMenuItemsCaselli() {
+	public void setMenuItemsCaselli(int var) {
 
 		if (autostradaSelezionata != null)
 			MenuButtonSettoreCasello.setDisable(false);
@@ -235,12 +250,27 @@ public class HomeController implements Initializable {
 			prov.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					caselloSelezionato = c.getId();
-					System.out.println(caselloSelezionato);
+					caselloSelezionato = c;
+					System.out.println(caselloSelezionato.getId());
+					
+					// cambio testo nel menu btn
+					MenuButtonSettoreCaselloModifica.setText(caselloSelezionato.getNome());
+					
+					nomeCaselloModifica.setText(caselloSelezionato.getNome());
+					chilometroCaselloModifica.setText(Integer.toString(caselloSelezionato.getChilometro()));
+					
 				}
 			});
 
-			MenuButtonSettoreCasello.getItems().add(prov);
+			if (var == 0) {
+				
+				MenuButtonSettoreCasello.getItems().add(prov);
+				
+			} else {
+				
+				MenuButtonSettoreCaselloModifica.getItems().add(prov);
+				
+			}
 
 		}
 
@@ -263,7 +293,7 @@ public class HomeController implements Initializable {
 			} else {
 
 				GestoreAutostradale ga = new GestoreAutostradale();
-				ga.ingresso(targa, caselloSelezionato, sn, ud);
+				ga.ingresso(targa, caselloSelezionato.getId(), sn, ud);
 			}
 
 		}
@@ -280,18 +310,18 @@ public class HomeController implements Initializable {
 //		}
 
 //		// inizializzazione della lista che poi andrà riempita dal dao
-//		targheIngresso.add("AA 001 AA");
-//		targheIngresso.add("AA 002 AA");
-//		targheIngresso.add("AA 003 AA");
-//		targheIngresso.add("AA 004 AA");
-//		targheIngresso.add("AA 005 AA");
-//		targheIngresso.add("AB 001 AA");
-//		targheIngresso.add("AB 002 AA");
-//		targheIngresso.add("AB 003 AA");
-//		targheIngresso.add("AB 004 AA");
-//		targheIngresso.add("AB 005 AA");
+//		targhe.add("AA 001 AA");
+//		targhe.add("AA 002 AA");
+//		targhe.add("AA 003 AA");
+//		targhe.add("AA 004 AA");
+//		targhe.add("AA 005 AA");
+//		targhe.add("AB 001 AA");
+//		targhe.add("AB 002 AA");
+//		targhe.add("AB 003 AA");
+//		targhe.add("AB 004 AA");
+//		targhe.add("AB 005 AA");
 //		
-//		for (String t: targheIngresso) {
+//		for (String t: targhe) {
 //			items.add(t);
 //		}
 //		
@@ -311,16 +341,21 @@ public class HomeController implements Initializable {
 
 		
 		// prendiamo le automobili che potrebbero entrare nell'autostrada
-		VeicoloDao v = new VeicoloDao();
-		List<Veicolo> listaAuto = (List<Veicolo>)v.getAll();
 		
-		LinkedList<String> targhe = new LinkedList<String>();
+		VeicoloDao v = new VeicoloDao();
+		
+		List<Veicolo> listaAuto = (List<Veicolo>)v.getAll();
+
+		targhe.clear();
+		
     	for (Veicolo ve : listaAuto) {
     		targhe.add(ve.getTarga());
     	}
+    	Tab.getItems().clear();
     	for(String targa: targhe) {
-    		Tab.getItems().add(new String(targa));
+    		Tab.getItems().add(targa);
     	}
+ 
 
 	}
 
@@ -377,12 +412,13 @@ public class HomeController implements Initializable {
 		// prendiamo le automobili che potrebbero entrare nell'autostrada
 		BigliettoDao b = new BigliettoDao();
 		List<Biglietto> listaBiglietti = (List<Biglietto>)b.getAll(); // chiamata al metodo getAll();
-		LinkedList<String> targhe = new LinkedList<String>();
+		targhe.clear();
     	for (Biglietto bi : listaBiglietti) {
     		targhe.add(bi.getTarga());
     	}
+    	Tab.getItems().clear();
     	for(String targa: targhe) {
-    		Tab.getItems().add(new String(targa));
+    		Tab.getItems().add(targa);
     	}
 
 	}
@@ -393,7 +429,7 @@ public class HomeController implements Initializable {
 		float prezzo = 0;
 
 		GestoreAutostradale au = new GestoreAutostradale();
-		prezzo = au.calcoloPrezzo(targa, caselloSelezionato);
+		prezzo = au.calcoloPrezzo(targa, caselloSelezionato.getId());
 
 		labelPr.setText(prezzo + " €");
 		// pannelloBase.setDisable(true);
@@ -443,14 +479,43 @@ public class HomeController implements Initializable {
 	    }
 
 	    @FXML
-	    void ClickModifica(MouseEvent event) {
-	    	
-	    	
+	    void ClickModifica(MouseEvent event) throws DBException, SQLException {
 
-			pannelloBase.setDisable(true);
 			pannelloModificaCasello.setVisible(true);
+			
+			
+			
+			
+			AutostradaDao el = new AutostradaDao();
+		    LinkedList<Autostrada> autostradaList = null;
+			
+		    try {
+		    	autostradaList = (LinkedList<Autostrada>)el.getAll();
+			} catch (DBException | SQLException e) {
+				System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
+				e.printStackTrace();
+			}
+		    
+		    for(Autostrada a: autostradaList) {
+		    	MenuItem prov = new MenuItem(a.getNome());
+		    	
+		    	// evento di click sul MenuItem
+		    	prov.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						autostradaSelezionata = a.getId();
+						setMenuItemsCaselli(1);
+					}
+		    	});
 
-
+		    	MenuButtonSettoreAutostradaModifica.getItems().add(prov);
+		    	 	
+		    }
+		    
+		    CaselloDao dao = new CaselloDao();
+		    String[] params = {Integer.toString(caselloSelezionato.getIdAutostradaDiAppartenenza()), nomeCaselloModifica.getText(), chilometroCaselloModifica.getText()};
+		    dao.update(caselloSelezionato, params);
+			
 //	    	idCaselloModifica = 1;
 ////	    	sceltaCaselloModifica.setText(caselloModifica.getText());
 ////			
