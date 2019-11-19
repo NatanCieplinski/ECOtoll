@@ -2,7 +2,9 @@ package mvc.view.UIController;
 
 import java.net.URL;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -164,7 +166,8 @@ public class HomeController implements Initializable {
     @FXML
     private TextField chilometroCaselloModifica;
 	 
-
+    @FXML
+    private Button Salva;
 
 	// METODI
 
@@ -511,11 +514,7 @@ public class HomeController implements Initializable {
 		    	MenuButtonSettoreAutostradaModifica.getItems().add(prov);
 		    	 	
 		    }
-		    
-		    CaselloDao dao = new CaselloDao();
-		    String[] params = {Integer.toString(caselloSelezionato.getIdAutostradaDiAppartenenza()), nomeCaselloModifica.getText(), chilometroCaselloModifica.getText()};
-		    dao.update(caselloSelezionato, params);
-			
+		
 //	    	idCaselloModifica = 1;
 ////	    	sceltaCaselloModifica.setText(caselloModifica.getText());
 ////			
@@ -526,6 +525,17 @@ public class HomeController implements Initializable {
 //			
 	    	
 	    	
+	    }
+	    @FXML
+	    void SalvaModifiches(MouseEvent event) throws DBException, SQLException {
+    
+		    CaselloDao dao = new CaselloDao();
+		    String[] params = new String[3];
+		    params[0] = Integer.toString(autostradaSelezionata);
+		    params[1] = nomeCaselloModifica.getText();
+		    params[2] = chilometroCaselloModifica.getText();
+		    dao.update(caselloSelezionato, params);
+			
 	    }
 
 	    @FXML

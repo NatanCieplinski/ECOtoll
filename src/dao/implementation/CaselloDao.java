@@ -34,7 +34,7 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	}
 	
 	/*
-	 * CRUD: Implementare in caso di necessità
+	 * CRUD: Implementare in caso di necessitï¿½
 	 * */
 	@Override
 	public void create(Casello casello) throws DBException, SQLException{
@@ -68,15 +68,22 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 
 	@Override
 	public void update(Casello casello, String[] params) throws DBException, SQLException{
-		final String query = "UPDATE casello SET autostrada='?', nome='?' chilometro=? WHERE id=?;";
+		final String query = "UPDATE casello SET autostrada=?, nome='?', chilometro=? WHERE id=?;";
 		
 		this.openDB();
+		System.out.println("1");
 		PreparedStatement stmt = this.db.prepareStatement(query);
+		System.out.println("2");
 		stmt.setInt(1, Integer.parseInt(params[0]));
+		System.out.println("3");
 		stmt.setString(2, params[1]);
+		System.out.println("4");
 		stmt.setFloat(3, Float.parseFloat(params[2]));
+		System.out.println("5");
 		stmt.setInt(4, casello.getId());
+		System.out.println("6");
 		stmt.execute();
+		System.out.println("7");
 		this.closeDB(stmt, null);
 	}
 

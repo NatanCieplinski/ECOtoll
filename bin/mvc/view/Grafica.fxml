@@ -77,7 +77,7 @@
             <MenuButton fx:id="MenuButtonSettoreCaselloModifica" layoutX="276.0" layoutY="68.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="160.0" text="Seleziona Casello" />
             <TextField fx:id="nomeCaselloModifica" layoutX="47.0" layoutY="173.0" />
             <TextField fx:id="chilometroCaselloModifica" layoutX="275.0" layoutY="173.0" />
-            <Button layoutX="139.0" layoutY="300.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Salva" />
+            <Button fx:id="Salva" layoutX="139.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#SalvaModifiches" prefHeight="27.0" prefWidth="200.0" text="Salva" />
             <Label layoutX="174.0" layoutY="14.0" text="Modidica Casello">
                <font>
                   <Font size="18.0" />
