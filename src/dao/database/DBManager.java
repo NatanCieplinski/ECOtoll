@@ -47,6 +47,11 @@ public class DBManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static Object getCaselloDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 

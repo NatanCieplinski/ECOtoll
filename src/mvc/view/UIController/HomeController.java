@@ -1,6 +1,7 @@
 package mvc.view.UIController;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
@@ -59,7 +60,8 @@ public class HomeController implements Initializable {
 	private Integer io = null; // id ingresso-uscita
 	private Integer ud = null;
 	private boolean sn;
-
+	private Casello CaselloNuovo = null;
+	
 	static ObservableList<String> items = FXCollections.observableArrayList();
 	static LinkedList<String> targhe = new LinkedList<String>();
 	
@@ -68,6 +70,7 @@ public class HomeController implements Initializable {
 	
 	int idCaselloModifica;
 	int idCaselloElimina;
+	int idCaselloAggiunta;
 	int var;
 
 	// private String ricerca = HomeController.text;
@@ -190,9 +193,18 @@ public class HomeController implements Initializable {
     @FXML
     private MenuButton MenuButtonSettoreAutostradaRimuovi;
 
-    
+    @FXML
+    private TextField AutostradaAggiunta;
 
-  
+    @FXML
+    private TextField CaselloAggiunto;
+
+    @FXML
+    private TextField ChilometroAggiunto;
+
+    @FXML
+    private Button BtnSole;
+
 
 
 	// METODI
@@ -509,22 +521,6 @@ public class HomeController implements Initializable {
 			
 	    }
 
-//	    
-//	    @FXML
-//		void clickCasello1Elimina(Event event) throws DatabaseException {
-//			
-//			idCaselloElimina = 1;
-//			sceltaCaselloEliminazione.setText(casello1Elimina.getText());
-//			
-////		}
-//	    void clickBtnElimina(Event event) throws DatabaseException {
-//			
-//			dbFactory.getDaoCasello().eliminaCaselloById(idCaselloElimina);
-//			
-//			pannelloAggiungiCasello.setVisible(false);
-//			pannelloBase.setDisable(false);
-//			
-//		}
 	    
 	    
 	    @FXML
@@ -533,13 +529,6 @@ public class HomeController implements Initializable {
 	    	CaselloDao dao = new CaselloDao();
 	    	
 	    	dao.delete(caselloSelezionato);
-	    	
-	   // 	dbFactory.getDaoCasello().delete(caselloSelezionato.getId());
-	    	//CaselloDao dao = new CaselloDao();
-	    	//idCasello
-	    	
-	    	
-	   // 	caselloSelezionato.setId(caselloElimina.getText());
 	    	
 	    }
 	    
@@ -585,30 +574,40 @@ public class HomeController implements Initializable {
 	    	PannelloAggRim.setVisible(false);
 	    	
 	    }
-//
-//	    @FXML
-//		void clickAggiungi(Event event) throws DatabaseException {
-//			
-//			float chilometro = Float.parseFloat( labelChilometroCaselloAggiunta.getText() );
-//			String nome = labelNomeCaselloAggiunta.getText();
-//			
-//			dbFactory.getDaoCasello().addCasello(nome, idAutostradaAggiuntaCasello, chilometro);
-//			
-//			pannelloAggiungiCasello.setVisible(false);
-//			pannelloBase.setDisable(false);
-//			
-//		}
-//	    
+
+//	    Sol@FXML
+	    void Sole(MouseEvent event) {
+
+	    	idCaselloAggiunta = 1;
+		//	sceltaAutostradaAggiuntaCasello.setText( autostradaAggiuntaCasello1.getText() );
+	    	
+	    }
 	    
 	    @FXML
-	    void ClickAggiungi(MouseEvent event) {
+	    void ClickAggiungi(MouseEvent event) throws DBException, SQLException {
 	    	
-//	    	float chilometro = Float.parseFloat( labelChilometroCaselloAggiunta.getText() );
-//			String nome = labelNomeCaselloAggiunta.getText();
-//			
-//			dbFactory.getDaoCasello().addCasello(nome, idAutostradaAggiuntaCasello, chilometro);
-//			
+	    	CaselloDao dao = new CaselloDao();
+	    	
+	    	
+	    	Object idAutostradaAggiuntaCasello = Integer.parseInt(AutostradaAggiunta.getText());
+			Object nome = CaselloAggiunto.getText();;
+			Object chilometro= Float.parseFloat( ChilometroAggiunto.getText() );
+			CaselloNuovo(idAutostradaAggiuntaCasello,nome,chilometro);
+	    	
+//			int idAutostradaAggiuntaCasello1 = Integer.parseInt(AutostradaAggiunta.getText());
+//	    	float chilometro1 = Float.parseFloat( ChilometroAggiunto.getText() );
+//			String nome1 = CaselloAggiunto.getText();
+			
+		//	((CaselloDao) DBManager.getCaselloDao()).create(idAutostradaAggiuntaCasello, nome,  chilometro);
+			dao.create(CaselloNuovo);
 	    }
+
+		private void CaselloNuovo(Object idAutostradaAggiuntaCasello, Object nome, Object chilometro) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
 
 
 

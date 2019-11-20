@@ -92,13 +92,26 @@
             <Button fx:id="Indietro2" layoutX="21.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#ClickIndietro2" text="&lt;--" />
             <MenuButton fx:id="MenuButtonSettoreAutostradaRimuovi" layoutX="93.0" layoutY="96.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="161.0" text="Seleziona Autostrada" />
             <MenuButton fx:id="MenuButtonSettoreCaselloAggRim" layoutX="353.0" layoutY="96.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Seleziona Casello" />
-            <Label layoutX="187.0" layoutY="22.0" text="Aggiungi / Rimuovi Caselli">
+            <Label layoutX="187.0" layoutY="22.0" text="Rimuovi Caselli">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="BtnAggiungi" layoutX="187.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" prefHeight="27.0" prefWidth="195.0" text="Aggiungi Casello" />
-            <Button layoutX="187.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" prefHeight="27.0" prefWidth="195.0" text="Rimuivi Casello" />
+            <Button fx:id="BtnAggiungi" layoutX="174.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" prefHeight="27.0" prefWidth="195.0" text="Aggiungi Casello" />
+            <Button layoutX="174.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" prefHeight="27.0" prefWidth="195.0" text="Rimuivi Casello" />
+            <Label layoutX="211.0" layoutY="233.0" text="Aggiungi Caselli">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="17.0" layoutY="201.0" prefHeight="8.0" prefWidth="544.0" />
+            <TextField fx:id="AutostradaAggiunta" layoutX="62.0" layoutY="298.0" />
+            <TextField fx:id="CaselloAggiunto" layoutX="349.0" layoutY="312.0" />
+            <TextField fx:id="ChilometroAggiunto" layoutX="191.0" layoutY="366.0" />
+            <Label layoutX="92.0" layoutY="281.0" text="Nome Autostrada:" />
+            <Label layoutX="382.0" layoutY="281.0" text="Nome Casello:" />
+            <Label layoutX="239.0" layoutY="339.0" text="Chilometri:" />
+            <Button fx:id="BtnSole" layoutX="31.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#Sole" text="Autostrada Del Sole" />
          </children>
       </AnchorPane>
    </children>
