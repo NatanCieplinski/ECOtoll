@@ -37,12 +37,12 @@
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
       </MenuButton>
-      <RadioButton fx:id="RdSi" disable="true" layoutX="489.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#clickSi" text="Si">
+     <RadioButton fx:id="RdSi" disable="true" layoutX="489.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#clickSi" text="Si">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="RdNo" disable="true" layoutX="525.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#clickNo" text="No" toggleGroup="$group" />
-      <RadioButton fx:id="RdIngresso" layoutX="123.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#clickIngresso" text="Ingresso" />
+      <RadioButton fx:id="RdIngresso" layoutX="123.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#clickIngresso" onMouseEntered="#clickIngresso" text="Ingresso" />
       <RadioButton fx:id="RdUscita" layoutX="197.0" layoutY="81.0" mnemonicParsing="false" onMouseClicked="#clickUscita" text="Uscita" />
       <RadioButton fx:id="RdUno" disable="true" layoutX="492.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#clickUno" text="1" toggleGroup="$group" />
       <RadioButton fx:id="RdDue" disable="true" layoutX="529.0" layoutY="216.0" mnemonicParsing="false" onMouseClicked="#clickDue" text="2" toggleGroup="$group" />

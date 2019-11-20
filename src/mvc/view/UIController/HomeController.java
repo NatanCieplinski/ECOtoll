@@ -1,19 +1,12 @@
 package mvc.view.UIController;
 
 import java.net.URL;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.mysql.jdbc.Connection;
-import com.sun.xml.internal.bind.v2.schemagen.episode.Bindings;
 
 import dao.exceptions.DBException;
 import dao.implementation.AutostradaDao;
@@ -25,7 +18,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,18 +28,17 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import mvc.controller.GestoreAutostradale;
-import mvc.controller.Pedaggio;
 import mvc.model.Autostrada;
 import mvc.model.Biglietto;
 import mvc.model.Casello;
 import mvc.model.Veicolo;
+
+
+
 
 import javafx.scene.control.ToggleGroup;
 
@@ -307,31 +298,7 @@ public class HomeController implements Initializable {
 	void clickIngresso(MouseEvent event) throws DBException, SQLException {
 		io = 1;
 
-		//TODO da rimuovere
-//		for (String s: targheList) {
-//			Tab.getColumns().add(new TableColumn(s));
-//		}
 
-//		// inizializzazione della lista che poi andrà riempita dal dao
-//		targhe.add("AA 001 AA");
-//		targhe.add("AA 002 AA");
-//		targhe.add("AA 003 AA");
-//		targhe.add("AA 004 AA");
-//		targhe.add("AA 005 AA");
-//		targhe.add("AB 001 AA");
-//		targhe.add("AB 002 AA");
-//		targhe.add("AB 003 AA");
-//		targhe.add("AB 004 AA");
-//		targhe.add("AB 005 AA");
-//		
-//		for (String t: targhe) {
-//			items.add(t);
-//		}
-//		
-//		Tab.setItems(items);
-//		
-		// fino qui
-		
 		
 		RdDue.setDisable(false);
 		RdUno.setDisable(false);
@@ -444,35 +411,7 @@ public class HomeController implements Initializable {
 
 	@FXML
 	void TFcerca(ActionEvent event) {
-
-//		
-//		  VeicoloDao ve = new VeicoloDao(); LinkedList<Veicolo> veicoloList = null;
-//		  
-//		 try {
-//		  
-//		  veicoloList = (LinkedList<Veicolo>)ve.read(); } catch (DBException |
-//		  SQLException e) { System.out.println("Errore caricamento veicolo");
-//		  e.printStackTrace(); }
-//		  
-//		  for(Veicolo v: veicoloList) {
-//		  
-//		  MenuItem hola = new MenuItem(v.getTarga());
-//		  
-//		  
-//		  hola.setOnAction(new EventHandler<ActionEvent>() {
-//		  
-//		  @Override public void handle(ActionEvent event) { targaSelezionata =
-//		  v.getTarga(); setTab(); } });
-//		  
-//		  Tab.getColumns().add(hola);
-//		  
-//		  
-//		  }
-//		  
-//		  }
-		  
-		  
-		 
+		  		 
 
 	}
 	
@@ -513,19 +452,12 @@ public class HomeController implements Initializable {
 
 		    	MenuButtonSettoreAutostradaModifica.getItems().add(prov);
 		    	 	
-		    }
-		
-//	    	idCaselloModifica = 1;
-////	    	sceltaCaselloModifica.setText(caselloModifica.getText());
-////			
-//			Casello casello = dbFactory.getDaoCasello().getCaselloById( idCaselloModifica );
-//			labelNomeCaselloModifica.setText( casello.getNome() );
-//			labelChilometroCaselloModifica.setText( new Float( casello.getChilometro() ).toString() );
-//			labelAutostradaIdCaselloModifica.setText( new Integer( casello.getIdAutostradaAppartenenza() ).toString() );
-//			
+		    }	
 	    	
 	    	
 	    }
+	    
+	    
 	    @FXML
 	    void SalvaModifiches(MouseEvent event) throws DBException, SQLException {
     
