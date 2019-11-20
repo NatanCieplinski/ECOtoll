@@ -7,11 +7,13 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 
 import dao.exceptions.DBException;
+import dao.implementation.AutostradaDao;
 
 public class DBManager {
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/ecotoll";	
 	private static final String DB_USER = "root";	
 	private static final String DB_PASS = "";
+	public static final String MYSQL = null;
 	
 	protected Connection db = null;
 	
@@ -34,6 +36,16 @@ public class DBManager {
 			throw new DBException(e.toString());
 		}
 			
+	}
+
+	public static DBManager getDaoFactory(String mysql2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AutostradaDao getDaoCasello() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

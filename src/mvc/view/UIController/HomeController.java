@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import dao.database.DBManager;
 import dao.exceptions.DBException;
 import dao.implementation.AutostradaDao;
 import dao.implementation.BigliettoDao;
@@ -46,6 +47,11 @@ public class HomeController implements Initializable {
 
 	// VARIABILI DI CALCOLO
 	
+	private DBManager dbFactory = DBManager.getDaoFactory(DBManager.MYSQL);
+	
+	
+	
+	
 	private Integer autostradaSelezionata = null; // id dell'autostrada selezionata
 	private Casello caselloSelezionato = null; // id del casello selezionato
 	private Integer veicoloSelezionato = null;
@@ -61,6 +67,8 @@ public class HomeController implements Initializable {
 	String targa;
 	
 	int idCaselloModifica;
+	int idCaselloElimina;
+	int var;
 
 	// private String ricerca = HomeController.text;
 
@@ -159,6 +167,33 @@ public class HomeController implements Initializable {
 	 
     @FXML
     private Button Salva;
+    
+    @FXML
+    private Button Indietro;
+    
+    @FXML
+    private Button BntAggRim;
+    
+    @FXML
+    private AnchorPane PannelloAggRim;
+    
+    @FXML
+    private Button Indietro2;
+
+    @FXML
+    private Button BtnAggiungi;
+
+    @FXML
+    private MenuButton MenuButtonSettoreCaselloAggRim;
+    
+
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaRimuovi;
+
+    
+
+  
+
 
 	// METODI
 
@@ -260,11 +295,12 @@ public class HomeController implements Initializable {
 				
 				MenuButtonSettoreCasello.getItems().add(prov);
 				
-			} else {
+			} if (var == 1) {
 				
 				MenuButtonSettoreCaselloModifica.getItems().add(prov);
 				
-			}
+			} if (var == 2) {
+				MenuButtonSettoreCaselloAggRim.getItems().add(prov);			}
 
 		}
 
@@ -415,10 +451,13 @@ public class HomeController implements Initializable {
 
 	}
 	
-	 	@FXML
-	    void ClickAggiungi(MouseEvent event) {
+	 	
+	 	
+	 	 @FXML
+	     void ClickIndietro(MouseEvent event) {
+	 		pannelloModificaCasello.setVisible(false);
+	     }
 
-	    }
 
 	    @FXML
 	    void ClickModifica(MouseEvent event) throws DBException, SQLException {
@@ -470,9 +509,107 @@ public class HomeController implements Initializable {
 			
 	    }
 
+//	    
+//	    @FXML
+//		void clickCasello1Elimina(Event event) throws DatabaseException {
+//			
+//			idCaselloElimina = 1;
+//			sceltaCaselloEliminazione.setText(casello1Elimina.getText());
+//			
+////		}
+//	    void clickBtnElimina(Event event) throws DatabaseException {
+//			
+//			dbFactory.getDaoCasello().eliminaCaselloById(idCaselloElimina);
+//			
+//			pannelloAggiungiCasello.setVisible(false);
+//			pannelloBase.setDisable(false);
+//			
+//		}
+	    
+	    
 	    @FXML
-	    void ClickRimuovi(MouseEvent event) {
+	    void ClickRimuovi(MouseEvent event) throws DBException, SQLException {
 
+	    	CaselloDao dao = new CaselloDao();
+	    	
+	    	dao.delete(caselloSelezionato);
+	    	
+	   // 	dbFactory.getDaoCasello().delete(caselloSelezionato.getId());
+	    	//CaselloDao dao = new CaselloDao();
+	    	//idCasello
+	    	
+	    	
+	   // 	caselloSelezionato.setId(caselloElimina.getText());
+	    	
 	    }
+	    
+	    @FXML
+	    void ClickAggRim(MouseEvent event) {
+	    	
+	    	PannelloAggRim.setVisible(true);
+	    	
+	    	var = 2;
+
+			AutostradaDao el = new AutostradaDao();
+		    LinkedList<Autostrada> autostradaList = null;
+			
+		    try {
+		    	autostradaList = (LinkedList<Autostrada>)el.getAll();
+			} catch (DBException | SQLException e) {
+				System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
+				e.printStackTrace();
+			}
+		    
+		    for(Autostrada a: autostradaList) {
+		    	MenuItem prov = new MenuItem(a.getNome());
+		    	
+		    	// evento di click sul MenuItem
+		    	prov.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						autostradaSelezionata = a.getId();
+						setMenuItemsCaselli(2);
+					}
+		    	});
+
+		    	MenuButtonSettoreAutostradaRimuovi.getItems().add(prov);
+		    	 	
+		    }	
+	    	
+	    }
+	    
+
+	    @FXML
+	    void ClickIndietro2(MouseEvent event) {
+	    	
+	    	PannelloAggRim.setVisible(false);
+	    	
+	    }
+//
+//	    @FXML
+//		void clickAggiungi(Event event) throws DatabaseException {
+//			
+//			float chilometro = Float.parseFloat( labelChilometroCaselloAggiunta.getText() );
+//			String nome = labelNomeCaselloAggiunta.getText();
+//			
+//			dbFactory.getDaoCasello().addCasello(nome, idAutostradaAggiuntaCasello, chilometro);
+//			
+//			pannelloAggiungiCasello.setVisible(false);
+//			pannelloBase.setDisable(false);
+//			
+//		}
+//	    
+	    
+	    @FXML
+	    void ClickAggiungi(MouseEvent event) {
+	    	
+//	    	float chilometro = Float.parseFloat( labelChilometroCaselloAggiunta.getText() );
+//			String nome = labelNomeCaselloAggiunta.getText();
+//			
+//			dbFactory.getDaoCasello().addCasello(nome, idAutostradaAggiuntaCasello, chilometro);
+//			
+	    }
+
+
 
 }

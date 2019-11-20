@@ -68,8 +68,7 @@
       <Label fx:id="labelPr" layoutX="497.0" layoutY="358.0" prefHeight="17.0" prefWidth="9.0" />
       <ListView fx:id="Tab" layoutX="24.0" layoutY="225.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="BntModifica" layoutX="52.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickModifica" text="Modifica casello" />
-      <Button fx:id="BntAggiungi" layoutX="234.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" text="Aggiungi casello" />
-      <Button fx:id="BntRimuovi" layoutX="450.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" text="Rimuovi casello" />
+      <Button fx:id="BntAggRim" layoutX="234.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickAggRim" text="Aggiungi /Rimuovi casello" />
       <Separator layoutX="16.0" layoutY="433.0" prefHeight="8.0" prefWidth="556.0" />
       <AnchorPane fx:id="pannelloModificaCasello" layoutX="194.0" layoutY="184.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -85,6 +84,21 @@
             </Label>
             <Label layoutX="87.0" layoutY="148.0" text="Nome Casello:" />
             <Label layoutX="323.0" layoutY="148.0" text="Chilometro:" />
+            <Button fx:id="Indietro" layoutX="20.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#ClickIndietro" text="&lt;--" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="PannelloAggRim" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="Indietro2" layoutX="21.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#ClickIndietro2" text="&lt;--" />
+            <MenuButton fx:id="MenuButtonSettoreAutostradaRimuovi" layoutX="93.0" layoutY="96.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="161.0" text="Seleziona Autostrada" />
+            <MenuButton fx:id="MenuButtonSettoreCaselloAggRim" layoutX="353.0" layoutY="96.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Seleziona Casello" />
+            <Label layoutX="187.0" layoutY="22.0" text="Aggiungi / Rimuovi Caselli">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="BtnAggiungi" layoutX="187.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" prefHeight="27.0" prefWidth="195.0" text="Aggiungi Casello" />
+            <Button layoutX="187.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" prefHeight="27.0" prefWidth="195.0" text="Rimuivi Casello" />
          </children>
       </AnchorPane>
    </children>
