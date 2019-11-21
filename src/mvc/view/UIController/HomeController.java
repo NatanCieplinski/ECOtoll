@@ -587,33 +587,26 @@ public class HomeController implements Initializable {
 	    	PannelloAggRim.setVisible(false);
 	    	
 	    }
-
-//	    Sol@FXML
+	    @FXML
 	    void Sole(MouseEvent event) {
 
 	    	idCaselloAggiunta = 1;
-		//	sceltaAutostradaAggiuntaCasello.setText( autostradaAggiuntaCasello1.getText() );
-	    	
+		
 	    }
 	    
 	    @FXML
 	    void ClickAggiungi(MouseEvent event) throws DBException, SQLException {
-//	    	
-//	    	System.out.println("a");
-//	    	CaselloDao dao = new CaselloDao();
-//	    	System.out.println("b");
-//	    	Casello nuovo = new Casello(Integer.parseInt(.getId()), CaselloAggiunto.getText(), (int)autostradaSelezionata, Integer.parseInt(ChilometroAggiunto.getText()));
-//	    	System.out.println("c");
-//	    	dao.create( nuovo );
-//	    	System.out.println("d");
-//	    
+	    	
+
+		    CaselloDao dao = new CaselloDao();
+		    String[] params = new String[3];
+		    params[0] = Integer.toString(this.idCaselloAggiunta);	
+		    params[1] = CaselloAggiunto.getText();
+		    params[2] = ChilometroAggiunto.getText();
+		    dao.create(params);
+
 	    }
-
 		
 		
-
-
-
-
 
 }

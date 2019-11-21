@@ -75,7 +75,6 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setInt(1, Integer.parseInt(params[0]));
 		stmt.setString(2, params[1]);
-		
 		stmt.setFloat(3, Float.parseFloat(params[2]));
 				
 		stmt.setInt(4, casello.getId());

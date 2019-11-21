@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pannelloBase" prefHeight="488.0" prefWidth="600.0" styleClass="background" stylesheets="@../../../DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.UIController.HomeController">
+<AnchorPane fx:id="pannelloBase" prefHeight="488.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.UIController.HomeController">
    <children>
       <Label fx:id="labelSettorepannello" layoutX="235.0" layoutY="10.0" text="Settore Pannello" textAlignment="CENTER" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="10.0">
          <font>
