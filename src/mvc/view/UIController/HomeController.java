@@ -20,6 +20,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -233,9 +234,12 @@ public class HomeController implements Initializable {
 				public void handle(ActionEvent event) {
 					autostradaSelezionata = a.getId();
 					setMenuItemsCaselli(0);
+//					MenuButtonSettoreAutostrada.setText(autostradaSelezionata.getNome());
 				}
+				
 	    	});
-
+	    	
+	    	
 	    	MenuButtonSettoreAutostrada.getItems().add(prov);
 	    	 	
 	    }
@@ -298,12 +302,17 @@ public class HomeController implements Initializable {
 					
 					// cambio testo nel menu btn
 					MenuButtonSettoreCaselloModifica.setText(caselloSelezionato.getNome());
+					MenuButtonSettoreCaselloAggRim.setText(caselloSelezionato.getNome());
+					MenuButtonSettoreCasello.setText(caselloSelezionato.getNome());
+
 					
 					nomeCaselloModifica.setText(caselloSelezionato.getNome());
 					chilometroCaselloModifica.setText(Integer.toString(caselloSelezionato.getChilometro()));
 					
 				}
 			});
+			
+			
 
 			if (var == 0) {
 				
@@ -556,7 +565,7 @@ public class HomeController implements Initializable {
 		    	MenuItem prov2 = new MenuItem(a.getNome());
 		    	
 		    	// evento di click sul MenuItem
-		    	prov.setOnAction(new EventHandler<ActionEvent>() {
+		    	prov.setOnAction(new EventHandler<ActionEvent>(){
 					@Override
 					public void handle(ActionEvent event) {
 						autostradaSelezionata = a.getId();

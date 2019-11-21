@@ -118,10 +118,6 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 		return caselli;
 	}
 
-	public void create(int idAutostradaAggiuntaCasello, String nome, float chilometro) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
