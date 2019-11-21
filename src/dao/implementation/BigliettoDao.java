@@ -32,15 +32,15 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	 * CRUD: Implementare in caso di necessita
 	 * */
 	@Override
-	public void create(Biglietto biglietto) throws DBException, SQLException{
+	public void create(String[] params) throws DBException, SQLException{
 		final String query = "INSERT INTO biglietto(targa, ingresso, carrello, n_assi_carrello) VALUES( ?,?,?,? );";
 
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
-		stmt.setString(1, biglietto.getTarga());
-		stmt.setInt(2, biglietto.getIdCaselloIngresso());
-		stmt.setBoolean(3, biglietto.getCarrello());
-		stmt.setInt(4, biglietto.getNumeroAssiCarrello());
+		stmt.setString(1, params[0]);
+		stmt.setInt(2, Integer.parseInt(params[1]));
+		stmt.setBoolean(3, Boolean.parseBoolean(params[2]));
+		stmt.setInt(4, Integer.parseInt(params[3]));
 		
 		stmt.execute();
 		

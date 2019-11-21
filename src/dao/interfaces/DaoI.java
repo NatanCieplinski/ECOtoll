@@ -11,7 +11,7 @@ import dao.exceptions.DBException;
 // Interfaccia del DAO che fornisce le firme CRUD e le firme per creazione di strutture del modello
 public interface DaoI<T> {
 	// CRUD
-    void 		create(T t) 				 throws DBException, SQLException;
+    void 		create(String[] params) 				 throws DBException, SQLException;
     Optional<T> read(Object id)				 throws DBException, SQLException;  
     void		update(T t, String[] params) throws DBException, SQLException;
     void 		delete(T t)					 throws DBException, SQLException;

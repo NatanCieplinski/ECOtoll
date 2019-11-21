@@ -69,7 +69,7 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 	 * CRUD: Implementare in caso di necessit�
 	 * */
 	@Override
-	public void create(Autostrada autostrada) {}
+	public void create(String[] params) {}
 
 	@Override
 	public Optional<Autostrada> read(Object id) throws DBException, SQLException{ 

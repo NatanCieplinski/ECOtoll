@@ -31,7 +31,7 @@ public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	 * CRUD: Implementare in caso di necessit�
 	 * */
 	@Override
-	public void create(Veicolo veicolo) {}
+	public void create(String[] params) {}
 
 	@Override
 	public Optional<Veicolo> read(Object targa) throws DBException, SQLException{

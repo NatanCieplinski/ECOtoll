@@ -29,8 +29,9 @@ public class GestoreAutostradale{
 
     public void ingresso(String targa, int idCaselloIngresso, boolean carrello, int numeroAssiCarrello){
     	try {
-    		Biglietto b = new Biglietto(targa, idCaselloIngresso, carrello, numeroAssiCarrello);
-    		bigliettoDao.create(b);
+			Biglietto b = new Biglietto(targa, idCaselloIngresso, carrello, numeroAssiCarrello);
+			String[] params = {targa, Integer.toString(idCaselloIngresso), Boolean.toString(carrello), Integer.toString(numeroAssiCarrello)};
+    		bigliettoDao.create(params);
     		this.writeBiglietto(b);
     		System.out.println("biglietto emesso");
         }catch(Exception e) {
