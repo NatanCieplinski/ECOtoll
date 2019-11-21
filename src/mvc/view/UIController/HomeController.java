@@ -299,7 +299,6 @@ public class HomeController implements Initializable {
 				public void handle(ActionEvent event) {
 					caselloSelezionato = c;
 					System.out.println(caselloSelezionato.getId());
-					
 					// cambio testo nel menu btn
 					MenuButtonSettoreCaselloModifica.setText(caselloSelezionato.getNome());
 					MenuButtonSettoreCaselloAggRim.setText(caselloSelezionato.getNome());
