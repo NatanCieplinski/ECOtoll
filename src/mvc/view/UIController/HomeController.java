@@ -205,6 +205,8 @@ public class HomeController implements Initializable {
     @FXML
     private Button BtnSole;
 
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaAggiungi;
 
 
 	// METODI
@@ -551,6 +553,7 @@ public class HomeController implements Initializable {
 		    
 		    for(Autostrada a: autostradaList) {
 		    	MenuItem prov = new MenuItem(a.getNome());
+		    	MenuItem prov2 = new MenuItem(a.getNome());
 		    	
 		    	// evento di click sul MenuItem
 		    	prov.setOnAction(new EventHandler<ActionEvent>() {
@@ -562,6 +565,8 @@ public class HomeController implements Initializable {
 		    	});
 
 		    	MenuButtonSettoreAutostradaRimuovi.getItems().add(prov);
+		    	MenuButtonSettoreAutostradaAggiungi.getItems().add(prov2);
+		    	
 		    	 	
 		    }	
 	    	
@@ -585,27 +590,19 @@ public class HomeController implements Initializable {
 	    
 	    @FXML
 	    void ClickAggiungi(MouseEvent event) throws DBException, SQLException {
-	    	
-	    	CaselloDao dao = new CaselloDao();
-	    	
-	    	
-	    	Object idAutostradaAggiuntaCasello = Integer.parseInt(AutostradaAggiunta.getText());
-			Object nome = CaselloAggiunto.getText();;
-			Object chilometro= Float.parseFloat( ChilometroAggiunto.getText() );
-			CaselloNuovo(idAutostradaAggiuntaCasello,nome,chilometro);
-	    	
-//			int idAutostradaAggiuntaCasello1 = Integer.parseInt(AutostradaAggiunta.getText());
-//	    	float chilometro1 = Float.parseFloat( ChilometroAggiunto.getText() );
-//			String nome1 = CaselloAggiunto.getText();
-			
-		//	((CaselloDao) DBManager.getCaselloDao()).create(idAutostradaAggiuntaCasello, nome,  chilometro);
-			dao.create(CaselloNuovo);
+//	    	
+//	    	System.out.println("a");
+//	    	CaselloDao dao = new CaselloDao();
+//	    	System.out.println("b");
+//	    	Casello nuovo = new Casello(Integer.parseInt(.getId()), CaselloAggiunto.getText(), (int)autostradaSelezionata, Integer.parseInt(ChilometroAggiunto.getText()));
+//	    	System.out.println("c");
+//	    	dao.create( nuovo );
+//	    	System.out.println("d");
+//	    
 	    }
 
-		private void CaselloNuovo(Object idAutostradaAggiuntaCasello, Object nome, Object chilometro) {
-			// TODO Auto-generated method stub
-			
-		}
+		
+		
 
 
 
