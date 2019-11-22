@@ -74,7 +74,6 @@ public class HomeController implements Initializable {
 	int idCaselloAggiunta;
 	int var;
 
-	// private String ricerca = HomeController.text;
 
 	@FXML
 	private AnchorPane pannelloBase;
@@ -234,6 +233,7 @@ public class HomeController implements Initializable {
 				public void handle(ActionEvent event) {
 					autostradaSelezionata = a.getId();
 					setMenuItemsCaselli(0);
+//					MenuButtonSettoreAutostrada.setText(caselloSelezionato.getNome());
 //					MenuButtonSettoreAutostrada.setText(autostradaSelezionata.getNome());
 				}
 				
@@ -322,7 +322,10 @@ public class HomeController implements Initializable {
 				MenuButtonSettoreCaselloModifica.getItems().add(prov);
 				
 			} if (var == 2) {
-				MenuButtonSettoreCaselloAggRim.getItems().add(prov);			}
+				
+				MenuButtonSettoreCaselloAggRim.getItems().add(prov);
+				
+			}
 
 		}
 
@@ -340,7 +343,7 @@ public class HomeController implements Initializable {
 
 		} else {
 
-			if (io == null || ud == null || targa == null) { // stampa anche se non si seleziona il carrello
+			if (io == null || ud == null || targa == null) { 
 				System.out.println("compila tutti i campi");
 			} else {
 
@@ -600,7 +603,7 @@ public class HomeController implements Initializable {
 
 		    CaselloDao dao = new CaselloDao();
 		    String[] params = new String[3];
-		    params[0] = Integer.toString(this.idCaselloAggiunta);	
+		    params[0] = Integer.toString(autostradaSelezionata);	
 		    params[1] = CaselloAggiunto.getText();
 		    params[2] = ChilometroAggiunto.getText();
 		    dao.create(params);
