@@ -223,7 +223,7 @@ public class HomeController implements Initializable {
 				public void handle(ActionEvent event) {
 					
 					autostradaSelezionata = a;
-					System.out.println(autostradaSelezionata.getId());
+					//System.out.println(autostradaSelezionata.getId());
 					setMenuItemsCaselli(0);
 					MenuButtonSettoreAutostrada.setText(autostradaSelezionata.getNome());
 					
@@ -244,19 +244,19 @@ public class HomeController implements Initializable {
 	    		
 	    		ObservableList<String> prov = FXCollections.observableArrayList();;
 	    		String input = TFcerca.getText();
-	    		System.out.println(input);
+	    		//System.out.println(input);
 	    		input = "^" + input + "[\\w]*\\s*[\\d]*\\s*[\\w]*";
-	    		System.out.println(input);
+	    		//System.out.println(input);
 	    		Pattern pattern = Pattern.compile(input);
 	    		
 	    		for (String s : targhe) {
-	    			System.out.println("sto valutando " +  s);
+	    			//System.out.println("sto valutando " +  s);
 	    			Matcher m = pattern.matcher(s);
 	    			Tab.getItems().clear();
-	    			System.out.println("k");
+	    			//System.out.println("k");
 	    			
 	    			while(m.find()) {
-	    				System.out.println("stringa" + m.group());
+	    				//System.out.println("stringa" + m.group());
 	    				prov.add(m.group());
 	    			}
 	    			
@@ -303,7 +303,7 @@ public class HomeController implements Initializable {
 				@Override
 				public void handle(ActionEvent event) {
 					caselloSelezionato = c;
-					System.out.println(caselloSelezionato.getId());
+					//System.out.println(caselloSelezionato.getId());
 					// cambio testo nel menu btn
 					MenuButtonSettoreCaselloModifica.setText(caselloSelezionato.getNome());
 					MenuButtonSettoreCaselloAggRim.setText(caselloSelezionato.getNome());
@@ -347,18 +347,18 @@ public class HomeController implements Initializable {
 	public void EmettiBIglietto(MouseEvent event) {
 
 		targa = TFcerca.getText();
-		System.out.println(targa);
+		//System.out.println(targa);
 		targa = Tab.getSelectionModel().getSelectedItem();
 
 		if (io == 0) {
 
-			System.out.println("Biglietto selezionato su uscita");
+			//System.out.println("Biglietto selezionato su uscita");
 
 		} else {
 
 			if (io == null || ud == null || targa == null) { 
 				
-				System.out.println("compila tutti i campi");
+				//System.out.println("compila tutti i campi");
 				
 			} else {
 
@@ -615,7 +615,7 @@ public class HomeController implements Initializable {
 					@Override
 					public void handle(ActionEvent event) {
 						autostradaSelezionata = a;
-						System.out.println(autostradaSelezionata);
+						//System.out.println(autostradaSelezionata);
 				
 					
 						setMenuItemsCaselli(2);
@@ -627,7 +627,7 @@ public class HomeController implements Initializable {
 					@Override
 					public void handle(ActionEvent event) {
 						autostradaSelezionata = a;
-						System.out.println(autostradaSelezionata);
+						//System.out.println(autostradaSelezionata);
 				
 					
 						setMenuItemsCaselli(2);
@@ -659,7 +659,7 @@ public class HomeController implements Initializable {
 		    String[] params = new String[3];
 		    params[0] = Integer.toString(autostradaSelezionata.getId());
 			
-			System.out.println(autostradaSelezionata);
+			//System.out.println(autostradaSelezionata);
 	
 		    params[1] = CaselloAggiunto.getText();
 		    params[2] = ChilometroAggiunto.getText();
