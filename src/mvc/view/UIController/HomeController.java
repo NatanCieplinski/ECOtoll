@@ -55,7 +55,7 @@ public class HomeController implements Initializable {
 	
 	
 	private Integer autostradaSelezionata = null; // id dell'autostrada selezionata
-	private Casello caselloSelezionato = null; // id del casello selezionato
+	private Casello caselloSelezionato = null; 
 	private Integer veicoloSelezionato = null;
 	private String targaSelezionata = "";
 	private Integer io = null; // id ingresso-uscita
@@ -229,19 +229,21 @@ public class HomeController implements Initializable {
 	    	
 	    	// evento di click sul MenuItem
 	    	prov.setOnAction(new EventHandler<ActionEvent>() {
+	    		
+
 				@Override
 				public void handle(ActionEvent event) {
 					autostradaSelezionata = a.getId();
+					System.out.println(autostradaSelezionata);
 					setMenuItemsCaselli(0);
 //					MenuButtonSettoreAutostrada.setText(caselloSelezionato.getNome());
-//					MenuButtonSettoreAutostrada.setText(autostradaSelezionata.getNome());
 				}
 				
 	    	});
 	    	
 	    	
 	    	MenuButtonSettoreAutostrada.getItems().add(prov);
-	    	 	
+	    //	 MenuButtonSettoreAutostrada.setText(autostradaSelezionata.getNome());
 	    }
 	    
 	    // listener 
@@ -273,6 +275,7 @@ public class HomeController implements Initializable {
 
 	// metodo che setta i caselli da mostrare in base all'autostrada selezionata
 	public void setMenuItemsCaselli(int var) {
+   
 
 		if (autostradaSelezionata != null)
 			MenuButtonSettoreCasello.setDisable(false);
@@ -509,7 +512,10 @@ public class HomeController implements Initializable {
 		    	prov.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
+	
 						autostradaSelezionata = a.getId();
+						System.out.println(autostradaSelezionata);
+				
 						setMenuItemsCaselli(1);
 					}
 		    	});
@@ -527,7 +533,7 @@ public class HomeController implements Initializable {
     
 		    CaselloDao dao = new CaselloDao();
 		    String[] params = new String[3];
-		    params[0] = Integer.toString(autostradaSelezionata);
+		//    params[0] = Integer.toString(autostradaSelezionata);
 		    params[1] = nomeCaselloModifica.getText();
 		    params[2] = chilometroCaselloModifica.getText();
 		    dao.update(caselloSelezionato, params);
@@ -571,10 +577,24 @@ public class HomeController implements Initializable {
 					@Override
 					public void handle(ActionEvent event) {
 						autostradaSelezionata = a.getId();
+						System.out.println(autostradaSelezionata);
+				
+					
 						setMenuItemsCaselli(2);
 					}
 		    	});
 
+		    	prov2.setOnAction(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+						autostradaSelezionata = a.getId();
+						System.out.println(autostradaSelezionata);
+				
+					
+						setMenuItemsCaselli(2);
+					}
+		    	});
+		    	
 		    	MenuButtonSettoreAutostradaRimuovi.getItems().add(prov);
 		    	MenuButtonSettoreAutostradaAggiungi.getItems().add(prov2);
 		    	
@@ -603,7 +623,10 @@ public class HomeController implements Initializable {
 
 		    CaselloDao dao = new CaselloDao();
 		    String[] params = new String[3];
-		    params[0] = Integer.toString(autostradaSelezionata);	
+		    params[0] = Integer.toString(autostradaSelezionata);
+			
+			System.out.println(autostradaSelezionata);
+	
 		    params[1] = CaselloAggiunto.getText();
 		    params[2] = ChilometroAggiunto.getText();
 		    dao.create(params);

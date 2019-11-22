@@ -67,10 +67,10 @@
          </font>
       </Label>
       <Label fx:id="labelPr" layoutX="466.0" layoutY="360.0" prefHeight="17.0" prefWidth="9.0" AnchorPane.rightAnchor="120.0" />
-      <ListView fx:id="Tab" layoutX="24.0" layoutY="225.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
-      <Button fx:id="BntModifica" layoutX="52.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickModifica" prefWidth="180.0" text="Modifica casello" AnchorPane.leftAnchor="70.0" />
-      <Button fx:id="BntAggRim" layoutX="375.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickAggRim" prefWidth="180.0" text="Aggiungi /Rimuovi casello" AnchorPane.rightAnchor="70.0" />
-      <Separator layoutX="16.0" layoutY="433.0" prefHeight="8.0" prefWidth="556.0" />
+      <ListView fx:id="Tab" layoutX="24.0" layoutY="225.0" prefHeight="190.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
+      <Button fx:id="BntModifica" layoutX="70.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickModifica" prefHeight="30.0" prefWidth="180.0" text="Modifica casello" AnchorPane.leftAnchor="70.0" />
+      <Button fx:id="BntAggRim" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickAggRim" prefHeight="30.0" prefWidth="180.0" text="Aggiungi /Rimuovi casello" AnchorPane.rightAnchor="70.0" />
+      <Separator layoutX="16.0" layoutY="422.0" prefHeight="8.0" prefWidth="571.0" />
       <AnchorPane fx:id="pannelloModificaCasello" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuButton fx:id="MenuButtonSettoreAutostradaModifica" layoutX="50.0" layoutY="106.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Autostrada" AnchorPane.leftAnchor="50.0" />
