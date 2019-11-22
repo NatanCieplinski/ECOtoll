@@ -23,7 +23,7 @@ public class Main extends Application {
 	private Stage primaryStage;
 	private BorderPane mainLayout;
 	private static AutostradaDao autostradaDao;
-	public static HashMap<Integer, Autostrada> listaAutostrade;
+	public static HashMap<Integer, Autostrada> listaAutostrade = new HashMap<Integer, Autostrada>();
 	
 	public void start(Stage primaryStage) {
 
@@ -53,18 +53,18 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		/*try{
+		try{
 
 			autostradaDao = new AutostradaDao();
 			
-			List<Autostrada> lista = autostradaDao.getAll();
+			LinkedList<Autostrada> lista = (LinkedList<Autostrada>) autostradaDao.getAll();
 			for (Autostrada i: lista){
 				listaAutostrade.put(i.getId(), i);
 			}
 					
 		} catch (Exception e){
 			System.out.println(e.getMessage());
-		}*/
+		}
 		
 		// launch app view
 		launch(args);

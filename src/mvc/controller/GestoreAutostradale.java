@@ -42,7 +42,9 @@ public class GestoreAutostradale{
     public float calcoloPrezzo(String targa, int idCaselloUscita){
     	try {
     		// Prende il biglietto dal DB
+    		System.out.println(targa);
     		Biglietto biglietto = bigliettoDao.read(targa).get();
+    		System.out.println(targa);
     		System.out.println("Biglietto DB: "+biglietto.getIdCaselloIngresso()+" : "+biglietto.getTarga());
     		
 			Biglietto bigliettoTxt = this.readBiglietto();

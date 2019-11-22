@@ -253,17 +253,17 @@ public class HomeController implements Initializable {
 	    		//System.out.println(" Text Changed to " + newValue + ")\n");
 	    		ObservableList<String> prov = FXCollections.observableArrayList();;
 	    		String input = TFcerca.getText();
-	    		System.out.println(input);
+	    		//System.out.println(input);
 	    		input = "^" + input + "[\\w]*\\s*[\\d]*\\s*[\\w]*";
-	    		System.out.println(input);
+	    		//System.out.println(input);
 	    		Pattern pattern = Pattern.compile(input);
 	    		for (String s : targhe) {
-	    			System.out.println("sto valutando " +  s);
+	    			//System.out.println("sto valutando " +  s);
 	    			Matcher m = pattern.matcher(s);
 	    			Tab.getItems().clear();
-	    			System.out.println("k");
+	    			//System.out.println("k");
 	    			while(m.find()) {
-	    				System.out.println("stringa" + m.group());
+	    				//System.out.println("stringa" + m.group());
 	    				prov.add(m.group());
 	    			}
 	    		}
@@ -462,6 +462,8 @@ public class HomeController implements Initializable {
 
 		float prezzo = 0;
 
+		this.targa = TFcerca.getText();
+		
 		GestoreAutostradale au = new GestoreAutostradale();
 		prezzo = au.calcoloPrezzo(targa, caselloSelezionato.getId());
 

@@ -31,6 +31,7 @@ public class Normativa{
         
         try{
             veicolo = veicoloDao.read(targa).get();
+            System.out.println(veicolo.getTarga());
         } catch (Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -61,11 +62,13 @@ public class Normativa{
 
     public static float calcoloTariffa(Veicolo veicolo, Casello caselloUscita) {
     	HashMap<String, Float> tariffe = Main.listaAutostrade.get(caselloUscita.getIdAutostradaDiAppartenenza()).getTariffe();
+    	System.out.println(tariffe);
 
-    	if (veicolo instanceof VeicoloA) return tariffe.get("A");
-    	if (veicolo instanceof VeicoloB) return tariffe.get("B");
-    	if (veicolo instanceof Veicolo3) return tariffe.get("3");
-    	if (veicolo instanceof Veicolo4) return tariffe.get("4");
+    	if (veicolo instanceof VeicoloA) {System.out.println(tariffe.get("A")); return tariffe.get("A");};
+    	if (veicolo instanceof VeicoloB) {System.out.println(tariffe.get("B")); return tariffe.get("B");};
+    	if (veicolo instanceof Veicolo3) {System.out.println(tariffe.get("3")); return tariffe.get("3");};
+    	if (veicolo instanceof Veicolo4) {System.out.println(tariffe.get("4")); return tariffe.get("4");};
+    	System.out.println(tariffe.get("5"));
     	return tariffe.get("5");
     }
 
