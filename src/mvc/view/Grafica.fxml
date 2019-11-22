@@ -31,8 +31,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <MenuButton fx:id="MenuButtonSettoreAutostrada" layoutX="24.0" layoutY="43.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" text="Settore Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" />
-      <MenuButton fx:id="MenuButtonSettoreCasello" disable="true" layoutX="325.0" layoutY="43.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" text="Settore Casello" textAlignment="CENTER" AnchorPane.rightAnchor="50.0">
+      <MenuButton fx:id="MenuButtonSettoreAutostrada" layoutX="24.0" layoutY="43.0" mnemonicParsing="false" onMouseClicked="#Cancella" prefHeight="27.0" prefWidth="220.0" text="Selettore Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" />
+      <MenuButton fx:id="MenuButtonSettoreCasello" disable="true" layoutX="325.0" layoutY="43.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="220.0" text="Selettore Casello" textAlignment="CENTER" AnchorPane.rightAnchor="50.0">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -57,7 +57,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="BntPaga" layoutX="418.0" layoutY="389.0" mnemonicParsing="false" onMouseClicked="#paga" prefHeight="27.0" prefWidth="180.0" text="Paga" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="BntPaga" layoutX="380.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#paga" prefHeight="27.0" prefWidth="180.0" text="Paga" AnchorPane.rightAnchor="40.0" />
       <Button fx:id="BntEmettiBiglietto" layoutX="418.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#EmettiBIglietto" prefHeight="27.0" prefWidth="180.0" text="Emetti Biglietto" AnchorPane.rightAnchor="40.0" />
       <Separator fx:id="Separetor" layoutX="16.0" layoutY="108.0" prefHeight="8.0" prefWidth="556.0" />
       <TextField fx:id="TFcerca" layoutX="43.0" layoutY="184.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
@@ -67,17 +67,17 @@
          </font>
       </Label>
       <Label fx:id="labelPr" layoutX="466.0" layoutY="360.0" prefHeight="17.0" prefWidth="9.0" AnchorPane.rightAnchor="120.0" />
-      <ListView fx:id="Tab" layoutX="24.0" layoutY="225.0" prefHeight="190.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
-      <Button fx:id="BntModifica" layoutX="70.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickModifica" prefHeight="30.0" prefWidth="180.0" text="Modifica casello" AnchorPane.leftAnchor="70.0" />
-      <Button fx:id="BntAggRim" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickAggRim" prefHeight="30.0" prefWidth="180.0" text="Aggiungi /Rimuovi casello" AnchorPane.rightAnchor="70.0" />
-      <Separator layoutX="16.0" layoutY="422.0" prefHeight="8.0" prefWidth="571.0" />
+      <ListView fx:id="Tab" layoutX="24.0" layoutY="225.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
+      <Button fx:id="BntModifica" layoutX="70.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickModifica" prefHeight="35.0" prefWidth="180.0" text="Modifica casello" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="70.0" />
+      <Button fx:id="BntAggRim" layoutX="350.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ClickAggRim" prefHeight="35.0" prefWidth="180.0" text="Aggiungi /Rimuovi casello" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="70.0" />
+      <Separator layoutX="16.0" layoutY="413.0" prefHeight="8.0" prefWidth="571.0" />
       <AnchorPane fx:id="pannelloModificaCasello" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuButton fx:id="MenuButtonSettoreAutostradaModifica" layoutX="50.0" layoutY="106.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Autostrada" AnchorPane.leftAnchor="50.0" />
-            <MenuButton fx:id="MenuButtonSettoreCaselloModifica" layoutX="350.0" layoutY="106.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Casello" AnchorPane.rightAnchor="50.0" />
+            <MenuButton fx:id="MenuButtonSettoreAutostradaModifica" layoutX="50.0" layoutY="106.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Selettore Autostrada" AnchorPane.leftAnchor="50.0" />
+            <MenuButton fx:id="MenuButtonSettoreCaselloModifica" layoutX="350.0" layoutY="106.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Selettore Casello" AnchorPane.rightAnchor="50.0" />
             <TextField fx:id="nomeCaselloModifica" layoutX="46.0" layoutY="231.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" />
             <TextField fx:id="chilometroCaselloModifica" layoutX="400.0" layoutY="231.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.rightAnchor="50.0" />
-            <Button fx:id="Salva" layoutX="223.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#SalvaModifiches" prefHeight="27.0" prefWidth="200.0" text="Salva" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <Button fx:id="Salva" layoutX="223.0" layoutY="412.0" mnemonicParsing="false" onMouseClicked="#SalvaModifiches" prefHeight="35.0" prefWidth="200.0" text="Salva" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
             <Label layoutX="174.0" layoutY="14.0" text="Modidica Casello" textAlignment="CENTER" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0">
                <font>
                   <Font size="20.0" />
@@ -97,8 +97,8 @@
       <AnchorPane fx:id="PannelloAggRim" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="Indietro2" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#ClickIndietro2" styleClass="darkList" text="&lt;--" />
-            <MenuButton fx:id="MenuButtonSettoreAutostradaRimuovi" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" />
-            <MenuButton fx:id="MenuButtonSettoreCaselloAggRim" layoutX="350.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Casello" textAlignment="CENTER" AnchorPane.rightAnchor="50.0" />
+            <MenuButton fx:id="MenuButtonSettoreAutostradaRimuovi" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Selettore Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" />
+            <MenuButton fx:id="MenuButtonSettoreCaselloAggRim" disable="true" layoutX="350.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Selettore Casello" textAlignment="CENTER" AnchorPane.rightAnchor="50.0" />
             <Label layoutX="187.0" layoutY="22.0" text="Rimuovi Caselli" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0">
                <font>
                   <Font size="20.0" />
@@ -107,19 +107,19 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Label>
-            <Button fx:id="BtnAggiungi" layoutX="201.0" layoutY="447.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" prefHeight="27.0" prefWidth="200.0" text="Aggiungi Casello" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-            <Button layoutX="200.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" prefHeight="27.0" prefWidth="200.0" text="Rimuivi Casello" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <Button fx:id="BtnAggiungi" layoutX="200.0" layoutY="432.0" mnemonicParsing="false" onMouseClicked="#ClickAggiungi" prefHeight="35.0" prefWidth="200.0" text="Aggiungi Casello" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <Button layoutX="200.0" layoutY="156.0" mnemonicParsing="false" onMouseClicked="#ClickRimuovi" prefHeight="35.0" prefWidth="200.0" text="Rimuivi Casello" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
             <Label layoutX="220.0" layoutY="218.0" text="Aggiungi Caselli" textAlignment="CENTER" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Separator layoutX="11.0" layoutY="204.0" prefHeight="8.0" prefWidth="578.0" />
-            <TextField fx:id="CaselloAggiunto" layoutX="200.0" layoutY="343.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.rightAnchor="200.0" />
-            <TextField fx:id="ChilometroAggiunto" layoutX="200.0" layoutY="395.0" prefHeight="27.0" prefWidth="200.0" />
-            <Label layoutX="112.0" layoutY="344.0" prefHeight="26.0" prefWidth="106.0" text="Nome Casello:" />
-            <Label layoutX="130.0" layoutY="397.0" prefHeight="23.0" prefWidth="70.0" text="Chilometri:" />
-            <MenuButton fx:id="MenuButtonSettoreAutostradaAggiungi" layoutX="200.0" layoutY="279.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Seleziona Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" />
+            <TextField fx:id="CaselloAggiunto" layoutX="200.0" layoutY="331.0" prefHeight="27.0" prefWidth="200.0" AnchorPane.rightAnchor="200.0" />
+            <TextField fx:id="ChilometroAggiunto" layoutX="200.0" layoutY="384.0" prefHeight="27.0" prefWidth="200.0" />
+            <Label layoutX="112.0" layoutY="332.0" prefHeight="26.0" prefWidth="106.0" text="Nome Casello:" />
+            <Label layoutX="130.0" layoutY="385.0" prefHeight="23.0" prefWidth="70.0" text="Chilometro:" />
+            <MenuButton fx:id="MenuButtonSettoreAutostradaAggiungi" layoutX="200.0" layoutY="279.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="200.0" text="Selettore Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" />
          </children>
       </AnchorPane>
    </children>
