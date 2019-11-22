@@ -339,7 +339,7 @@ public class HomeController implements Initializable {
 	@FXML
 	void Cancella(MouseEvent event) {
 		 
-		MenuButtonSettoreCasello.setText("Selettore Autostrada");
+		MenuButtonSettoreCasello.setText("Seleziona Casello");
 		 	
 	}
 	 
@@ -485,14 +485,14 @@ public class HomeController implements Initializable {
 	 	 @FXML
 	     void ClickIndietro(MouseEvent event) {
 	 		pannelloModificaCasello.setVisible(false);
-	    	MenuButtonSettoreCasello.setText("Selettore Casello");
+	    	MenuButtonSettoreCasello.setText("Seleziona Casello");
 
 	     }
 
 	 	@FXML
 	    void SelAutMod(MouseEvent event) {
 	 		
-	 		 MenuButtonSettoreCaselloModifica.setText("Selettore Casello");		//
+	 		 MenuButtonSettoreCaselloModifica.setText("Seleziona Casello");		//
 	 		 MenuButtonSettoreCaselloModifica.getItems().clear();	
 
 	    }
@@ -500,7 +500,7 @@ public class HomeController implements Initializable {
 	 	@FXML
 	    void SelAutMod2(MouseEvent event) {
 	 		
-	 		MenuButtonSettoreCaselloAggRim.setText("Selettore Casello");	
+	 		MenuButtonSettoreCaselloAggRim.setText("Seleziona Casello");	
 	 		
 	    }
 
@@ -509,12 +509,12 @@ public class HomeController implements Initializable {
 
 			pannelloModificaCasello.setVisible(true);
 			
-			 MenuButtonSettoreAutostradaModifica.setText("Selettore Autostrada");
+			 MenuButtonSettoreAutostradaModifica.setText("Seleziona Autostrada");
 			 MenuButtonSettoreAutostradaModifica.getItems().clear();
 			 nomeCaselloModifica.clear();
 			 chilometroCaselloModifica.clear();
 			 MenuButtonSettoreCaselloModifica.getItems().clear();
-			 MenuButtonSettoreCaselloModifica.setText("Selettore Casello");
+			 MenuButtonSettoreCaselloModifica.setText("Seleziona Casello");
 
 			AutostradaDao el = new AutostradaDao();
 		    LinkedList<Autostrada> autostradaList = null;
@@ -560,8 +560,8 @@ public class HomeController implements Initializable {
 		params[2] = chilometroCaselloModifica.getText();
 		dao.update(caselloSelezionato, params);
 		    
-		MenuButtonSettoreAutostradaModifica.setText("Selettore Autostrada");
-		MenuButtonSettoreCaselloModifica.setText("Selettore Casello");
+		MenuButtonSettoreAutostradaModifica.setText("Seleziona Autostrada");
+		MenuButtonSettoreCaselloModifica.setText("Seleziona Casello");
 		nomeCaselloModifica.clear();
 		chilometroCaselloModifica.clear();
 			
@@ -574,8 +574,8 @@ public class HomeController implements Initializable {
 	    	
 	    	dao.delete(caselloSelezionato);
 	    	
-	    	MenuButtonSettoreAutostradaRimuovi.setText("Selettore Autostrada");
-	    	MenuButtonSettoreCaselloAggRim.setText("Selettore Casello");
+	    	MenuButtonSettoreAutostradaRimuovi.setText("Seleziona Autostrada");
+	    	MenuButtonSettoreCaselloAggRim.setText("Seleziona Casello");
 
 	    }
 	    
@@ -584,12 +584,12 @@ public class HomeController implements Initializable {
 	    	
 	    	PannelloAggRim.setVisible(true);
 	    	
-	    	MenuButtonSettoreAutostradaRimuovi.setText("Selettore Autostrada");
+	    	MenuButtonSettoreAutostradaRimuovi.setText("Seleziona Autostrada");
 	    	MenuButtonSettoreAutostradaRimuovi.getItems().clear();
-	    	MenuButtonSettoreAutostradaAggiungi.setText("Selettore Autostrada");
+	    	MenuButtonSettoreAutostradaAggiungi.setText("Seleziona Autostrada");
 	    	MenuButtonSettoreAutostradaAggiungi.getItems().clear(); 
 	    	MenuButtonSettoreCaselloAggRim.getItems().clear();
-			MenuButtonSettoreCaselloAggRim.setText("Selettore Casello");
+			MenuButtonSettoreCaselloAggRim.setText("Seleziona Casello");
 
 			CaselloAggiunto.clear();
 			ChilometroAggiunto.clear();
@@ -646,7 +646,7 @@ public class HomeController implements Initializable {
 	    void ClickIndietro2(MouseEvent event) {
 	    	
 	    	PannelloAggRim.setVisible(false);
-	    	MenuButtonSettoreCasello.setText("Selettore Casello");
+	    	MenuButtonSettoreCasello.setText("Seleziona Casello");
 
 	    	
 	    }
@@ -667,7 +667,7 @@ public class HomeController implements Initializable {
 		    
 		    CaselloAggiunto.clear();
 		    ChilometroAggiunto.clear();
-		    MenuButtonSettoreAutostradaAggiungi.setText("Selettore Autostrada");
+		    MenuButtonSettoreAutostradaAggiungi.setText("Seleziona Autostrada");
 
 	    }
 	    
