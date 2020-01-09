@@ -43,7 +43,7 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 	}
 	
 	public HashMap<String ,Float> getTariffe(Autostrada autostrada) throws DBException, SQLException{
-		final String query = "SELECT * FROM tariffa WHERE id=?;";
+		final String query = "SELECT * FROM tariffa WHERE autostrada=?;";
 		
 		HashMap<String ,Float> tariffe = new HashMap<String ,Float>();
 
