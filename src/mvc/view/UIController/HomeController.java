@@ -48,8 +48,8 @@ public class HomeController implements Initializable {
 	
 	private Autostrada autostradaSelezionata = null; 
 	private Casello caselloSelezionato = null; 
-	private Integer io = null; 
-	private Integer ud = null;
+	private int tipoCasello = -1; 
+	private int numeroAssiCarrello = 0;
 	private boolean sn;
 
 	static ObservableList<String> items = FXCollections.observableArrayList();
@@ -63,139 +63,104 @@ public class HomeController implements Initializable {
 	int idCaselloAggiunta;
 	int var;
 
-
+	/*
+	 * Radio Buttons
+	 * */
 	@FXML
-	private AnchorPane pannelloBase;
-	
+	private RadioButton RDCarrelloNo;
 	@FXML
-	private AnchorPane pannelloModificaCasello;
-
+	private RadioButton RDCarrelloSi;
 	@FXML
-	private Label labelSettorepannello;
-
+	private RadioButton RDIngresso;
 	@FXML
-	private Label labelTipoDiCasello;
-
+	private RadioButton RDUscita;
 	@FXML
-	private Label LabelPrezzo;
-
+	private RadioButton RDCarrelloUno;
 	@FXML
-	private Label labelPannelloDiControllo;
+	private RadioButton RDCarrelloDue;
 
+	/*
+	 * Labels
+	 * */
+	@FXML
+	private Label LPrezzo;
+
+	/*
+	 * List Views
+	 * */
+	@FXML
+	private ListView<String> LVTarghe;
+
+	/*
+	 * Anchor Panels
+	 * */
+    @FXML
+    private AnchorPane APAggiungiRimuovi;
+	@FXML
+	private AnchorPane APHome;	
+	@FXML
+	private AnchorPane APModificaCasello;
+
+	/*
+	 * Menu Buttons
+	 * */
+    @FXML
+    private MenuButton MenuButtonSettoreCaselloModifica;
+    @FXML
+    private MenuButton MenuButtonSettoreCaselloAggRim;
+	@FXML
+	private MenuButton MenuButtonSettoreCasello;  
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaAggiungi;	
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaModifica;
+    @FXML
+    private MenuButton MenuButtonSettoreAutostradaRimuovi;
 	@FXML
 	private MenuButton MenuButtonSettoreAutostrada;
 
-	@FXML
-	private MenuButton MenuButtonSettoreCasello;
-
-	@FXML
-	private RadioButton RdSi;
-
-	@FXML
-	private ToggleGroup group;
-
-	@FXML
-	private RadioButton RdNo;
-
-	@FXML
-	private RadioButton RdIngresso;
-
-	@FXML
-	private RadioButton RdUscita;
-
-	@FXML
-	private RadioButton RdUno;
-
-	@FXML
-	private RadioButton RdDue;
-
-	@FXML
-	private Label LabelCarrello;
-
-	@FXML
-	private Label LabelAssi;
-
-	@FXML
-	private Button BntPaga;
-
-	@FXML
-	private Button BntEmettiBiglietto;
-
-	@FXML
-	private Separator Separetor;
-
+	/*
+	 * Text Fields
+	 * */
+    @FXML
+    private TextField AutostradaAggiunta;
+    @FXML
+    private TextField CaselloAggiunto;
+    @FXML
+    private TextField ChilometroAggiunto;   
+    @FXML
+    private TextField nomeCaselloModifica;
+    @FXML
+    private TextField chilometroCaselloModifica;
 	@FXML
 	private TextField TFcerca;
 
-	@FXML
-	private Label LabelTarga;
-
-	@FXML
-	private Label labelPr;
-
-	@FXML
-	private ListView<String> Tab;
-	
-	@FXML
-	private Button BntModifica;
-
-	@FXML
-	private Button BntAggiungi;
-
-	@FXML
-	private Button BntRimuovi;
-	
+	/*
+	 * Buttons
+	 * */
     @FXML
-    private MenuButton MenuButtonSettoreAutostradaModifica;
-    
-    @FXML
-    private MenuButton MenuButtonSettoreCaselloModifica;
-    
-    @FXML
-    private TextField nomeCaselloModifica;
-
-    @FXML
-    private TextField chilometroCaselloModifica;
-	 
-    @FXML
-    private Button Salva;
-    
-    @FXML
-    private Button Indietro;
-    
-    @FXML
-    private Button BntAggRim;
-    
-    @FXML
-    private AnchorPane PannelloAggRim;
-    
+    private Button BtnSole;   
     @FXML
     private Button Indietro2;
-
     @FXML
-    private Button BtnAggiungi;
-
+    private Button BtnAggiungi;   
     @FXML
-    private MenuButton MenuButtonSettoreCaselloAggRim;
-    
-
+    private Button Salva;   
     @FXML
-    private MenuButton MenuButtonSettoreAutostradaRimuovi;
-
+    private Button Indietro;   
     @FXML
-    private TextField AutostradaAggiunta;
+    private Button BntAggRim;	
+	@FXML
+	private Button BntModifica;
+	@FXML
+	private Button BntAggiungi;
+	@FXML
+	private Button BntRimuovi;
+	@FXML
+	private Button BntPaga;
+	@FXML
+	private Button BntEmettiBiglietto;
 
-    @FXML
-    private TextField CaselloAggiunto;
-
-    @FXML
-    private TextField ChilometroAggiunto;
-
-    @FXML
-    private Button BtnSole;
-
-    @FXML
-    private MenuButton MenuButtonSettoreAutostradaAggiungi;
 
 
 	// METODI
@@ -209,7 +174,7 @@ public class HomeController implements Initializable {
 	    try {
 	    	autostradaList = (LinkedList<Autostrada>)el.getAll();
 		} catch (DBException | SQLException e) {
-			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
+			System.out.println("Errore caricamento autostrade ( getAll() ) dal database");
 			e.printStackTrace();
 		}
 	    
@@ -236,7 +201,7 @@ public class HomeController implements Initializable {
 	    }
 	    
 	    
-	    // listener 
+	    // Ricerca del testo
 	    TFcerca.textProperty().addListener(new ChangeListener<String>() {
 	    	
 	    	@Override
@@ -252,7 +217,7 @@ public class HomeController implements Initializable {
 	    		for (String s : targhe) {
 	    			//System.out.println("sto valutando " +  s);
 	    			Matcher m = pattern.matcher(s);
-	    			Tab.getItems().clear();
+	    			LVTarghe.getItems().clear();
 	    			//System.out.println("k");
 	    			
 	    			while(m.find()) {
@@ -262,7 +227,7 @@ public class HomeController implements Initializable {
 	    			
 	    		}
 	    		
-	    		Tab.setItems(prov);
+	    		LVTarghe.setItems(prov);
 	    		
 	    	}
 	    	
@@ -270,14 +235,14 @@ public class HomeController implements Initializable {
 		
 	}
 
-	// metodo che setta i caselli da mostrare in base all'autostrada selezionata
+	// Metodo che setta i caselli da mostrare in base all'autostrada selezionata
 	public void setMenuItemsCaselli(int var) {
    
-
-		if (autostradaSelezionata != null)
+		if (autostradaSelezionata != null) {
 			MenuButtonSettoreCasello.setDisable(false);
 			MenuButtonSettoreCaselloModifica.setDisable(false);
 			MenuButtonSettoreCaselloAggRim.setDisable(false);
+		}
 	
 		MenuButtonSettoreCasello.getItems().clear();
 		MenuButtonSettoreCaselloModifica.getItems().clear();
@@ -347,23 +312,25 @@ public class HomeController implements Initializable {
 	public void EmettiBIglietto(MouseEvent event) {
 
 		targa = TFcerca.getText();
-		//System.out.println(targa);
-		targa = Tab.getSelectionModel().getSelectedItem();
 
-		if (io == 0) {
+		System.out.println(targa);
+		System.out.println(this.tipoCasello);
+		
+		if (this.tipoCasello == 0) {
 
-			//System.out.println("Biglietto selezionato su uscita");
+			System.out.println("Biglietto selezionato su uscita");
 
 		} else {
 
-			if (io == null || ud == null || targa == null) { 
+			if (this.tipoCasello == -1 || targa == null) { 
 				
-				//System.out.println("compila tutti i campi");
+				System.out.println("compila tutti i campi");
+				
 				
 			} else {
 
 				GestoreAutostradale ga = new GestoreAutostradale();
-				ga.ingresso(targa, caselloSelezionato.getId(), sn, ud);
+				ga.ingresso(targa, caselloSelezionato.getId(), sn, numeroAssiCarrello);
 				
 			}
 
@@ -373,16 +340,17 @@ public class HomeController implements Initializable {
 
 	@FXML
 	void clickIngresso(MouseEvent event) throws DBException, SQLException {
-		io = 1;
+		this.tipoCasello = 1;
 		
-		RdDue.setDisable(false);
-		RdUno.setDisable(false);
-		RdSi.setDisable(false);
-		RdNo.setDisable(false);
+		System.out.println("dio cane");
+		RDCarrelloDue.setDisable(false);
+		RDCarrelloUno.setDisable(false);
+		RDCarrelloSi.setDisable(false);
+		RDCarrelloNo.setDisable(false);
 
 		ToggleGroup radioGroup2 = new ToggleGroup();
-		RdIngresso.setToggleGroup(radioGroup2);
-		RdUscita.setToggleGroup(radioGroup2);
+		RDIngresso.setToggleGroup(radioGroup2);
+		RDUscita.setToggleGroup(radioGroup2);
 
 		// prendiamo le automobili che potrebbero entrare nell'autostrada
 		
@@ -394,10 +362,10 @@ public class HomeController implements Initializable {
     		targhe.add(ve.getTarga());
     	}
     	
-    	Tab.getItems().clear();
+    	LVTarghe.getItems().clear();
     	
     	for(String targa: targhe) {
-    		Tab.getItems().add(targa);
+    		LVTarghe.getItems().add(targa);
     	}
  
 	}
@@ -408,19 +376,19 @@ public class HomeController implements Initializable {
 		sn = true;
 
 		ToggleGroup radioGroup3 = new ToggleGroup();
-		RdSi.setToggleGroup(radioGroup3);
-		RdNo.setToggleGroup(radioGroup3);
+		RDCarrelloSi.setToggleGroup(radioGroup3);
+		RDCarrelloNo.setToggleGroup(radioGroup3);
 		
 	}
 
 	@FXML
 	void clickDue(MouseEvent event) {
 
-		ud = 0;
+		numeroAssiCarrello = 2;
 
 		ToggleGroup radioGroup1 = new ToggleGroup();
-		RdUno.setToggleGroup(radioGroup1);
-		RdDue.setToggleGroup(radioGroup1);
+		RDCarrelloUno.setToggleGroup(radioGroup1);
+		RDCarrelloDue.setToggleGroup(radioGroup1);
 
 	}
 
@@ -434,19 +402,19 @@ public class HomeController implements Initializable {
 	@FXML
 	void clickUno(MouseEvent event) {
 
-		ud = 1;
+		numeroAssiCarrello = 1;
 
 	}
 
 	@FXML
 	void clickUscita(MouseEvent event) throws DBException, SQLException {
 
-		RdDue.setDisable(true);
-		RdUno.setDisable(true);
-		RdSi.setDisable(true);
-		RdNo.setDisable(true);
+		RDCarrelloDue.setDisable(true);
+		RDCarrelloUno.setDisable(true);
+		RDCarrelloSi.setDisable(true);
+		RDCarrelloNo.setDisable(true);
 
-		io = 0;
+		this.tipoCasello = 0;
 
 		// prendiamo le automobili che potrebbero entrare nell'autostrada
 		BigliettoDao b = new BigliettoDao();
@@ -457,10 +425,10 @@ public class HomeController implements Initializable {
     		targhe.add(bi.getTarga());
     	}
     	
-    	Tab.getItems().clear();
+    	LVTarghe.getItems().clear();
     	
     	for(String targa: targhe) {
-    		Tab.getItems().add(targa);
+    		LVTarghe.getItems().add(targa);
     	}
 
 	}
@@ -471,9 +439,12 @@ public class HomeController implements Initializable {
 		float prezzo = 0;
 
 		GestoreAutostradale au = new GestoreAutostradale();
+		System.out.println(targa);
+		System.out.println(caselloSelezionato.getId());
+		
 		prezzo = au.calcoloPrezzo(targa, caselloSelezionato.getId());
 
-		labelPr.setText(prezzo + " €");
+		LPrezzo.setText(prezzo + " €");
 		
 	}
 
@@ -484,7 +455,7 @@ public class HomeController implements Initializable {
 	
 	 	 @FXML
 	     void ClickIndietro(MouseEvent event) {
-	 		pannelloModificaCasello.setVisible(false);
+	 		APModificaCasello.setVisible(false);
 	    	MenuButtonSettoreCasello.setText("Seleziona Casello");
 
 	     }
@@ -507,7 +478,7 @@ public class HomeController implements Initializable {
 	    @FXML
 	    void ClickModifica(MouseEvent event) throws DBException, SQLException {
 
-			pannelloModificaCasello.setVisible(true);
+			APModificaCasello.setVisible(true);
 			
 			 MenuButtonSettoreAutostradaModifica.setText("Seleziona Autostrada");
 			 MenuButtonSettoreAutostradaModifica.getItems().clear();
@@ -582,7 +553,7 @@ public class HomeController implements Initializable {
 	    @FXML
 	    void ClickAggRim(MouseEvent event) {
 	    	
-	    	PannelloAggRim.setVisible(true);
+	    	APAggiungiRimuovi.setVisible(true);
 	    	
 	    	MenuButtonSettoreAutostradaRimuovi.setText("Seleziona Autostrada");
 	    	MenuButtonSettoreAutostradaRimuovi.getItems().clear();
@@ -645,7 +616,7 @@ public class HomeController implements Initializable {
 	    @FXML
 	    void ClickIndietro2(MouseEvent event) {
 	    	
-	    	PannelloAggRim.setVisible(false);
+	    	APAggiungiRimuovi.setVisible(false);
 	    	MenuButtonSettoreCasello.setText("Seleziona Casello");
 
 	    	
