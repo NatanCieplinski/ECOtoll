@@ -16,31 +16,44 @@ import mvc.model.Casello;
 
 public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	
-	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
-	
+	// TODO: Implementare le query descritte nell'interfaccia BigliettoDaoI
+	public List<Biglietto> getAll() throws DBException, SQLException{
+		final String query = "SELECT * FROM biglietto;";
+
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		List<Biglietto> biglietti = this.makeList(stmt.executeQuery());
+		this.closeDB(stmt, null);
+		
+		return biglietti;
+	}
 	
 	/*
 	 * CRUD: Implementare in caso di necessita
 	 * */
 	@Override
-	public void create(Biglietto biglietto) throws DBException, SQLException{
-		final String query = "INSERT INTO biglietto(targa, ingresso) VALUES( ?,? );";
-		
+	public void create(String[] params) throws DBException, SQLException{
+		final String query = "INSERT INTO biglietto(targa, ingresso, carrello, n_assi_carrello) VALUES( ?,?,?,? );";
+
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
-		stmt.setString(1, biglietto.getTarga());
-		stmt.setInt(2, biglietto.getIdCaselloIngresso());
+		stmt.setString(1, params[0]);
+		stmt.setInt(2, Integer.parseInt(params[1]));
+		stmt.setBoolean(3, Boolean.parseBoolean(params[2]));
+		stmt.setInt(4, Integer.parseInt(params[3]));
+		
 		stmt.execute();
+		
 		this.closeDB(stmt, null);
 	}
 
 	@Override
-	public Optional<Biglietto> read(Object id) throws DBException, SQLException{ 
-		final String query = "SELECT * FROM biglietto WHERE id=?;";
+	public Optional<Biglietto> read(Object targa) throws DBException, SQLException{ 
+		final String query = "SELECT * FROM biglietto WHERE targa=?;";
 		
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
-		stmt.setLong(1, (long)id);
+		stmt.setString(1, (String)targa);
 		
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
@@ -59,8 +72,10 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	
 	public Biglietto makeObj(ResultSet rs) throws SQLException{
 		return new Biglietto(
+			rs.getString("targa"),
 			rs.getInt("ingresso"),
-			rs.getString("targa")
+			rs.getBoolean("carrello"),
+			rs.getInt("n_assi_carrello")
 		);
 	}
 	

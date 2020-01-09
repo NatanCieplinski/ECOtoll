@@ -8,6 +8,7 @@ public class Casello{
     private int chilometro;
     
     public Casello(int id, String nome, int idAutostradaDiAppartenenza, int chilometro){
+    	
         this.id = id;
         this.nome = nome;
         this.idAutostradaDiAppartenenza = idAutostradaDiAppartenenza;

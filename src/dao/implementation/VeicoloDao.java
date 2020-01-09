@@ -11,18 +11,27 @@ import java.sql.ResultSet;
 import dao.database.DBManager;
 import dao.interfaces.VeicoloDaoI;
 import dao.exceptions.DBException;
-import mvc.model.Biglietto;
 import mvc.model.Veicolo;
 
 public class VeicoloDao extends DBManager implements VeicoloDaoI {
 	
-	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
+	// TODO: Implementare le query descritte nell'interfaccia VeicoloDaoI
+	public List<Veicolo> getAll() throws DBException, SQLException{
+		final String query = "SELECT * FROM veicolo;";
+
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		List<Veicolo> veicoli = this.makeList(stmt.executeQuery());
+		this.closeDB(stmt, null);
+		
+		return veicoli;
+	}
 	
 	/*
 	 * CRUD: Implementare in caso di necessit�
 	 * */
 	@Override
-	public void create(Veicolo veicolo) {}
+	public void create(String[] params) {}
 
 	@Override
 	public Optional<Veicolo> read(Object targa) throws DBException, SQLException{

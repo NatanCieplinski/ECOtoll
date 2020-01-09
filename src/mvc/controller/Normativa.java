@@ -31,6 +31,7 @@ public class Normativa{
         
         try{
             veicolo = veicoloDao.read(targa).get();
+            System.out.println(veicolo.getTarga());
         } catch (Exception e){
             System.out.println(e.getMessage());
             return null;
@@ -76,6 +77,7 @@ public class Normativa{
 
     public static float arrotondamentoPrezzo(float prezzo) {
     	prezzo = (float)(Math.round(prezzo*10))/10;
+
     	return prezzo;
     }
 

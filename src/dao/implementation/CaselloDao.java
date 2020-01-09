@@ -34,17 +34,17 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	}
 	
 	/*
-	 * CRUD: Implementare in caso di necessità
+	 * CRUD: Implementare in caso di necessitï¿½
 	 * */
 	@Override
-	public void create(Casello casello) throws DBException, SQLException{
+	public void create(String[] params) throws DBException, SQLException{
 		final String query = "INSERT INTO casello(autostrada, nome, chilometro) VALUES( ?,?,? );";
 		
 		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
-		stmt.setInt(1, casello.getIdAutostradaDiAppartenenza());
-		stmt.setString(2, casello.getNome());
-		stmt.setFloat(3, casello.getChilometro());
+		stmt.setInt(1, Integer.parseInt(params[0]));
+		stmt.setString(2, params[1]);
+		stmt.setFloat(3, Float.parseFloat(params[2]));
 		stmt.execute();
 		this.closeDB(stmt, null);
 	}
@@ -67,10 +67,36 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 	}
 
 	@Override
-	public void update(Casello casello, String[] params){}
+	public void update(Casello casello, String[] params) throws DBException, SQLException{
+		final String query = "UPDATE casello SET autostrada=?, nome=?, chilometro=? WHERE id=?;";
+		
+		this.openDB();
+		
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, Integer.parseInt(params[0]));
+		stmt.setString(2, params[1]);
+		stmt.setFloat(3, Float.parseFloat(params[2]));
+				
+		stmt.setInt(4, casello.getId());
+		
+	
+		stmt.execute();
+		
+		stmt.execute();
+		
+		this.closeDB(stmt, null);
+	}
 
 	@Override
-	public void delete(Casello casello) {}
+	public void delete(Casello casello) throws DBException, SQLException{
+		final String query = "DELETE FROM casello WHERE id=?;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setInt(1, casello.getId());
+		stmt.execute();
+		this.closeDB(stmt, null);
+	}
 
 	@Override
 	public Casello makeObj(ResultSet rs) throws SQLException{
@@ -90,4 +116,7 @@ public class CaselloDao extends DBManager implements CaselloDaoI {
 		}
 		return caselli;
 	}
+
+
+	
 }

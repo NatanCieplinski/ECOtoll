@@ -2,6 +2,7 @@ package test;
 	
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import dao.implementation.AutostradaDao;
@@ -13,21 +14,23 @@ import mvc.controller.GestoreAutostradale;
 import mvc.model.Autostrada;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 
-public class Main {//extends Application {
+public class Main extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane mainLayout;
 	private static AutostradaDao autostradaDao;
-	public static HashMap<Integer, Autostrada> listaAutostrade;
+	public static HashMap<Integer, Autostrada> listaAutostrade = new HashMap<Integer, Autostrada>();
 	
 	public void start(Stage primaryStage) {
 
 		try {
 			
-			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Home.fxml"));
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
+			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Grafica.fxml"));
+			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/mvc/view/application.css").toExternalForm());
 			
@@ -49,12 +52,12 @@ public class Main {//extends Application {
 	}
 	
 	public static void main(String[] args) {
-
+		
 		try{
 
 			autostradaDao = new AutostradaDao();
 			
-			List<Autostrada> lista = autostradaDao.getAll();
+			LinkedList<Autostrada> lista = (LinkedList<Autostrada>) autostradaDao.getAll();
 			for (Autostrada i: lista){
 				listaAutostrade.put(i.getId(), i);
 			}
@@ -62,8 +65,8 @@ public class Main {//extends Application {
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
-		//launch(args);
-		GestoreAutostradale g = new GestoreAutostradale();
-		g.ingresso(8, "AA000AA");
+		
+		// launch app view
+		launch(args);
 	}
 }
