@@ -185,6 +185,7 @@ public class HomeController implements Initializable {
 				@Override
 				public void handle(ActionEvent event) {
 					autostradaSelezionata = autostrada;
+					MBAutostrada.setText(autostradaSelezionata.getNome());
 					setMICaselli(0);					
 				}
 				
@@ -403,6 +404,11 @@ public class HomeController implements Initializable {
 	@FXML
 	void clickRDCarrelloNo(MouseEvent event) {
 		this.hasCarrello = false;
+		this.numeroAssiCarrello = 0;
+
+		ToggleGroup radioGroup = new ToggleGroup();
+		RDCarrelloSi.setToggleGroup(radioGroup);
+		RDCarrelloNo.setToggleGroup(radioGroup);
 	}
 
 	/*
@@ -431,12 +437,17 @@ public class HomeController implements Initializable {
 
 		GestoreAutostradale gestoreAutostradale = new GestoreAutostradale();
 		
-		// TODO: fixare il bug del -1
 		prezzo = gestoreAutostradale.calcoloPrezzo(
 			this.targa, 
 			this.caselloSelezionato.getId()
 		);
-
+		
+		try {
+			BigliettoDao bigliettoDao = new BigliettoDao();
+			bigliettoDao.delete(new Biglietto(this.targa, this.caselloSelezionato.getId(), this.hasCarrello, this.numeroAssiCarrello));
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		LPrezzo.setText(prezzo + " €");
 	}
 	
@@ -465,11 +476,12 @@ public class HomeController implements Initializable {
 	@FXML
 	void clickBTNSalva(MouseEvent event) throws DBException, SQLException {
 	
-		CaselloDao dao = new CaselloDao();
+		CaselloDao caselloDao = new CaselloDao();
 		String[] params = new String[3];
+		params[0] = Integer.toString(this.autostradaSelezionata.getId());
 		params[1] = TFNomeCasello.getText();
 		params[2] = TFChilometroCasello.getText();
-		dao.update(this.caselloSelezionato, params);
+		caselloDao.update(this.caselloSelezionato, params);
 			
 		MBAutostradaModifica.setText("Seleziona Autostrada");
 		MBCaselloModifica.setText("Seleziona Casello");
@@ -540,8 +552,6 @@ public class HomeController implements Initializable {
 		CaselloDao dao = new CaselloDao();
 		String[] params = new String[3];
 		params[0] = Integer.toString(this.autostradaSelezionata.getId());
-		
-	
 		params[1] = TFCaselloAggiunto.getText();
 		params[2] = TFChilometroAggiunto.getText();
 		dao.create(params);

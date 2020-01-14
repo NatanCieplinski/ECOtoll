@@ -68,7 +68,15 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	public void update(Biglietto biglietto, String[] params){}
 
 	@Override
-	public void delete(Biglietto biglietto) {}
+	public void delete(Biglietto biglietto) throws DBException, SQLException{
+		final String query = "DELETE FROM biglietto WHERE targa=?;";
+		
+		this.openDB();
+		PreparedStatement stmt = this.db.prepareStatement(query);
+		stmt.setString(1, biglietto.getTarga());
+		stmt.execute();
+		this.closeDB(stmt, null);
+	}
 	
 	public Biglietto makeObj(ResultSet rs) throws SQLException{
 		return new Biglietto(
