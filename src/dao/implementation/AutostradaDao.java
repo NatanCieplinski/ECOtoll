@@ -8,31 +8,31 @@ import java.util.List;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 
 import dao.database.DBManager;
 import dao.interfaces.AutostradaDaoI;
-import dao.exceptions.DBException;
 import mvc.model.Autostrada;
 import mvc.model.Casello;
 
 public class AutostradaDao extends DBManager implements AutostradaDaoI {
+	private Connection db;
 	
-	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
-	public List<Autostrada> getAll() throws DBException, SQLException{ 
+	public AutostradaDao() { this.db = this.getDbInstance(); }
+	
+	public List<Autostrada> getAll() throws SQLException{ 
 		final String query = "SELECT * FROM autostrada;";
 		
-		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		
 		ResultSet rs = stmt.executeQuery();
 		List<Autostrada> autostrade = this.makeList(rs);
-		
-		this.closeDB(stmt, null);
+		stmt.close(); rs.close();
 		
 		return autostrade; 
 	} 
 	
-	public HashMap<Integer,Casello> getCaselli(Autostrada autostrada) throws DBException, SQLException{
+	public HashMap<Integer,Casello> getCaselli(Autostrada autostrada) throws SQLException{
 		HashMap<Integer,Casello> caselli = new HashMap<Integer,Casello>();
 		
 		CaselloDao caselloDao = new CaselloDao();
@@ -42,13 +42,11 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 		return caselli;
 	}
 	
-	public HashMap<String ,Float> getTariffe(Autostrada autostrada) throws DBException, SQLException{
+	public HashMap<String ,Float> getTariffe(Autostrada autostrada) throws SQLException{
 		final String query = "SELECT * FROM tariffa WHERE autostrada=?;";
 		
 		HashMap<String ,Float> tariffe = new HashMap<String ,Float>();
 
-		this.openDB();
-		
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setInt(1, autostrada.getId());
 		
@@ -59,31 +57,28 @@ public class AutostradaDao extends DBManager implements AutostradaDaoI {
 		tariffe.put("3", rs.getFloat("tariffa3"));
 		tariffe.put("4", rs.getFloat("tariffa4"));
 		tariffe.put("5", rs.getFloat("tariffa5"));
-		
-		this.closeDB(stmt, null);
+		stmt.close(); rs.close();
 		
 		return tariffe;
 	}
 	
 	/*
-	 * CRUD: Implementare in caso di necessit�
+	 * CRUD: Implementare in caso di necessita
 	 * */
 	@Override
 	public void create(String[] params) {}
 
 	@Override
-	public Optional<Autostrada> read(Object id) throws DBException, SQLException{ 
+	public Optional<Autostrada> read(Object id) throws SQLException{ 
 		final String query = "SELECT * FROM autostrada WHERE id=?;";
 	
-		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setInt(1, (int)id);
 		
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
 		Autostrada autostrada = this.makeObj(rs);
-		
-		this.closeDB(stmt, null);
+		stmt.close(); rs.close();
 		
 		return Optional.ofNullable(autostrada); 
 	} 

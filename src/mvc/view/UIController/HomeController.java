@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import dao.exceptions.DBException;
 import dao.implementation.AutostradaDao;
 import dao.implementation.BigliettoDao;
 import dao.implementation.CaselloDao;
@@ -171,7 +170,7 @@ public class HomeController implements Initializable {
 		
 		try {
 			autostradaList = (LinkedList<Autostrada>)autstradaDao.getAll();
-		} catch (DBException | SQLException e) {
+		} catch (Exception e) {
 			System.out.println("Errore caricamento autostrade ( getAll() ) dal database");
 			e.printStackTrace();
 		}
@@ -246,7 +245,7 @@ public class HomeController implements Initializable {
 
 		try {
 			caselloList = (LinkedList<Casello>) il.getAllFromAutostrada(daoAuto.read(this.autostradaSelezionata.getId()).get());
-		} catch (DBException | SQLException e) {
+		} catch (Exception e) {
 			System.out.println("Errore caricamento casello ( getAllFromAutostrada() ) dal databese");
 			e.printStackTrace();
 		}
@@ -333,7 +332,7 @@ public class HomeController implements Initializable {
 	 * Click del radio button del tipo casello
 	 * */ 
 	@FXML
-	void clickRDIngresso(MouseEvent event) throws DBException, SQLException {
+	void clickRDIngresso(MouseEvent event) throws SQLException {
 		// Casello di ingresso
 		this.tipoCasello = 1;
 
@@ -364,7 +363,7 @@ public class HomeController implements Initializable {
 	}
 	
 	@FXML
-	void clickRDUscita(MouseEvent event) throws DBException, SQLException {
+	void clickRDUscita(MouseEvent event) throws SQLException {
 		// Casello di uscita
 		this.tipoCasello = 0;
 
@@ -474,7 +473,7 @@ public class HomeController implements Initializable {
 	 * Click del bottone per il salvataggio delle modifiche al casello
 	 * */ 
 	@FXML
-	void clickBTNSalva(MouseEvent event) throws DBException, SQLException {
+	void clickBTNSalva(MouseEvent event) throws SQLException {
 	
 		CaselloDao caselloDao = new CaselloDao();
 		String[] params = new String[3];
@@ -493,7 +492,7 @@ public class HomeController implements Initializable {
 	 * Click del bottone andare alla schermata modifica casello
 	 * */ 
 	@FXML
-	void clickBTNModifica(MouseEvent event) throws DBException, SQLException {
+	void clickBTNModifica(MouseEvent event) throws SQLException {
 		APModificaCasello.setVisible(true);
 		
 		TFNomeCasello.clear();
@@ -508,7 +507,7 @@ public class HomeController implements Initializable {
 			
 		try {
 			autostrade = (LinkedList<Autostrada>)autostradaDao.getAll();
-		} catch (DBException | SQLException e) {
+		} catch (Exception e) {
 			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
 			e.printStackTrace();
 		}
@@ -547,7 +546,7 @@ public class HomeController implements Initializable {
 	 * Click del bottone per aggiungere un casello
 	 * */ 
 	@FXML
-	void clickBTNAggiungi(MouseEvent event) throws DBException, SQLException {
+	void clickBTNAggiungi(MouseEvent event) throws SQLException {
 			
 		CaselloDao dao = new CaselloDao();
 		String[] params = new String[3];
@@ -565,7 +564,7 @@ public class HomeController implements Initializable {
 	 * Click del bottone per la rimozione di un casello
 	 * */ 
 	@FXML
-	void clickBTNRimuovi(MouseEvent event) throws DBException, SQLException {
+	void clickBTNRimuovi(MouseEvent event) throws SQLException {
 		CaselloDao dao = new CaselloDao();
 			
 		dao.delete(this.caselloSelezionato);
@@ -605,7 +604,7 @@ public class HomeController implements Initializable {
 			
 		try {
 			autostrade = (LinkedList<Autostrada>)autostradaDao.getAll();
-		} catch (DBException | SQLException e) {
+		} catch (Exception e) {
 			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
 			e.printStackTrace();
 		}

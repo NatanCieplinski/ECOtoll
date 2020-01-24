@@ -5,25 +5,27 @@ import java.util.LinkedList;
 import java.util.List;
 
 import java.sql.SQLException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import dao.database.DBManager;
 import dao.interfaces.BigliettoDaoI;
-import dao.exceptions.DBException;
 import mvc.model.Biglietto;
 import mvc.model.Casello;
 
 public class BigliettoDao extends DBManager implements BigliettoDaoI {
+	private Connection db;
+	
+	public BigliettoDao() { this.db = this.getDbInstance(); }
 	
 	// TODO: Implementare le query descritte nell'interfaccia BigliettoDaoI
-	public List<Biglietto> getAll() throws DBException, SQLException{
+	public List<Biglietto> getAll() throws SQLException{
 		final String query = "SELECT * FROM biglietto;";
 
-		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		List<Biglietto> biglietti = this.makeList(stmt.executeQuery());
-		this.closeDB(stmt, null);
+		stmt.close();
 		
 		return biglietti;
 	}
@@ -32,34 +34,30 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	 * CRUD: Implementare in caso di necessita
 	 * */
 	@Override
-	public void create(String[] params) throws DBException, SQLException{
+	public void create(String[] params) throws SQLException{
 		final String query = "INSERT INTO biglietto(targa, ingresso, carrello, n_assi_carrello) VALUES( ?,?,?,? );";
 
-		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setString(1, params[0]);
 		stmt.setInt(2, Integer.parseInt(params[1]));
 		stmt.setBoolean(3, Boolean.parseBoolean(params[2]));
 		stmt.setInt(4, Integer.parseInt(params[3]));
 		
-		stmt.execute();
-		
-		this.closeDB(stmt, null);
+		stmt.execute(); stmt.close();
 	}
 
 	@Override
-	public Optional<Biglietto> read(Object targa) throws DBException, SQLException{ 
+	public Optional<Biglietto> read(Object targa) throws SQLException{ 
 		final String query = "SELECT * FROM biglietto WHERE targa=?;";
 		
-		this.openDB();
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setString(1, (String)targa);
 		
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
 		Biglietto biglietto = this.makeObj(rs);
-		
-		this.closeDB(stmt, null);
+
+		stmt.close(); rs.close();	
 		
 		return Optional.ofNullable(biglietto); 
 	} 
@@ -68,14 +66,14 @@ public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	public void update(Biglietto biglietto, String[] params){}
 
 	@Override
-	public void delete(Biglietto biglietto) throws DBException, SQLException{
+	public void delete(Biglietto biglietto) throws SQLException{
 		final String query = "DELETE FROM biglietto WHERE targa=?;";
 		
-		this.openDB();
+		
 		PreparedStatement stmt = this.db.prepareStatement(query);
 		stmt.setString(1, biglietto.getTarga());
-		stmt.execute();
-		this.closeDB(stmt, null);
+		stmt.execute(); stmt.close();
+		
 	}
 	
 	public Biglietto makeObj(ResultSet rs) throws SQLException{
