@@ -19,11 +19,9 @@ public class GestoreAutostradale{
 
 	private BigliettoDao bigliettoDao;
 	private CaselloDao caselloDao;
-	private Normativa normativa;
 
     public GestoreAutostradale(){
         this.bigliettoDao = new BigliettoDao();
-		this.normativa = new Normativa();
 		this.caselloDao = new CaselloDao();
     }
 
@@ -52,7 +50,7 @@ public class GestoreAutostradale{
         		System.out.println("Biglietto valido");     
 
 				//Creazione le informazioni da passare alla classe pedaggio
-				Veicolo veicolo = normativa.creaVeicolo(biglietto.getTarga(), biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
+				Veicolo veicolo = VeicoloFactory.getVeicolo(biglietto.getTarga(), biglietto.getCarrello(), biglietto.getNumeroAssiCarrello());
 				Casello caselloIngresso = caselloDao.read(biglietto.getIdCaselloIngresso()).get();
 				Casello caselloUscita = caselloDao.read(idCaselloUscita).get();
 

@@ -30,7 +30,6 @@ public class Main extends Application {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/mvc/view/Grafica.fxml"));
-			//primaryStage.initStyle(StageStyle.TRANSPARENT);
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/mvc/view/application.css").toExternalForm());
 			
