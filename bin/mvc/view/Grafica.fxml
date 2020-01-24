@@ -96,7 +96,7 @@
       </AnchorPane>
       <AnchorPane fx:id="APAggiungiRimuovi" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="BTNIndietroDue" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#clickBTNIndietroDue" styleClass="darkList" text="<--" />
+            <Button fx:id="BTNIndietroDue" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#clickBTNIndietroDue" styleClass="darkList" text="&lt;--" />
             <MenuButton fx:id="MBAutostradaRimuovi" layoutX="50.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#clickMBAutostradaRimuovi" prefHeight="30.0" prefWidth="200.0" text="Seleziona Autostrada" textAlignment="CENTER" AnchorPane.leftAnchor="50.0" />
             <MenuButton fx:id="MBCaselloAggRim" disable="true" layoutX="350.0" layoutY="83.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Seleziona Casello" textAlignment="CENTER" AnchorPane.rightAnchor="50.0" />
             <Label layoutX="187.0" layoutY="22.0" text=" Rimuovi Casello" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0">

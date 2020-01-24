@@ -415,11 +415,13 @@ public class HomeController implements Initializable {
 	 * */ 
 	@FXML
 	void clickRDCarrelloUno(MouseEvent event) {
-		this.numeroAssiCarrello = 1;
+		if(this.hasCarrello)
+			this.numeroAssiCarrello = 1;
 	}
 	@FXML
 	void clickRDCarrelloDue(MouseEvent event) {
-		this.numeroAssiCarrello = 2;
+		if(this.hasCarrello)
+			this.numeroAssiCarrello = 2;
 
 		ToggleGroup radioGroup = new ToggleGroup();
 		RDCarrelloUno.setToggleGroup(radioGroup);
