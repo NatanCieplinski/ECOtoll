@@ -27,7 +27,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -50,17 +49,9 @@ public class HomeController implements Initializable {
 	private Casello caselloSelezionato = null; 
 	private Autostrada autostradaSelezionata = null; 
 
-	static LinkedList<String> targhe = new LinkedList<String>();
-	static ObservableList<String> items = FXCollections.observableArrayList();
+	private LinkedList<String> targhe = new LinkedList<String>();
+	private String targa;
 	
-	Veicolo v;
-	String targa;
-	
-	int idCaselloModifica;
-	int idCaselloElimina;
-	int idCaselloAggiunta;
-	int var;
-
 	/*
 	 * Radio Buttons
 	 * */
@@ -246,7 +237,7 @@ public class HomeController implements Initializable {
 		try {
 			caselloList = (LinkedList<Casello>) il.getAllFromAutostrada(daoAuto.read(this.autostradaSelezionata.getId()).get());
 		} catch (Exception e) {
-			System.out.println("Errore caricamento casello ( getAllFromAutostrada() ) dal databese");
+			System.out.println("Errore caricamento casello ( getAllFromAutostrada() ) dal database");
 			e.printStackTrace();
 		}
 
@@ -305,8 +296,6 @@ public class HomeController implements Initializable {
 	 * */ 
 	@FXML
 	public void clickBTNEmettiBiglietto(MouseEvent event) {
-
-		// TODO: Selezionare da la lista di autostrade
 		this.targa = TFCerca.getText();
 		
 		if (this.tipoCasello == 0) {
@@ -341,7 +330,6 @@ public class HomeController implements Initializable {
 		RDCarrelloSi.setDisable(false);
 		RDCarrelloNo.setDisable(false);
 
-		// TODO: ??
 		ToggleGroup radioGroup = new ToggleGroup();
 		RDIngresso.setToggleGroup(radioGroup);
 		RDUscita.setToggleGroup(radioGroup);
@@ -376,7 +364,6 @@ public class HomeController implements Initializable {
 		this.targhe.clear();
 		LVTarghe.getItems().clear();
 
-		// TODO: Da fixare con solo i biglietti dell'autostrada selezionata
 		BigliettoDao bigliettoDao = new BigliettoDao();
 		List<Biglietto> biglietti = (List<Biglietto>)bigliettoDao.getAll(); 
 		
@@ -508,7 +495,7 @@ public class HomeController implements Initializable {
 		try {
 			autostrade = (LinkedList<Autostrada>)autostradaDao.getAll();
 		} catch (Exception e) {
-			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
+			System.out.println("Errore caricamento autostrade ( getAll() ) dal database");
 			e.printStackTrace();
 		}
 			
@@ -597,15 +584,13 @@ public class HomeController implements Initializable {
 		MBAutostradaRimuovi.setText("Seleziona Autostrada");
 		MBAutostradaAggiungi.setText("Seleziona Autostrada");
 
-		var = 2;
-
 		AutostradaDao autostradaDao = new AutostradaDao();
 		LinkedList<Autostrada> autostrade = null;
 			
 		try {
 			autostrade = (LinkedList<Autostrada>)autostradaDao.getAll();
 		} catch (Exception e) {
-			System.out.println("Errore caricamento autostrade ( getAll() ) dal databese");
+			System.out.println("Errore caricamento autostrade ( getAll() ) dal database");
 			e.printStackTrace();
 		}
 			

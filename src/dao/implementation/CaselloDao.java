@@ -13,14 +13,12 @@ import dao.database.DBManager;
 import dao.interfaces.CaselloDaoI;
 import mvc.model.Autostrada;
 import mvc.model.Casello;
-import mvc.model.Veicolo;
 
 public class CaselloDao extends DBManager implements CaselloDaoI {
 	private Connection db;
 	
 	public CaselloDao() { this.db = this.getDbInstance(); }
 	
-	// TODO: Implementare le query descritte nell'interfaccia AutostradaDaoI
 	public List<Casello> getAllFromAutostrada(Autostrada autostrada) throws SQLException{
 		final String query = "SELECT * FROM casello WHERE autostrada=?;";
 		

@@ -19,11 +19,9 @@ public class GestoreAutostradale{
 
 	private BigliettoDao bigliettoDao;
 	private CaselloDao caselloDao;
-	private Normativa normativa;
 
     public GestoreAutostradale(){
         this.bigliettoDao = new BigliettoDao();
-		this.normativa = new Normativa();
 		this.caselloDao = new CaselloDao();
     }
 

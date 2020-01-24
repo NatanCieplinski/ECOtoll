@@ -12,14 +12,12 @@ import java.sql.ResultSet;
 import dao.database.DBManager;
 import dao.interfaces.BigliettoDaoI;
 import mvc.model.Biglietto;
-import mvc.model.Casello;
 
 public class BigliettoDao extends DBManager implements BigliettoDaoI {
 	private Connection db;
 	
 	public BigliettoDao() { this.db = this.getDbInstance(); }
 	
-	// TODO: Implementare le query descritte nell'interfaccia BigliettoDaoI
 	public List<Biglietto> getAll() throws SQLException{
 		final String query = "SELECT * FROM biglietto;";
 
