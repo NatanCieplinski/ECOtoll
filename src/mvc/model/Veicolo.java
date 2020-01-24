@@ -69,4 +69,6 @@ public class Veicolo{
     public int getPeso(){
         return this.peso;
     }
+    
+    public String getType(){ return "V"; }
 }

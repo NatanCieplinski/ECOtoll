@@ -6,4 +6,7 @@ public class VeicoloB extends Veicolo{
         super(altezza, numeroAssi, targa, co2, decibel, euro, modello, marca, anno, peso);
     }
     
+    @Override
+    public String getType(){ return "B"; }
+    
 }
