@@ -117,6 +117,8 @@ public class HomeController implements Initializable {
 	private MenuButton MBAutostradaRimuovi;
 	@FXML
 	private MenuButton MBAutostrada;
+	@FXML
+    private MenuButton MBNormativa;
 
 	/*
 	 * Text Fields
@@ -340,6 +342,7 @@ public class HomeController implements Initializable {
 		RDCarrelloUno.setDisable(false);
 		RDCarrelloSi.setDisable(false);
 		RDCarrelloNo.setDisable(false);
+		MBNormativa.setDisable(true);
 
 		// TODO: ??
 		ToggleGroup radioGroup = new ToggleGroup();
@@ -371,6 +374,7 @@ public class HomeController implements Initializable {
 		RDCarrelloUno.setDisable(true);
 		RDCarrelloSi.setDisable(true);
 		RDCarrelloNo.setDisable(true);
+		MBNormativa.setDisable(false);
 
 		// Aggiornamento della lista targhe 
 		this.targhe.clear();
@@ -629,4 +633,9 @@ public class HomeController implements Initializable {
 			MBAutostradaAggiungi.getItems().add(menuItemDue);					 	
 		}				
 	}
+	 @FXML
+	    void clickMBNormativa(MouseEvent event) {
+
+	    }
+
 }
