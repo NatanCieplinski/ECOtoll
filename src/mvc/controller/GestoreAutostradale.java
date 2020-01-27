@@ -37,7 +37,7 @@ public class GestoreAutostradale{
         }
     }
 
-    public float calcoloPrezzo(String targa, int idCaselloUscita){
+    public float calcoloPrezzo(String targa, int idCaselloUscita, Normativa normativa){
     	try {
     		// Prende il biglietto dal DB
     		Biglietto biglietto = bigliettoDao.read(targa).get();
@@ -54,7 +54,7 @@ public class GestoreAutostradale{
 				Casello caselloIngresso = caselloDao.read(biglietto.getIdCaselloIngresso()).get();
 				Casello caselloUscita = caselloDao.read(idCaselloUscita).get();
 
-				return Pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita);  
+				return Pedaggio.calcoloPedaggio(veicolo, caselloIngresso, caselloUscita, normativa);  
 						
     		} else {
 				throw new Exception("Biglietto manomesso");

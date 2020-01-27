@@ -1,35 +1,17 @@
 package mvc.controller;
 
-import mvc.model.Casello;
 import mvc.model.Veicolo;
-import test.Main;
 
-import java.util.HashMap;
-
-/*
- * La classe normativa serve per raggruppare tutto l'insieme di normative attuali e future da implementare
- * */
-public class Normativa{
-    private static final float IVA = 1.22f;
-    
-    public static float calcoloTariffa(Veicolo veicolo, Casello caselloUscita) {
-    	HashMap<String, Float> tariffe = Main.listaAutostrade.get(caselloUscita.getIdAutostradaDiAppartenenza()).getTariffe();
-    	return tariffe.get(veicolo.getType());
+public interface Normativa {
+    public default float differenziazione(float prezzo, Veicolo veicolo){
+        return prezzo;
     }
 
-    public static float maggiorazioni(){
-        //Spazio per l'implementazione delle normative future
-        return 1;
-    }
-
-    public static float arrotondamentoPrezzo(float prezzo) {
-    	prezzo = (float)(Math.round(prezzo*10))/10;
-
-    	return prezzo;
-    }
-
-    public static float getIVA(){
-        return IVA;
+    public default float round(float prezzo) {
+    	return (float)(Math.round(prezzo*10))/10;
     }
     
+    public default float getIva() {
+    	return 1.22f;
+    }
 }

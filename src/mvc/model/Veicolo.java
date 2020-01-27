@@ -1,12 +1,14 @@
 package mvc.model;
 
+import java.util.HashMap;
+
+import test.Main;
+
 public class Veicolo{
 
     private int altezza;
     private int numeroAssi;
-    //per semplicità assumiamo che il carrello sia dichiarato nell'imattricolazione
     private String targa;
-    //inquinamento acustico e atmosferico per future normative
     private int co2;
     private int decibel;
     private int euro; // 1-6
@@ -14,15 +16,6 @@ public class Veicolo{
     private String marca;
     private int anno;
     private int peso;
-
-
-    public Veicolo(int altezza, int numeroAssi, boolean carrello, int numeroAssiCarrello, String targa, int co2, int decibel, int euro){
-        this.altezza = altezza;
-        this.numeroAssi = numeroAssi;
-        this.targa = targa;
-        this.co2 = co2;
-        this.euro = euro;
-    }
 
     public Veicolo(int altezza, int numeroAssi, String targa, int co2, int decibel, int euro, String modello, String marca, int anno, int peso){
         this.altezza = altezza;
@@ -37,8 +30,27 @@ public class Veicolo{
         this.peso = peso;
     }
 
-    //implementazione dei set solo per il carrello perchè sono gli unici elementi che possono cambiare del veicolo.
+    public String getClasse(){ 
+        if (this.altezza < 130 && this.numeroAssi <= 2)
+            return "A";
+        
+        if (this.altezza > 130 && this.numeroAssi == 2)
+            return "B";
+        
+        if (this.numeroAssi == 3)
+        	return "3";
+        
+        if (this.numeroAssi == 4)
+        	return "4";
 
+        return "5";
+    }
+    
+    public float getTariffa(Casello caselloUscita) {
+    	HashMap<String, Float> tariffe = Main.listaAutostrade.get(caselloUscita.getIdAutostradaDiAppartenenza()).getTariffe();
+    	return tariffe.get(this.getClasse());
+	}
+    
     public int getAltezza(){
         return this.altezza;
     }
@@ -70,5 +82,7 @@ public class Veicolo{
         return this.peso;
     }
     
-    public String getType(){ return "V"; }
+    public void setNumeroAssi(int assi) {
+    	this.numeroAssi = assi;
+    }
 }

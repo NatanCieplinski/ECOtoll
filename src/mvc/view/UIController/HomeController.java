@@ -3,6 +3,8 @@ package mvc.view.UIController;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,7 +32,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Pair;
 import mvc.controller.GestoreAutostradale;
+import mvc.controller.Normativa;
+import mvc.controller.NormativaFactory;
 import mvc.model.Autostrada;
 import mvc.model.Biglietto;
 import mvc.model.Casello;
@@ -48,6 +53,7 @@ public class HomeController implements Initializable {
 
 	private Casello caselloSelezionato = null; 
 	private Autostrada autostradaSelezionata = null; 
+	private Normativa normativaSelezionata = null;
 
 	private LinkedList<String> targhe = new LinkedList<String>();
 	private String targa;
@@ -107,6 +113,8 @@ public class HomeController implements Initializable {
 	private MenuButton MBAutostradaRimuovi;
 	@FXML
 	private MenuButton MBAutostrada;
+	@FXML
+    private MenuButton MBNormativa;
 
 	/*
 	 * Text Fields
@@ -183,6 +191,32 @@ public class HomeController implements Initializable {
 			
 			MBAutostrada.getItems().add(menuItem);
 		}
+
+		/*
+		* Listener normative
+		* */
+		ArrayList<Pair<Integer, String>> normative = new ArrayList<Pair<Integer, String>>();
+		normative.add(new Pair<Integer, String>(2019,"Normativa 2019"));
+		normative.add(new Pair<Integer, String>(2021,"Normativa 2021"));
+		normative.add(new Pair<Integer, String>(2026,"Normativa 2026"));
+		Iterator<Pair<Integer, String>> it = normative.iterator();
+		
+		while (it.hasNext()){
+			Pair<Integer, String> curr = it.next();
+			MenuItem item = new MenuItem(curr.getValue());
+
+			item.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					normativaSelezionata = NormativaFactory.getNormativa(curr.getKey());
+					MBNormativa.setText(item.getText());				
+				}
+				
+			});
+			MBNormativa.getItems().add(item);
+		}
+		
 		
 		/*
 		* Listener ricerca targa
@@ -329,6 +363,7 @@ public class HomeController implements Initializable {
 		RDCarrelloUno.setDisable(false);
 		RDCarrelloSi.setDisable(false);
 		RDCarrelloNo.setDisable(false);
+		MBNormativa.setDisable(true);
 
 		ToggleGroup radioGroup = new ToggleGroup();
 		RDIngresso.setToggleGroup(radioGroup);
@@ -359,6 +394,7 @@ public class HomeController implements Initializable {
 		RDCarrelloUno.setDisable(true);
 		RDCarrelloSi.setDisable(true);
 		RDCarrelloNo.setDisable(true);
+		MBNormativa.setDisable(false);
 
 		// Aggiornamento della lista targhe 
 		this.targhe.clear();
@@ -416,6 +452,14 @@ public class HomeController implements Initializable {
 	}
 
 	/*
+	 * Click di un elemento del dropdown di normativa
+	 * */ 
+	 @FXML
+	 void clickMBNormativa(MouseEvent event) {
+
+	 }
+
+	/*
 	 * Click del bottone paga
 	 * */ 
 	@FXML
@@ -427,7 +471,8 @@ public class HomeController implements Initializable {
 		
 		prezzo = gestoreAutostradale.calcoloPrezzo(
 			this.targa, 
-			this.caselloSelezionato.getId()
+			this.caselloSelezionato.getId(),
+			this.normativaSelezionata
 		);
 		
 		try {

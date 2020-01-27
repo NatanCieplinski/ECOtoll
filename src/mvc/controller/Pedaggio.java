@@ -4,8 +4,15 @@ import mvc.model.Veicolo;
 import mvc.model.Casello;
 
 public class Pedaggio{
-    public static float calcoloPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita){
+    public static float calcoloPedaggio(Veicolo veicolo, Casello caselloIngresso, Casello caselloUscita, Normativa normativa){
         int km = Math.abs(caselloIngresso.getChilometro() - caselloUscita.getChilometro());
-        return Normativa.arrotondamentoPrezzo(Normativa.calcoloTariffa(veicolo, caselloUscita) * km * Normativa.getIVA() * Normativa.maggiorazioni());
+        
+        float pedaggio = normativa.round(
+        	veicolo.getTariffa(caselloUscita) * 
+        	km * 
+        	normativa.getIva()
+        );
+        
+        return normativa.differenziazione(pedaggio, veicolo);
     }
 }

@@ -1,27 +1,20 @@
 package test;
 	
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 import dao.implementation.AutostradaDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import mvc.controller.GestoreAutostradale;
 import mvc.model.Autostrada;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.layout.BorderPane;
 
 public class Main extends Application {
 	
-	private Stage primaryStage;
-	private BorderPane mainLayout;
+	//private Stage primaryStage;
+	//private BorderPane mainLayout;
 	private static AutostradaDao autostradaDao;
 	public static HashMap<Integer, Autostrada> listaAutostrade = new HashMap<Integer, Autostrada>();
 	
@@ -41,6 +34,7 @@ public class Main extends Application {
 		}
 	}
 	
+	/*
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/mvc/view/Home.fxml"));
@@ -48,7 +42,7 @@ public class Main extends Application {
 		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-	}
+	}*/
 	
 	public static void main(String[] args) {
 		
