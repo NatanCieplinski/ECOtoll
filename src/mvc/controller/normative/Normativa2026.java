@@ -9,12 +9,10 @@ public class Normativa2026 extends Normativa2021 implements Normativa {
     		// Veicolo inquinante
     		prezzo *= 1.15;
     	}
-    	
     	if(veicolo.getCo2() < 100 && veicolo.getDecibel() < 100) {
     		// Eco sconto
     		prezzo *= 0.85;
-    	}
-    	
+		}
     	return prezzo;
     }
     
