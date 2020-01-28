@@ -1,4 +1,4 @@
-package mvc.controller;
+package mvc.controller.normative;
 
 public class NormativaFactory {
 	public static Normativa getNormativa(int anno){

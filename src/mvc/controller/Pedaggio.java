@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import mvc.model.Veicolo;
+import mvc.controller.normative.Normativa;
 import mvc.model.Casello;
 
 public class Pedaggio{

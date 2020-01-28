@@ -1,4 +1,4 @@
-package mvc.controller;
+package mvc.controller.normative;
 
 import mvc.model.Veicolo;
 

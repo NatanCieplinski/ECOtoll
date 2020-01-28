@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import mvc.controller.normative.Normativa;
 import mvc.model.Biglietto;
 import mvc.model.Veicolo;
 import mvc.model.Casello;
